@@ -5,18 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:resx="clr-namespace:AdminPanel.Properties"
         xmlns:local="clr-namespace:AdminPanel.Windows" ResizeMode="NoResize"
-        mc:Ignorable="d" Height="355.147" Width="416.912">
+        mc:Ignorable="d" Height="355.147" Width="416.912" Loaded="ApplicationLoaded">
     <Grid>
-        <StackPanel Margin="10px">
+        <StackPanel Margin="10px" FocusManager.FocusedElement="{Binding ElementName=FirstName}">
             <TextBlock Text="{x:Static resx:Resources.LabelLogin}"></TextBlock>
             <TextBox IsReadOnly="True" Text="{Binding Login, Mode=OneWay}" Background="LightGray"></TextBox>
             <TextBlock Text="{x:Static resx:Resources.LabelFirstName}"></TextBlock>
-            <TextBox Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Name="FirstName" Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" KeyDown="UIElement_OnKeyDown"></TextBox>
             <TextBlock Text="{x:Static resx:Resources.LabelLastName}"></TextBlock>
-            <TextBox Text="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Text="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" KeyDown="UIElement_OnKeyDown"></TextBox>
             <TextBlock Text="{x:Static resx:Resources.LabelLastLoginDate}"></TextBlock>
             <TextBox IsReadOnly="True" Background="LightGray" Text="{Binding LastLoginDate, Mode=OneWay}"></TextBox>
-            <Button>
+            <Button Click="Button_Click">
                 <TextBlock Text="{x:Static resx:Resources.SaveButtonText}"></TextBlock></Button>
         </StackPanel>
     </Grid>

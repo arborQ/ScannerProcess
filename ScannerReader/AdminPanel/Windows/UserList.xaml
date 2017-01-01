@@ -6,22 +6,28 @@
         xmlns:local="clr-namespace:AdminPanel.Windows"
         xmlns:resx="clr-namespace:AdminPanel.Properties"
         mc:Ignorable="d"
-        Title="{x:Static resx:Resources.UserListScreenTitle}" Height="390.441" Width="682.721">
+        Title="{x:Static resx:Resources.UserListScreenTitle}" Height="390.441" Width="682.721" Loaded="WindowLoaded">
+    <Window.Resources>
+        <Style x:Key="UserListItemStyle" TargetType="{x:Type ListViewItem}">
+            <EventSetter Event="MouseDoubleClick" Handler="OpenUserEdit" />
+            <EventSetter Event="KeyDown" Handler="OpenUserEditKeyboard" />
+        </Style>
+    </Window.Resources>
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="{x:Static resx:Resources.ContextMenuUsers}" FontWeight="Normal">
                     <MenuItem Click="OpenCreateNewUserWidnow" Header="{x:Static resx:Resources.ContextMenuUsersAdd}"/>
-                    <MenuItem Header="{x:Static resx:Resources.ContextMenuUsersRefresh}"/>
+                    <MenuItem Click="WindowLoaded" Header="{x:Static resx:Resources.ContextMenuUsersRefresh}"/>
                 </MenuItem>
             </Menu>
-            <ListView>
+            <ListView ItemsSource="{Binding List, Mode= OneWay}" ItemContainerStyle="{StaticResource UserListItemStyle}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="{x:Static resx:Resources.HeaderLogin}" Width="120" DisplayMemberBinding="{Binding Name}" />
-                        <GridViewColumn Header="{x:Static resx:Resources.HeaderFirstName}" Width="150" DisplayMemberBinding="{Binding Age}" />
-                        <GridViewColumn Header="{x:Static resx:Resources.HeaderLastName}" Width="150" DisplayMemberBinding="{Binding Mail}" />
-                        <GridViewColumn Header="{x:Static resx:Resources.HeaderLastLogin}" Width="200" DisplayMemberBinding="{Binding Mail}" />
+                        <GridViewColumn Header="{x:Static resx:Resources.HeaderLogin}" Width="120" DisplayMemberBinding="{Binding Login}" />
+                        <GridViewColumn Header="{x:Static resx:Resources.HeaderFirstName}" Width="150" DisplayMemberBinding="{Binding FirstName}" />
+                        <GridViewColumn Header="{x:Static resx:Resources.HeaderLastName}" Width="150" DisplayMemberBinding="{Binding LastName}" />
+                        <GridViewColumn Header="{x:Static resx:Resources.HeaderLastLogin}" Width="200" DisplayMemberBinding="{Binding LastLoginDate}" />
                     </GridView>
                 </ListView.View>
             </ListView>

@@ -226,6 +226,15 @@ namespace AdminPanel.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Na pewno chcesz usunąć użytkownika {0}?.
+        /// </summary>
+        public static string RemoveUserConfirmFormat {
+            get {
+                return ResourceManager.GetString("RemoveUserConfirmFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Zapisz.
         /// </summary>
         public static string SaveButtonText {

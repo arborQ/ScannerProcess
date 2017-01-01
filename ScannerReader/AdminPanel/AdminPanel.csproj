@@ -57,6 +57,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Windows\UserDetailsWindow.xaml.cs">
       <DependentUpon>UserDetailsWindow.xaml</DependentUpon>
     </Compile>
@@ -128,6 +129,12 @@
     <Resource Include="Resources\refresh.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RepositoryServices\RepositoryServices.csproj">
+      <Project>{51b3f4bf-fdca-4f5f-a6d5-6124cee785ae}</Project>
+      <Name>RepositoryServices</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,42 +1,58 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Globalization;
-using System.IO;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
+using RepositoryServices.Models;
 
 namespace AdminPanel.Models
 {
     public class UserModel : INotifyPropertyChanged
     {
-        public long Id { get; set; }
-
-        public string Login => !string.IsNullOrEmpty(FirstName) && !string.IsNullOrEmpty(LastName) ? $"{FirstName}.{LastName}".ToLower(): string.Empty;
+        public int Id { get; set; }
 
         private string _firstName;
+
+        private string _lastName;
+
+        public string Login
+            =>
+                !string.IsNullOrEmpty(FirstName) && !string.IsNullOrEmpty(LastName)
+                    ? $"{FirstName}.{LastName}".ToLower()
+                    : string.Empty;
+
         public string FirstName
         {
             get { return _firstName; }
             set
             {
                 _firstName = value;
+                OnPropertyChanged();
                 OnPropertyChanged(nameof(Login));
             }
         }
 
-        private string _lastName;
         public string LastName
         {
             get { return _lastName; }
             set
             {
                 _lastName = value;
+                OnPropertyChanged();
                 OnPropertyChanged(nameof(Login));
             }
         }
 
-        public DateTime? LastLoginDate { get; set; }
+        public bool IsValid()
+        {
+            return !string.IsNullOrEmpty(FirstName) && !string.IsNullOrEmpty(LastName) && !string.IsNullOrEmpty(Login);
+        }
+
+        private DateTime? _lastLoginDate;
+
+        public DateTime? LastLoginDate
+        {
+            get { return _lastLoginDate; }
+            set { _lastLoginDate = value; OnPropertyChanged(); }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
