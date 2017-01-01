@@ -68,6 +68,22 @@ namespace RepositoryServices.Repositories
             EditRecord(sourceElement, arg => arg.Id == sourceElement.Id);
         }
 
+        public virtual void EditRecord(Expression<Func<T, bool>> predicate, Action<T> editAction)
+        {
+            using (var db = new LiteDatabase(DbFileName))
+            {
+                var dbColletion = db.GetCollection<T>(_tableName);
+                var item = dbColletion.FindOne(predicate);
+                editAction(item);
+                dbColletion.Update(item);
+
+                foreach (var uniqueIndex in UniqueIndexes)
+                {
+                    dbColletion.EnsureIndex(uniqueIndex, true);
+                }
+            }
+        }
+
         public virtual void AddRecord(T model)
         {
             using (var db = new LiteDatabase(DbFileName))

@@ -6,8 +6,6 @@
              StartupUri="Windows/LoginWindow.xaml">
     <Application.Resources>
         <BitmapImage x:Key="Logo" UriSource="/Resources/Logo.png" />
-        <BitmapImage x:Key="RefreshImage" UriSource="/Resources/refresh.png" />
-        <BitmapImage x:Key="AddImage" UriSource="/Resources/add.png" />
         <Style TargetType="TextBlock">
             <Setter Property="FontWeight" Value="Bold"></Setter>
             <Setter Property="FontSize" Value="16px"></Setter>

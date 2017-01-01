@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using AdminPanel.Models;
 using AdminPanel.Properties;
 
 namespace AdminPanel.Windows
@@ -20,18 +7,10 @@ namespace AdminPanel.Windows
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class LoginWindow
     {
-        public LoginModel Model { get; set; }
-
         public LoginWindow()
         {
-            Model = new LoginModel
-            {
-                Login = "admin"
-            };
-
-            DataContext = Model;
             InitializeComponent();
         }
 
@@ -58,7 +37,8 @@ namespace AdminPanel.Windows
             }
             else
             {
-                var result = MessageBox.Show(Properties.Resources.WrongLoginOrPasswrodMessage, Properties.Resources.WrongLoginOrPasswrodMessage, MessageBoxButton.OK, MessageBoxImage.Stop);
+                var result = MessageBox.Show(Properties.Resources.WrongLoginOrPasswrodMessage,
+                    Properties.Resources.WrongLoginOrPasswrodMessage, MessageBoxButton.OK, MessageBoxImage.Stop);
             }
         }
     }

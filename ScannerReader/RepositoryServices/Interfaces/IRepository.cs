@@ -16,6 +16,8 @@ namespace RepositoryServices.Interfaces
 
         void EditRecord(T sourceElement, Expression<Func<T, bool>> predicate);
 
+        void EditRecord(Expression<Func<T, bool>> predicate, Action<T> editAction);
+
         void AddRecord(T model);
 
         void RemoveRecord(int recordId);
