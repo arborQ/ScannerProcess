@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScannerReader", "ScannerReader\ScannerReader.csproj", "{A8515303-0681-4219-B26F-35602984B1FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminPanel", "AdminPanel\AdminPanel.csproj", "{CBB36BC7-855F-435F-B2FD-BB0ED67CA7DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A8515303-0681-4219-B26F-35602984B1FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8515303-0681-4219-B26F-35602984B1FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8515303-0681-4219-B26F-35602984B1FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBB36BC7-855F-435F-B2FD-BB0ED67CA7DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBB36BC7-855F-435F-B2FD-BB0ED67CA7DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBB36BC7-855F-435F-B2FD-BB0ED67CA7DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBB36BC7-855F-435F-B2FD-BB0ED67CA7DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
