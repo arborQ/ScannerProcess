@@ -6,7 +6,9 @@
         xmlns:resx="clr-namespace:ScannerReader.Properties"
         xmlns:local="clr-namespace:ScannerReader.Windows"
         mc:Ignorable="d"
-        Title="{x:Static resx:Resources.LoginScreenTitle}" Height="350" Width="525">
+        Title="{x:Static resx:Resources.LoginScreenTitle}" 
+        Height="350" 
+        Width="525">
     <Grid>
         <StackPanel Margin="20,10,20,0" Height="279" VerticalAlignment="Top" FocusManager.FocusedElement="{Binding ElementName=LoginBox}">
             <Image Height="96" Source="{StaticResource Logo}"  Margin="70,0,70,0"/>

@@ -1,0 +1,35 @@
+﻿<Window x:Class="AdminPanel.Windows.MachineListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:resx="clr-namespace:AdminPanel.Properties"
+        xmlns:local="clr-namespace:AdminPanel.Windows"
+        mc:Ignorable="d" Loaded="WindowLoaded"
+        Title="{x:Static resx:AdminMachineListResources.OptionsTitle}" Height="343.015" Width="1015.809">
+    <Grid>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="{x:Static resx:AdminMachineListResources.ContextMenuMachines}" FontWeight="Normal">
+                    <MenuItem Header="{x:Static resx:AdminMachineListResources.ContextMenuImportFromExcel}" Click="ImportMachineCodes"/>
+                </MenuItem>
+            </Menu>
+            <ListView ItemsSource="{Binding Items, Mode=OneWay}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Code" Width="100" DisplayMemberBinding="{Binding Code}" />
+                        <GridViewColumn Header="EngineCodeA" Width="100" DisplayMemberBinding="{Binding EngineCodeA }" />
+                        <GridViewColumn Header="EngineCodeB" Width="100" DisplayMemberBinding="{Binding EngineCodeB }" />
+                        <GridViewColumn Header="EnginePositionA" Width="100" DisplayMemberBinding="{Binding EnginePositionA }" />
+                        <GridViewColumn Header="EnginePositionB" Width="100" DisplayMemberBinding="{Binding EnginePositionB }" />
+                        <GridViewColumn Header="ProgramType" Width="100" DisplayMemberBinding="{Binding ProgramType }" />
+                        <GridViewColumn Header="ImageA" Width="100" DisplayMemberBinding="{Binding ImageA }" />
+                        <GridViewColumn Header="ImageB" Width="100" DisplayMemberBinding="{Binding ImageB }" />
+                        <GridViewColumn Header="ImageC" Width="100" DisplayMemberBinding="{Binding ImageC }" />
+                        <GridViewColumn Header="Comment" Width="100" DisplayMemberBinding="{Binding Comment }" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </DockPanel>
+    </Grid>
+</Window>

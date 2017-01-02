@@ -9,8 +9,11 @@ namespace AdminPanel.Windows
     /// </summary>
     public partial class LoginWindow
     {
-        public LoginWindow()
+        private readonly bool _shutDownApp;
+
+        public LoginWindow(bool shutDownApp = true)
         {
+            _shutDownApp = shutDownApp;
             InitializeComponent();
         }
 
@@ -22,7 +25,7 @@ namespace AdminPanel.Windows
             }
             else if (e.Key == Key.Escape)
             {
-                Application.Current.Shutdown();
+                ManualClose();
             }
         }
 
@@ -31,14 +34,26 @@ namespace AdminPanel.Windows
             if (LoginBox.Text == Settings.Default.AdminName && PasswordBox.Password == Settings.Default.AdminPassword)
             {
                 Hide();
-                var userListWindow = new UserList {Owner = this};
+                var userListWindow = new AdminOptionsWindow {Owner = this};
                 userListWindow.ShowDialog();
-                Application.Current.Shutdown();
+                ManualClose();
             }
             else
             {
                 var result = MessageBox.Show(Properties.Resources.WrongLoginOrPasswrodMessage,
                     Properties.Resources.WrongLoginOrPasswrodMessage, MessageBoxButton.OK, MessageBoxImage.Stop);
+            }
+        }
+
+        private void ManualClose()
+        {
+            if (_shutDownApp)
+            {
+                Application.Current.Shutdown();
+            }
+            else
+            {
+                Close();
             }
         }
     }

@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:resx="clr-namespace:AdminPanel.Properties"
              xmlns:local="clr-namespace:AdminPanel"
-             StartupUri="Windows/LoginWindow.xaml">
+             StartupUri="Windows/MachineListWindow.xaml">
     <Application.Resources>
+        
         <BitmapImage x:Key="Logo" UriSource="/Resources/Logo.png" />
         <Style TargetType="TextBlock">
             <Setter Property="FontWeight" Value="Bold"></Setter>

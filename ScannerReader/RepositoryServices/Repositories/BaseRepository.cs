@@ -6,7 +6,7 @@ using RepositoryServices.Interfaces;
 
 namespace RepositoryServices.Repositories
 {
-    internal abstract class BaseRepository<T>
+    public abstract class BaseRepository<T>
         where T : IBaseElement, new()
     {
         private const string DbFileName = "ApplicationDataBase.db";
