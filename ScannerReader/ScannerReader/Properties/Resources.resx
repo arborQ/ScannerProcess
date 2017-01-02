@@ -242,4 +242,7 @@
   <data name="PasswordLabel" xml:space="preserve">
     <value>Hasło</value>
   </data>
+  <data name="PasswordToShortMessage" xml:space="preserve">
+    <value>Hasło musi mieć conajmniej {0} znaków.</value>
+  </data>
 </root>

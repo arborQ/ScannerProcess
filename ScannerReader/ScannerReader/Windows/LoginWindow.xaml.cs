@@ -35,7 +35,7 @@ namespace ScannerReader.Windows
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (LoginBox.Text == "admin")
+            if (LoginBox.Text == "admin" && string.IsNullOrEmpty(PasswordBox.Password))
             {
                 Hide();
                 var adminLogin = new AdminPanel.Windows.LoginWindow(false);
@@ -50,6 +50,14 @@ namespace ScannerReader.Windows
                     MessageBoxButton.OK, MessageBoxImage.Stop);
                 return;
             }
+            var passwordLenght = 5;
+            if (PasswordBox.Password.Length < passwordLenght)
+            {
+                MessageBox.Show(string.Format(Properties.Resources.PasswordToShortMessage, passwordLenght), string.Empty,
+                    MessageBoxButton.OK, MessageBoxImage.Stop);
+                return;
+            }
+
             var user = Service.UserRepository.GetRecords(u => u.Login == LoginBox.Text).SingleOrDefault();
 
             if (user == null)

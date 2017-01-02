@@ -123,5 +123,14 @@ namespace ScannerReader.Properties {
                 return ResourceManager.GetString("PasswordLabel", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hasło musi mieć conajmniej {0} znaków..
+        /// </summary>
+        public static string PasswordToShortMessage {
+            get {
+                return ResourceManager.GetString("PasswordToShortMessage", resourceCulture);
+            }
+        }
     }
 }

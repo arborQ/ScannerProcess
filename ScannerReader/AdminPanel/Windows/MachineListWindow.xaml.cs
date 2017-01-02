@@ -86,8 +86,7 @@ namespace AdminPanel.Windows
         private void WindowLoaded(object sender = null, RoutedEventArgs e = null)
         {
             var items = Service.MachineRepository.GetRecords().OrderBy(r => r.Code).ToList();
-            Items.Clear();
-            Items.AddRange(items);
+            Items = items;
             OnPropertyChanged(nameof(Items));
         }
 
