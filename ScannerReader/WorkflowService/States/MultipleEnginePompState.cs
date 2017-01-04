@@ -12,7 +12,7 @@ namespace WorkflowService.States
         private readonly List<string> _scennedCodes = new List<string>();
         private const int EngineCount = 2;
 
-        public MultipleEnginePompState(IWorkflowOutput workflowOutput, Machine machine) : base(workflowOutput)
+        public MultipleEnginePompState(IWorkflowOutput workflowOutput, IWorkflowStateFactory workflowStateFactory, Machine machine) : base(workflowOutput, workflowStateFactory)
         {
             _machine = machine;
             workflowOutput.Message = string.Format(StateResources.MultipleEngineInitFormatMessage, EngineCount);
@@ -20,7 +20,7 @@ namespace WorkflowService.States
 
         public override string Code => "MULTIPLE_POMP";
 
-        public override WorkflowState Trigger(BarCodeModel inputCode)
+        protected override IWorkflowState Trigger(BarCodeModel inputCode)
         {
             if (inputCode.SecondPart == _machine.EngineCodeA || inputCode.SecondPart == _machine.EngineCodeB)
             {
@@ -31,7 +31,7 @@ namespace WorkflowService.States
 
             if (_scennedCodes.Distinct().Count() == EngineCount)
             {
-                return new DisplayMachineDataState(WorkflowOutput, _machine);
+                return WorkflowStateFactory.GetDisplayMachineDataState(WorkflowOutput, _machine);
             }
 
             return base.Trigger(inputCode);

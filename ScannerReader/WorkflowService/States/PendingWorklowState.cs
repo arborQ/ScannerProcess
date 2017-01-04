@@ -4,16 +4,16 @@ using WorkflowService.Resources;
 
 namespace WorkflowService.States
 {
-    public class PendingWorklowState : WorkflowState
+    public class PendingWorklowState : WorkflowState, IWorkflowState
     {
-        public PendingWorklowState(IWorkflowOutput workflowOutput) : base(workflowOutput)
+        public PendingWorklowState(IWorkflowOutput workflowOutput, IWorkflowStateFactory workflowStateFactory) : base(workflowOutput, workflowStateFactory)
         {
             WorkflowOutput.Message = StateResources.PendingInitMessage;
         }
 
         public override string Code => "PENDING";
 
-        public override WorkflowState Trigger(BarCodeModel inputCode)
+        protected override IWorkflowState Trigger(BarCodeModel inputCode)
         {
             var record = ApplicationService.MachineRepository.GetRecords(r => r.Code == inputCode.FirstPart).SingleOrDefault();
             if (record == null)
@@ -24,11 +24,11 @@ namespace WorkflowService.States
             {
                 if (!string.IsNullOrEmpty(record.EngineCodeA) || !string.IsNullOrEmpty(record.EngineCodeB))
                 {
-                    return new SingleEnginePompState(WorkflowOutput, record);
+                    return WorkflowStateFactory.GetSingleEngineState(WorkflowOutput, record);
                 }
                 else
                 {
-                    return new MultipleEnginePompState(WorkflowOutput, record);
+                    return WorkflowStateFactory.GetMultipleEngineState(WorkflowOutput, record);
                 }
             }
 

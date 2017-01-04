@@ -40,7 +40,7 @@ namespace ScannerReader.Windows
             if (LoginBox.Text == "admin" && PasswordBox.Password == "admin")
             {
                 Hide();
-                var adminLogin = Bootstrapper.Container.GetInstance<AdminOptionsWindow>();
+                var adminLogin = Bootstrapper.Resolve<AdminOptionsWindow>();
                 adminLogin.Owner = this;
                 adminLogin.ShowDialog();
                 Show();
@@ -101,9 +101,9 @@ namespace ScannerReader.Windows
             LoginBox.Clear();
             PasswordBox.Clear();
             Hide();
-            var userSecurity = Bootstrapper.Container.GetInstance<IUserSecurity>();
+            var userSecurity = Bootstrapper.Resolve<IUserSecurity>();
             userSecurity.SetCurrentUser(userLogin);
-            var userListWindow = Bootstrapper.Container.GetInstance<WorkflowWindow>();
+            var userListWindow = Bootstrapper.Resolve<WorkflowWindow>();
             userListWindow.Owner = this;
             userListWindow.ShowDialog();
             Show();

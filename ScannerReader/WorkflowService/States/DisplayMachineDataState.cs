@@ -6,7 +6,7 @@ namespace WorkflowService.States
     {
         private readonly Machine _machine;
 
-        public DisplayMachineDataState(IWorkflowOutput workflowOutput, Machine machine) : base(workflowOutput)
+        public DisplayMachineDataState(IWorkflowOutput workflowOutput, IWorkflowStateFactory workflowStateFactory, Machine machine) : base(workflowOutput, workflowStateFactory)
         {
             _machine = machine;
         }

@@ -1,23 +1,34 @@
-﻿using RepositoryServices;
+﻿using System;
+using Common;
+using NLog;
+using RepositoryServices;
 using WorkflowService.Models;
 
 namespace WorkflowService.States
 {
-    public abstract class WorkflowState
+    public interface IWorkflowState
+    {
+        IWorkflowState Trigger(string input);
+    }
+
+    public abstract class WorkflowState : IWorkflowState
     {
         protected readonly IWorkflowOutput WorkflowOutput;
+        protected IWorkflowStateFactory WorkflowStateFactory;
         protected ApplicationService ApplicationService;
 
-        protected WorkflowState(IWorkflowOutput workflowOutput)
+        protected WorkflowState(IWorkflowOutput workflowOutput, IWorkflowStateFactory workflowStateFactory)
         {
             WorkflowOutput = workflowOutput;
+            WorkflowStateFactory = workflowStateFactory;
             ApplicationService = new ApplicationService();
         }
 
         public abstract string Code { get; }
 
-        public virtual WorkflowState Trigger(string input)
+        public virtual IWorkflowState Trigger(string input)
         {
+            LogHelper.Log.Info(new { time = DateTime.Now, level = 3 });
             WorkflowOutput.Message = string.Empty;
 
             var parts = input.Split('#');
@@ -31,7 +42,7 @@ namespace WorkflowService.States
             }
         }
 
-        public virtual WorkflowState Trigger(BarCodeModel inputCode)
+        protected virtual IWorkflowState Trigger(BarCodeModel inputCode)
         {
             return this;
         }
