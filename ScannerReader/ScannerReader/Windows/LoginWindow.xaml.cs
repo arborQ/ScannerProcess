@@ -39,10 +39,10 @@ namespace ScannerReader.Windows
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (LoginBox.Text == "admin" && string.IsNullOrEmpty(PasswordBox.Password))
+            if (LoginBox.Text == "admin" && PasswordBox.Password == "admin")
             {
                 Hide();
-                var adminLogin = new AdminPanel.Windows.LoginWindow(false);
+                var adminLogin = new AdminPanel.Windows.AdminOptionsWindow();
                 adminLogin.ShowDialog();
                 Show();
                 return;
@@ -101,7 +101,7 @@ namespace ScannerReader.Windows
         {
             Hide();
             _userSecurity.SetCurrentUser(userLogin);
-            var userListWindow = Bootstrapper.Container.GetInstance<WorkflowWindow>();// { Owner = this};
+            var userListWindow = Bootstrapper.Container.GetInstance<WorkflowWindow>();
             userListWindow.Owner = this;
             userListWindow.ShowDialog();
             Application.Current.Shutdown();
