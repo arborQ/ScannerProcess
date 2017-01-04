@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
+using AdminPanel.Windows;
 using Common.Interfaces;
 using RepositoryServices;
 
@@ -14,11 +15,8 @@ namespace ScannerReader.Windows
     /// </summary>
     public partial class LoginWindow
     {
-        private readonly IUserSecurity _userSecurity;
-
-        public LoginWindow(IUserSecurity userSecurity)
+        public LoginWindow()
         {
-            _userSecurity = userSecurity;
             Service = new ApplicationService();
             InitializeComponent();
         }
@@ -42,7 +40,8 @@ namespace ScannerReader.Windows
             if (LoginBox.Text == "admin" && PasswordBox.Password == "admin")
             {
                 Hide();
-                var adminLogin = new AdminPanel.Windows.AdminOptionsWindow();
+                var adminLogin = Bootstrapper.Container.GetInstance<AdminOptionsWindow>();
+                adminLogin.Owner = this;
                 adminLogin.ShowDialog();
                 Show();
                 return;
@@ -99,12 +98,17 @@ namespace ScannerReader.Windows
 
         private void SuccessfullLogin(string userLogin)
         {
+            LoginBox.Clear();
+            PasswordBox.Clear();
             Hide();
-            _userSecurity.SetCurrentUser(userLogin);
+            var userSecurity = Bootstrapper.Container.GetInstance<IUserSecurity>();
+            userSecurity.SetCurrentUser(userLogin);
             var userListWindow = Bootstrapper.Container.GetInstance<WorkflowWindow>();
             userListWindow.Owner = this;
             userListWindow.ShowDialog();
-            Application.Current.Shutdown();
+            Show();
+            userSecurity.SetCurrentUser(null);
+            LoginBox.Focus();
         }
 
         private string HashPassword(string password)

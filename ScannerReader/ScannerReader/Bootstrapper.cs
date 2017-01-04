@@ -1,6 +1,7 @@
 ﻿using Common;
 using Common.Interfaces;
 using StructureMap;
+using StructureMap.Pipeline;
 
 namespace ScannerReader
 {
@@ -10,10 +11,15 @@ namespace ScannerReader
 
         public static void Initialize()
         {
+            var singletonLifecycle = new SingletonLifecycle();
             var container = new Container(_ =>
             {
                 _.For<IKeyboardReader>().Use<KeyboardReader>();
-                _.For<IUserSecurity>().Use<UserSecurity>();
+#if DEBUG
+                _.For<IUserSecurity>(singletonLifecycle).Use<DebugUserSecurity>();
+#else
+                _.For<IUserSecurity>(singletonLifecycle).Use<UserSecurity>();
+#endif
             });
 
             Container = container;
