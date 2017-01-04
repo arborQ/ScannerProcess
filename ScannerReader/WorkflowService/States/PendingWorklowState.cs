@@ -11,17 +11,14 @@ namespace WorkflowService.States
 
         public override WorkflowState Trigger(string input)
         {
-            return new InitializedWorkflowState(WorkflowOutput);
+            if (input.Contains("#"))
+            {
+                WorkflowOutput.Message = "Valid code " + input;
+                return base.Trigger(input);
+                //return new InitializedWorkflowState(WorkflowOutput);
+            }
+            WorkflowOutput.Message = "Not valid code";
+            return base.Trigger(input);
         }
-    }
-
-    public class InitializedWorkflowState : WorkflowState
-    {
-        public InitializedWorkflowState(IWorkflowOutput workflowOutput) : base(workflowOutput)
-        {
-            WorkflowOutput.Message = Code;
-        }
-
-        public override string Code => "INITIALIZED";
     }
 }

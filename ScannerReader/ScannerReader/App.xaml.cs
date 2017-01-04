@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
+using ScannerReader.Windows;
 
 namespace ScannerReader
 {
@@ -13,5 +8,15 @@ namespace ScannerReader
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            Bootstrapper.Initialize();
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            var baseWindow = Bootstrapper.Container.GetInstance<WorkflowWindow>();
+            baseWindow.ShowDialog();
+        }
     }
 }

@@ -1,25 +1,24 @@
-﻿using WorkflowService.States;
+﻿using System;
+using WorkflowService.States;
 
 namespace WorkflowService
 {
     public class Workflow
     {
-        private readonly IWorkflowOutput _workflowOutput;
-
-        public Workflow(IWorkflowOutput workflowOutput)
-        {
-            _workflowOutput = workflowOutput;
-        }
-
         private WorkflowState CurrentState { get; set; }
 
-        public void Start()
+        public void Start(IWorkflowOutput workflowOutput)
         {
-            CurrentState = new PendingWorklowState(_workflowOutput);
+            CurrentState = new PendingWorklowState(workflowOutput);
         }
 
         public void Trigger(string input)
         {
+            if (input == null)
+            {
+                throw new Exception("Workflow was not started");
+            }
+
             CurrentState = CurrentState.Trigger(input);
         }
     }

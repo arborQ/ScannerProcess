@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
+using Common.Interfaces;
 using RepositoryServices;
 
 namespace ScannerReader.Windows
@@ -13,8 +14,11 @@ namespace ScannerReader.Windows
     /// </summary>
     public partial class LoginWindow
     {
-        public LoginWindow()
+        private readonly IUserSecurity _userSecurity;
+
+        public LoginWindow(IUserSecurity userSecurity)
         {
+            _userSecurity = userSecurity;
             Service = new ApplicationService();
             InitializeComponent();
         }
@@ -96,7 +100,9 @@ namespace ScannerReader.Windows
         private void SuccessfullLogin(string userLogin)
         {
             Hide();
-            var userListWindow = new WorkflowWindow(userLogin) {Owner = this};
+            _userSecurity.SetCurrentUser(userLogin);
+            var userListWindow = Bootstrapper.Container.GetInstance<WorkflowWindow>();// { Owner = this};
+            userListWindow.Owner = this;
             userListWindow.ShowDialog();
             Application.Current.Shutdown();
         }
