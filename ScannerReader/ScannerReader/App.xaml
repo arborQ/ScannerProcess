@@ -2,7 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:ScannerReader.Windows"
-             StartupUri="Windows/LoginWindow.xaml">
+             StartupUri="Windows/WorkflowWindow.xaml">
     <Application.Resources>
         <BitmapImage x:Key="Logo" UriSource="/Resources/Logo.png" />
         <Style TargetType="TextBlock">

@@ -1,59 +1,26 @@
-﻿using System;
-using System.Linq;
+﻿using WorkflowService.States;
 
 namespace WorkflowService
 {
     public class Workflow
     {
-        private string CurrentStateCode { get; set; }
+        private readonly IWorkflowOutput _workflowOutput;
 
-        public Workflow(string startCode = "PENDING")
+        public Workflow(IWorkflowOutput workflowOutput)
         {
-            CurrentStateCode = startCode;
+            _workflowOutput = workflowOutput;
+        }
+
+        private WorkflowState CurrentState { get; set; }
+
+        public void Start()
+        {
+            CurrentState = new PendingWorklowState(_workflowOutput);
         }
 
         public void Trigger(string input)
         {
-            DisplayMessage?.Invoke($"New message {input}");
+            CurrentState = CurrentState.Trigger(input);
         }
-
-        public Action<string> DisplayMessage;
-        public Action<string> UpdateDescription;
-        public Action<string> UpdateImage;
-    }
-
-    public class WorkflowItem
-    {
-        public string MachineNumber { get; set; }
-    }
-
-    public class WorkflowState
-    {
-        public string Code => "PENDING";
-
-        private WorkflowAction[] Actions => new [] { new WorkflowAction {} };
-
-        public WorkflowAction Trigger(string input)
-        {
-            var action = Actions.FirstOrDefault(wa => wa.CanHandleInput(input));
-            if (action == null)
-            {
-
-            }
-            else
-            {
-                
-            }
-            return null;
-        }
-    }
-
-    public class WorkflowAction
-    {
-        public bool CanHandleInput(string input)
-        {
-            return true;
-        }
-
     }
 }

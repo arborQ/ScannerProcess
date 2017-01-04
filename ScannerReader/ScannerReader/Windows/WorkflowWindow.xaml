@@ -8,6 +8,17 @@
         KeyDown="WorkflowWindow_OnKeyDown"
         Title="WorkflowWindow" Height="520.059" Width="1076.544" WindowState="Maximized" WindowStyle="None">
     <Grid>
-        
+        <DockPanel LastChildFill="true" Margin="0,0,0,0">
+            <StackPanel DockPanel.Dock="Top">
+                <TextBlock Text="{Binding Message, Mode=OneWay}"  Height="35" Margin="0,0" FontSize="25" Padding="10px, 0" Background="Yellow"></TextBlock>
+                <StackPanel Orientation="Horizontal" Height="35">
+                    
+                </StackPanel>
+            </StackPanel>
+            <DockPanel LastChildFill="true">
+                <TextBlock Text="{Binding Comment, Mode=OneWay}" DockPanel.Dock="Left" Width="300px" Padding="10px" Background="LightGray"></TextBlock>
+                <Image DockPanel.Dock="Right"></Image>
+            </DockPanel>
+        </DockPanel>
     </Grid>
 </Window>
