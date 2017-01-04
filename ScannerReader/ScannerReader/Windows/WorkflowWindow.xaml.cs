@@ -21,12 +21,6 @@ namespace ScannerReader.Windows
 
         public WorkflowOutput WorkflowOutput { get; set; }
 
-//#if DEBUG
-//        public WorkflowWindow(IKeyboardReader keyboardReader, Workflow workflow)
-//            :this("no-context", keyboardReader, workflow)
-//        {
-//        }
-//#endif
         public WorkflowWindow(IUserSecurity userSecurity, IKeyboardReader keyboardReader, Workflow workflow)
         {
             WorkflowOutput = new WorkflowOutput();

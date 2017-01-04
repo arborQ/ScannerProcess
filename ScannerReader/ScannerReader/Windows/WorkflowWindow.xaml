@@ -11,7 +11,7 @@
     <Grid>
         <DockPanel LastChildFill="true" Margin="0,0,0,0">
             <StackPanel DockPanel.Dock="Top">
-                <TextBlock Text="{Binding Message, Mode=OneWay}"  Height="35" Margin="0,0" FontSize="25" Padding="10px, 0" Background="Yellow"></TextBlock>
+                <TextBlock Text="{Binding Message, Mode=OneWay}"  Height="35" Margin="0,0" FontSize="25" Padding="10px, 0" Background="Yellow" Foreground="#FFFF1818"></TextBlock>
                 <StackPanel Orientation="Horizontal" Height="35">
                     
                 </StackPanel>
