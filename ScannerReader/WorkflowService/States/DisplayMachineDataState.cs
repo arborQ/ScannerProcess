@@ -9,6 +9,7 @@ namespace WorkflowService.States
         public DisplayMachineDataState(IWorkflowOutput workflowOutput, IWorkflowStateFactory workflowStateFactory, Machine machine) : base(workflowOutput, workflowStateFactory)
         {
             _machine = machine;
+            workflowOutput.Message = "display?";
         }
 
         public override string Code => "DISPLAY_DATA";

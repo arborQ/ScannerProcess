@@ -9,6 +9,7 @@ namespace WorkflowService.States
     public interface IWorkflowState
     {
         IWorkflowState Trigger(string input);
+        string Code { get; }
     }
 
     public abstract class WorkflowState : IWorkflowState

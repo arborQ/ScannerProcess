@@ -12,12 +12,11 @@ namespace ScannerReader.Windows
     /// <summary>
     /// Interaction logic for WorkflowWindow.xaml
     /// </summary>
-    public partial class WorkflowWindow : INotifyPropertyChanged
+    public sealed partial class WorkflowWindow : INotifyPropertyChanged
     {
         private readonly Workflow _workflow;
         private readonly IUserSecurity _userSecurity;
         private readonly IKeyboardReader _keyboardReader;
-        private string _stepDescription;
 
         public WorkflowOutput WorkflowOutput { get; set; }
 
@@ -33,19 +32,27 @@ namespace ScannerReader.Windows
             InitializeComponent();
         }
 
-        public string StepDescription
-        {
-            get { return _stepDescription; }
-            set
-            {
-                _stepDescription = value;
-                OnPropertyChanged();
-            }
-        }
-
         private void WorkflowWindow_OnKeyDown(object sender, KeyEventArgs e)
         {
-            var readerResonse = _keyboardReader.NotifyChar(e.Key);
+            var readerResonse = string.Empty;
+            switch (e.Key)
+            {
+#if DEBUG
+                case Key.F1:
+                    readerResonse = "20160905-00165#53A08VN0H";
+                    break;
+                case Key.F2:
+                    readerResonse = "20160905-00165#53A08VN0C";
+                    break;
+                case Key.F3:
+                    readerResonse = "20160905-00165#53A08VN0D";
+                    break;
+#endif
+                default:
+                    readerResonse = _keyboardReader.NotifyChar(e.Key);
+                    break;
+            }
+
             if (!string.IsNullOrEmpty(readerResonse))
             {
                 _workflow.Trigger(readerResonse);
@@ -55,7 +62,7 @@ namespace ScannerReader.Windows
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

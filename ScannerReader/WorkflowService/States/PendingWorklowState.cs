@@ -4,7 +4,7 @@ using WorkflowService.Resources;
 
 namespace WorkflowService.States
 {
-    public class PendingWorklowState : WorkflowState, IWorkflowState
+    public class PendingWorklowState : WorkflowState
     {
         public PendingWorklowState(IWorkflowOutput workflowOutput, IWorkflowStateFactory workflowStateFactory) : base(workflowOutput, workflowStateFactory)
         {
