@@ -1,3 +1,4 @@
+using System.IO;
 using RepositoryServices.Models;
 
 namespace WorkflowService.States
@@ -10,6 +11,8 @@ namespace WorkflowService.States
         {
             _machine = machine;
             workflowOutput.Message = "display?";
+            workflowOutput.ImagePath = Path.Combine("/", machine.ImageA);
+            workflowOutput.Description = machine.Comment;
         }
 
         public override string Code => "DISPLAY_DATA";

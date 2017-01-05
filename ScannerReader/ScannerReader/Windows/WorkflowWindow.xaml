@@ -17,7 +17,7 @@
                 </StackPanel>
             </StackPanel>
             <DockPanel LastChildFill="true">
-                <TextBlock Text="{Binding Comment, Mode=OneWay}" DockPanel.Dock="Left" Width="300px" Padding="10px" Background="LightGray"></TextBlock>
+                <TextBlock Text="{Binding Description, Mode=OneWay}" DockPanel.Dock="Left" Width="300px" Padding="10px" Background="LightGray"></TextBlock>
                 <Image DockPanel.Dock="Right"></Image>
             </DockPanel>
         </DockPanel>
