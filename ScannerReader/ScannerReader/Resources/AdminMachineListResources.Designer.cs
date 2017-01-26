@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ScannerReader.Properties {
+namespace ScannerReader.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace ScannerReader.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    public class AdminMachineListResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal AdminMachineListResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace ScannerReader.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ScannerReader.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ScannerReader.Resources.AdminMachineListResources", typeof(AdminMachineListResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,47 +61,57 @@ namespace ScannerReader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Login i hasło są wymagane.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static string InvalidModelLoginMessage {
+        public static System.Drawing.Bitmap add {
             get {
-                return ResourceManager.GetString("InvalidModelLoginMessage", resourceCulture);
+                object obj = ResourceManager.GetObject("add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nieznany użytkownik &apos;{0}&apos;.
+        ///   Looks up a localized string similar to Importuj z Excela(*.xlsx).
         /// </summary>
-        public static string InvalidUserLoginMessageFormat {
+        public static string ContextMenuImportFromExcel {
             get {
-                return ResourceManager.GetString("InvalidUserLoginMessageFormat", resourceCulture);
+                return ResourceManager.GetString("ContextMenuImportFromExcel", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zaloguj.
+        ///   Looks up a localized string similar to Maszyny.
         /// </summary>
-        public static string LoginButtonText {
+        public static string ContextMenuMachines {
             get {
-                return ResourceManager.GetString("LoginButtonText", resourceCulture);
+                return ResourceManager.GetString("ContextMenuMachines", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Login.
+        ///   Looks up a localized string similar to Zdjęcia A.
         /// </summary>
-        public static string LoginLabel {
+        public static string EngineImage {
             get {
-                return ResourceManager.GetString("LoginLabel", resourceCulture);
+                return ResourceManager.GetString("EngineImage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Logowanie.
+        ///   Looks up a localized string similar to Kod A.
         /// </summary>
-        public static string LoginScreenTitle {
+        public static string HeaderMachineCode {
             get {
-                return ResourceManager.GetString("LoginScreenTitle", resourceCulture);
+                return ResourceManager.GetString("HeaderMachineCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kod B.
+        /// </summary>
+        public static string HeaderSecondMachineCode {
+            get {
+                return ResourceManager.GetString("HeaderSecondMachineCode", resourceCulture);
             }
         }
         
@@ -116,29 +126,30 @@ namespace ScannerReader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hasło.
+        ///   Looks up a localized string similar to Zdjęcie B.
         /// </summary>
-        public static string PasswordLabel {
+        public static string MachineImage {
             get {
-                return ResourceManager.GetString("PasswordLabel", resourceCulture);
+                return ResourceManager.GetString("MachineImage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hasło musi mieć conajmniej {0} znaków..
+        ///   Looks up a localized string similar to Lista maszyn.
         /// </summary>
-        public static string PasswordToShortMessage {
+        public static string OptionsTitle {
             get {
-                return ResourceManager.GetString("PasswordToShortMessage", resourceCulture);
+                return ResourceManager.GetString("OptionsTitle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Na pewno chcesz usunąć użytkownika {0}?.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static string RemoveUserConfirmFormat {
+        public static System.Drawing.Bitmap refresh {
             get {
-                return ResourceManager.GetString("RemoveUserConfirmFormat", resourceCulture);
+                object obj = ResourceManager.GetObject("refresh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

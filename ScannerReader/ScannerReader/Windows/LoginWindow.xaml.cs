@@ -4,7 +4,6 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
-using AdminPanel.Windows;
 using Common.Interfaces;
 using RepositoryServices;
 
@@ -39,11 +38,11 @@ namespace ScannerReader.Windows
         {
             if (LoginBox.Text == "admin" && PasswordBox.Password == "admin")
             {
-                Hide();
+                Visibility = Visibility.Hidden;
                 var adminLogin = Bootstrapper.Resolve<AdminOptionsWindow>();
                 adminLogin.Owner = this;
                 adminLogin.ShowDialog();
-                Show();
+                Visibility = Visibility.Visible;
                 return;
             }
 

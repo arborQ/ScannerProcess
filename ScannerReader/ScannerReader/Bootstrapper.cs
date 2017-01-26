@@ -20,7 +20,7 @@ namespace ScannerReader
             Container.AddFacility<TypedFactoryFacility>();
 
             Container.Register(Classes.FromThisAssembly().BasedOn<System.Windows.Window>());
-            Container.Register(Classes.FromAssembly(Assembly.Load(nameof(AdminPanel))).BasedOn<System.Windows.Window>());
+            //Container.Register(Classes.FromAssembly(Assembly.Load(nameof(AdminPanel))).BasedOn<System.Windows.Window>());
             Container.Register(Component.For<Workflow>());
             Container.Register(Component.For<ApplicationService>());
 

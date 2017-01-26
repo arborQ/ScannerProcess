@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
-using AdminPanel.Models;
 using RepositoryServices;
 using RepositoryServices.Models;
+using ScannerReader.Models;
 
-namespace AdminPanel.Windows
+namespace ScannerReader.Windows
 {
     /// <summary>
     /// Interaction logic for UserDetailsWindow.xaml

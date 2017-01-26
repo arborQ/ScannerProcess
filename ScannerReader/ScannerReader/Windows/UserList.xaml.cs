@@ -5,13 +5,11 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using AdminPanel.Annotations;
-using AdminPanel.Models;
 using RepositoryServices;
+using ScannerReader.Models;
 
-namespace AdminPanel.Windows
+namespace ScannerReader.Windows
 {
     /// <summary>
     /// Interaction logic for UserList.xaml
@@ -51,7 +49,6 @@ namespace AdminPanel.Windows
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

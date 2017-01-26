@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AdminPanel.Properties {
+namespace ScannerReader.Resources {
     using System;
     
     
@@ -22,24 +22,24 @@ namespace AdminPanel.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class AdminOptionsResources {
+    internal class UserDetailsResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal AdminOptionsResources() {
+        internal UserDetailsResources() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AdminPanel.Properties.AdminOptionsResources", typeof(AdminOptionsResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ScannerReader.Resources.UserDetailsResources", typeof(UserDetailsResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace AdminPanel.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,59 +61,56 @@ namespace AdminPanel.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Imię.
         /// </summary>
-        public static System.Drawing.Bitmap add {
+        internal static string LabelFirstName {
             get {
-                object obj = ResourceManager.GetObject("add", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("LabelFirstName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Logowanie.
         /// </summary>
-        public static System.Drawing.Bitmap Logo {
+        internal static string LabelLastLoginDate {
             get {
-                object obj = ResourceManager.GetObject("Logo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("LabelLastLoginDate", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zobacz maszyny.
+        ///   Looks up a localized string similar to Nazwisko.
         /// </summary>
-        public static string OptionSeeMachines {
+        internal static string LabelLastName {
             get {
-                return ResourceManager.GetString("OptionSeeMachines", resourceCulture);
+                return ResourceManager.GetString("LabelLastName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zobacz użytkowników.
+        ///   Looks up a localized string similar to Login.
         /// </summary>
-        public static string OptionSeeUsers {
+        internal static string LabelLogin {
             get {
-                return ResourceManager.GetString("OptionSeeUsers", resourceCulture);
+                return ResourceManager.GetString("LabelLogin", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Opcje administratora.
+        ///   Looks up a localized string similar to Zapisz.
         /// </summary>
-        public static string OptionsTitle {
+        internal static string SaveButtonText {
             get {
-                return ResourceManager.GetString("OptionsTitle", resourceCulture);
+                return ResourceManager.GetString("SaveButtonText", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Użytkownik.
         /// </summary>
-        public static System.Drawing.Bitmap refresh {
+        internal static string Title {
             get {
-                object obj = ResourceManager.GetObject("refresh", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
     }

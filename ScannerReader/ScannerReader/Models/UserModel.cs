@@ -1,9 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using RepositoryServices.Models;
 
-namespace AdminPanel.Models
+namespace ScannerReader.Models
 {
     public class UserModel : INotifyPropertyChanged
     {

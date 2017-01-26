@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AdminPanel.Properties {
+namespace ScannerReader.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace AdminPanel.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class AdminMachineListResources {
+    public class AdminOptionsResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal AdminMachineListResources() {
+        internal AdminOptionsResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace AdminPanel.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AdminPanel.Properties.AdminMachineListResources", typeof(AdminMachineListResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ScannerReader.Resources.AdminOptionsResources", typeof(AdminOptionsResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -71,51 +71,6 @@ namespace AdminPanel.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Importuj z Excela(*.xlsx).
-        /// </summary>
-        public static string ContextMenuImportFromExcel {
-            get {
-                return ResourceManager.GetString("ContextMenuImportFromExcel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Maszyny.
-        /// </summary>
-        public static string ContextMenuMachines {
-            get {
-                return ResourceManager.GetString("ContextMenuMachines", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Zdjęcia A.
-        /// </summary>
-        public static string EngineImage {
-            get {
-                return ResourceManager.GetString("EngineImage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Kod A.
-        /// </summary>
-        public static string HeaderMachineCode {
-            get {
-                return ResourceManager.GetString("HeaderMachineCode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Kod B.
-        /// </summary>
-        public static string HeaderSecondMachineCode {
-            get {
-                return ResourceManager.GetString("HeaderSecondMachineCode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap Logo {
@@ -126,16 +81,25 @@ namespace AdminPanel.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zdjęcie B.
+        ///   Looks up a localized string similar to Zobacz maszyny.
         /// </summary>
-        public static string MachineImage {
+        public static string OptionSeeMachines {
             get {
-                return ResourceManager.GetString("MachineImage", resourceCulture);
+                return ResourceManager.GetString("OptionSeeMachines", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lista maszyn.
+        ///   Looks up a localized string similar to Zobacz użytkowników.
+        /// </summary>
+        public static string OptionSeeUsers {
+            get {
+                return ResourceManager.GetString("OptionSeeUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opcje administratora.
         /// </summary>
         public static string OptionsTitle {
             get {

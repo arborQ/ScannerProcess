@@ -16,7 +16,7 @@ namespace ScannerReader
         protected override void OnStartup(StartupEventArgs e)
         {
 #if DEBUG
-            var baseWindow = Bootstrapper.Resolve<WorkflowWindow>();
+            var baseWindow = Bootstrapper.Resolve<LoginWindow>();
             baseWindow.ShowDialog();
 #endif
 

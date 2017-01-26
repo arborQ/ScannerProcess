@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace AdminPanel.Models
+namespace ScannerReader.Models
 {
     public class LoginModel : INotifyPropertyChanged
     {

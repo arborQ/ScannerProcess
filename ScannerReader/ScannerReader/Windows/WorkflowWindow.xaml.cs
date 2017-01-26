@@ -2,7 +2,6 @@
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
-using AdminPanel.Annotations;
 using Common.Interfaces;
 using ScannerReader.Models;
 using WorkflowService;
@@ -61,7 +60,6 @@ namespace ScannerReader.Windows
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        [NotifyPropertyChangedInvocator]
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

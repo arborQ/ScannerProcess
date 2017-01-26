@@ -245,4 +245,7 @@
   <data name="PasswordToShortMessage" xml:space="preserve">
     <value>Hasło musi mieć conajmniej {0} znaków.</value>
   </data>
+  <data name="RemoveUserConfirmFormat" xml:space="preserve">
+    <value>Na pewno chcesz usunąć użytkownika {0}?</value>
+  </data>
 </root>

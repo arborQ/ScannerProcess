@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ScannerReader.Properties {
+namespace ScannerReader.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace ScannerReader.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    public class UserListResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal UserListResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace ScannerReader.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ScannerReader.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ScannerReader.Resources.UserListResources", typeof(UserListResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,84 +61,74 @@ namespace ScannerReader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Login i hasło są wymagane.
+        ///   Looks up a localized string similar to .
         /// </summary>
-        public static string InvalidModelLoginMessage {
+        public static string ContextMenuUsers {
             get {
-                return ResourceManager.GetString("InvalidModelLoginMessage", resourceCulture);
+                return ResourceManager.GetString("ContextMenuUsers", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nieznany użytkownik &apos;{0}&apos;.
+        ///   Looks up a localized string similar to .
         /// </summary>
-        public static string InvalidUserLoginMessageFormat {
+        public static string ContextMenuUsersAdd {
             get {
-                return ResourceManager.GetString("InvalidUserLoginMessageFormat", resourceCulture);
+                return ResourceManager.GetString("ContextMenuUsersAdd", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zaloguj.
+        ///   Looks up a localized string similar to .
         /// </summary>
-        public static string LoginButtonText {
+        public static string ContextMenuUsersRefresh {
             get {
-                return ResourceManager.GetString("LoginButtonText", resourceCulture);
+                return ResourceManager.GetString("ContextMenuUsersRefresh", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Login.
+        ///   Looks up a localized string similar to .
         /// </summary>
-        public static string LoginLabel {
+        public static string HeaderFirstName {
             get {
-                return ResourceManager.GetString("LoginLabel", resourceCulture);
+                return ResourceManager.GetString("HeaderFirstName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Logowanie.
+        ///   Looks up a localized string similar to .
         /// </summary>
-        public static string LoginScreenTitle {
+        public static string HeaderLastLogin {
             get {
-                return ResourceManager.GetString("LoginScreenTitle", resourceCulture);
+                return ResourceManager.GetString("HeaderLastLogin", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to .
         /// </summary>
-        public static System.Drawing.Bitmap Logo {
+        public static string HeaderLastName {
             get {
-                object obj = ResourceManager.GetObject("Logo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("HeaderLastName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hasło.
+        ///   Looks up a localized string similar to .
         /// </summary>
-        public static string PasswordLabel {
+        public static string HeaderLogin {
             get {
-                return ResourceManager.GetString("PasswordLabel", resourceCulture);
+                return ResourceManager.GetString("HeaderLogin", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hasło musi mieć conajmniej {0} znaków..
+        ///   Looks up a localized string similar to Lista użytkowników.
         /// </summary>
-        public static string PasswordToShortMessage {
+        public static string Title {
             get {
-                return ResourceManager.GetString("PasswordToShortMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Na pewno chcesz usunąć użytkownika {0}?.
-        /// </summary>
-        public static string RemoveUserConfirmFormat {
-            get {
-                return ResourceManager.GetString("RemoveUserConfirmFormat", resourceCulture);
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
     }

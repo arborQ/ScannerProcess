@@ -5,13 +5,12 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using AdminPanel.Annotations;
-using Excel;
 using Microsoft.Win32;
 using RepositoryServices;
 using RepositoryServices.Models;
+using Excel;
 
-namespace AdminPanel.Windows
+namespace ScannerReader.Windows
 {
     /// <summary>
     /// Interaction logic for MachineListWindow.xaml
@@ -92,7 +91,6 @@ namespace AdminPanel.Windows
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
