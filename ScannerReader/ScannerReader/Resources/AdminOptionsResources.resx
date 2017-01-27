@@ -344,4 +344,13 @@
   <data name="OptionsTitle" xml:space="preserve">
     <value>Opcje administratora</value>
   </data>
+  <data name="MachinesMenuOption" xml:space="preserve">
+    <value>Maszyny</value>
+  </data>
+  <data name="UsersMenuOption" xml:space="preserve">
+    <value>Użytkownicy</value>
+  </data>
+  <data name="AddUserMenuOption" xml:space="preserve">
+    <value>Dodaj użytkownika</value>
+  </data>
 </root>

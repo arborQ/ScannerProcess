@@ -4,9 +4,9 @@ using System.Runtime.CompilerServices;
 
 namespace ScannerReader.Models
 {
-    public class UserModel : INotifyPropertyChanged
+    public class UserModel : BaseObservableModel
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         private string _firstName;
 
@@ -51,13 +51,6 @@ namespace ScannerReader.Models
         {
             get { return _lastLoginDate; }
             set { _lastLoginDate = value; OnPropertyChanged(); }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

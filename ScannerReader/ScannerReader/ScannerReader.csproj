@@ -108,7 +108,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Controls\EditUserControl.xaml.cs">
+      <DependentUpon>EditUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserListControl.xaml.cs">
+      <DependentUpon>UserListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\IControlFactory.cs" />
+    <Compile Include="Models\BaseObservableModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\UserListViewModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\WorkflowOutput.cs" />
     <Compile Include="Resources\AdminMachineListResources.Designer.cs">
@@ -146,6 +155,14 @@
     <Compile Include="Windows\WorkflowWindow.xaml.cs">
       <DependentUpon>WorkflowWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\EditUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UserListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\AdminOptionsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -194,7 +211,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Resources\UserDetailsResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UserDetailsResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\UserListResources.resx">

@@ -80,7 +80,7 @@ namespace ScannerReader.Windows
 
             if (confirmResult == MessageBoxResult.Yes)
             {
-                Service.UserRepository.RemoveRecord(selectedUser.Id);
+                Service.UserRepository.RemoveRecord(selectedUser.Id.Value);
                 WindowLoaded(null, null);
             }
         }

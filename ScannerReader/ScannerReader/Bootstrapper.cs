@@ -7,6 +7,7 @@ using Common.Interfaces;
 using RepositoryServices;
 using WorkflowService;
 using WorkflowService.States;
+using ScannerReader.Interfaces;
 
 namespace ScannerReader
 {
@@ -19,11 +20,14 @@ namespace ScannerReader
             Container = new WindsorContainer();
             Container.AddFacility<TypedFactoryFacility>();
 
-            Container.Register(Classes.FromThisAssembly().BasedOn<System.Windows.Window>());
+            Container.Register(Classes.FromThisAssembly().BasedOn<System.Windows.Window>().LifestyleTransient());
+            Container.Register(Classes.FromThisAssembly().BasedOn<System.Windows.Controls.UserControl>().LifestyleTransient());
+            Container.Register(Component.For<IControlFactory>().AsFactory());
             //Container.Register(Classes.FromAssembly(Assembly.Load(nameof(AdminPanel))).BasedOn<System.Windows.Window>());
             Container.Register(Component.For<Workflow>());
             Container.Register(Component.For<ApplicationService>());
 
+            
             Container.Register(Component.For<IWorkflowStateFactory>().AsFactory());
 
             Container.Register(Component.For<IWorkflowState>()

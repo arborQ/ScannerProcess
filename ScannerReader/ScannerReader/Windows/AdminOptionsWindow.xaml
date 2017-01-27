@@ -5,12 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ScannerReader.Windows"
         xmlns:resx="clr-namespace:ScannerReader.Resources"
-        mc:Ignorable="d"
-        Title="{x:Static resx:AdminOptionsResources.OptionsTitle}" Height="127.941" Width="300">
+        mc:Ignorable="d" Loaded="Window_Loaded"
+        Title="{x:Static resx:AdminOptionsResources.OptionsTitle}" Height="397.996" Width="637.869">
     <Grid>
-        <StackPanel>
-            <Button x:Name="ShowUsers" Content="{x:Static resx:AdminOptionsResources.OptionSeeUsers}" Margin="0,0,0, 10px" d:LayoutOverrides="Height" Click="ShowUsers_Click"/>
-            <Button x:Name="ShowMachines" Content="{x:Static resx:AdminOptionsResources.OptionSeeMachines}" Margin="0,0,0, 10px" d:LayoutOverrides="Height" Click="ShowMachines_Click"/>
-        </StackPanel>
+
+        <TabControl TabStripPlacement="Left">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Label VerticalAlignment="Center" FontSize="8px" Content="{x:Static resx:AdminOptionsResources.MachinesMenuOption}" />
+                        <Label FontWeight="Bold" FontSize="8px" VerticalAlignment="Center">(100)</Label>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <StackPanel Name="machineStackPanel">
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Selector.IsSelected="True">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Label VerticalAlignment="Center" FontSize="8px" Content="{x:Static resx:AdminOptionsResources.UsersMenuOption}" />
+                        <Label FontWeight="Bold" FontSize="8px" VerticalAlignment="Center">(1030)</Label>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <TabControl>
+                        <TabItem Name="userListTab" Header="{x:Static resx:AdminOptionsResources.UsersMenuOption}" Selector.IsSelected="True">
+                            <StackPanel Name="usersStackPanel">
+                            </StackPanel>
+                        </TabItem>
+                        <TabItem Name="userDetailsTab" Header="{x:Static resx:AdminOptionsResources.AddUserMenuOption}">
+                            <StackPanel Name="addUsersStackPanel">
+                            </StackPanel>
+                        </TabItem>
+                    </TabControl>
+                    
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

@@ -22,7 +22,7 @@ namespace ScannerReader.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class UserDetailsResources {
+    public class UserDetailsResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace ScannerReader.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ScannerReader.Resources.UserDetailsResources", typeof(UserDetailsResources).Assembly);
@@ -51,7 +51,7 @@ namespace ScannerReader.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace ScannerReader.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Imię.
         /// </summary>
-        internal static string LabelFirstName {
+        public static string LabelFirstName {
             get {
                 return ResourceManager.GetString("LabelFirstName", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace ScannerReader.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Logowanie.
         /// </summary>
-        internal static string LabelLastLoginDate {
+        public static string LabelLastLoginDate {
             get {
                 return ResourceManager.GetString("LabelLastLoginDate", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace ScannerReader.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Nazwisko.
         /// </summary>
-        internal static string LabelLastName {
+        public static string LabelLastName {
             get {
                 return ResourceManager.GetString("LabelLastName", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace ScannerReader.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
-        internal static string LabelLogin {
+        public static string LabelLogin {
             get {
                 return ResourceManager.GetString("LabelLogin", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace ScannerReader.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Zapisz.
         /// </summary>
-        internal static string SaveButtonText {
+        public static string SaveButtonText {
             get {
                 return ResourceManager.GetString("SaveButtonText", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace ScannerReader.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Użytkownik.
         /// </summary>
-        internal static string Title {
+        public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
             }

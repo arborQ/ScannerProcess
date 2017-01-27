@@ -71,12 +71,30 @@ namespace ScannerReader.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dodaj użytkownika.
+        /// </summary>
+        public static string AddUserMenuOption {
+            get {
+                return ResourceManager.GetString("AddUserMenuOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap Logo {
             get {
                 object obj = ResourceManager.GetObject("Logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maszyny.
+        /// </summary>
+        public static string MachinesMenuOption {
+            get {
+                return ResourceManager.GetString("MachinesMenuOption", resourceCulture);
             }
         }
         
@@ -114,6 +132,15 @@ namespace ScannerReader.Resources {
             get {
                 object obj = ResourceManager.GetObject("refresh", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Użytkownicy.
+        /// </summary>
+        public static string UsersMenuOption {
+            get {
+                return ResourceManager.GetString("UsersMenuOption", resourceCulture);
             }
         }
     }

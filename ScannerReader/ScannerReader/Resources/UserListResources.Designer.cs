@@ -61,16 +61,7 @@ namespace ScannerReader.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string ContextMenuUsers {
-            get {
-                return ResourceManager.GetString("ContextMenuUsers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Dodaj użytkownika.
         /// </summary>
         public static string ContextMenuUsersAdd {
             get {
@@ -79,7 +70,7 @@ namespace ScannerReader.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Odśwież.
         /// </summary>
         public static string ContextMenuUsersRefresh {
             get {
@@ -88,7 +79,7 @@ namespace ScannerReader.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Imię.
         /// </summary>
         public static string HeaderFirstName {
             get {
@@ -97,7 +88,7 @@ namespace ScannerReader.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Zalogowany.
         /// </summary>
         public static string HeaderLastLogin {
             get {
@@ -106,7 +97,7 @@ namespace ScannerReader.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Nazwisko.
         /// </summary>
         public static string HeaderLastName {
             get {
@@ -115,7 +106,7 @@ namespace ScannerReader.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string HeaderLogin {
             get {

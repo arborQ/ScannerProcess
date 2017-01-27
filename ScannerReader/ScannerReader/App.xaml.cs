@@ -15,12 +15,22 @@ namespace ScannerReader
 
         protected override void OnStartup(StartupEventArgs e)
         {
-#if DEBUG
-            var baseWindow = Bootstrapper.Resolve<LoginWindow>();
-            baseWindow.ShowDialog();
-#endif
+
 
             base.OnStartup(e);
         }
-    }
+
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+#if DEBUG
+            var baseWindow = Bootstrapper.Resolve<AdminOptionsWindow>();
+#endif
+
+#if !DEBUG
+                var baseWindow = Bootstrapper.Resolve<LoginWindow>();
+#endif
+                baseWindow.Show();
+
+            }
+        }
 }
