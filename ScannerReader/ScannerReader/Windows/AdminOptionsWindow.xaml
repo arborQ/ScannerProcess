@@ -5,12 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ScannerReader.Windows"
         xmlns:resx="clr-namespace:ScannerReader.Resources"
+        xmlns:converters="clr-namespace:ScannerReader.Converters"
         mc:Ignorable="d" Loaded="Window_Loaded"
         Title="{x:Static resx:AdminOptionsResources.OptionsTitle}" Height="397.996" Width="637.869">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <converters:NegateBoolConverter x:Key="NegateBoolConverter" />
+    </Window.Resources>
     <Grid>
-
-        <TabControl TabStripPlacement="Left">
-            <TabItem>
+        <TabControl TabStripPlacement="Left" Name="userTabs">
+            <TabItem IsEnabled="{Binding IsUserEditing, Converter={StaticResource NegateBoolConverter}}">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <Label VerticalAlignment="Center" FontSize="8px" Content="{x:Static resx:AdminOptionsResources.MachinesMenuOption}" />
@@ -31,18 +35,22 @@
                 </TabItem.Header>
                 <TabItem.Content>
                     <TabControl>
-                        <TabItem Name="userListTab" Header="{x:Static resx:AdminOptionsResources.UsersMenuOption}" Selector.IsSelected="True">
-                            <StackPanel Name="usersStackPanel">
+                        <TabItem Header="{x:Static resx:AdminOptionsResources.UsersMenuOption}" Selector.IsSelected="{Binding IsUserEditing, Mode=OneWay, Converter={StaticResource NegateBoolConverter}}" IsEnabled="{Binding IsUserEditing, Converter={StaticResource NegateBoolConverter}}">
+                            <StackPanel Name="UsersStackPanel">
                             </StackPanel>
                         </TabItem>
-                        <TabItem Name="userDetailsTab" Header="{x:Static resx:AdminOptionsResources.AddUserMenuOption}">
-                            <StackPanel Name="addUsersStackPanel">
+                        <TabItem Header="{x:Static resx:AdminOptionsResources.AddUserMenuOption}" IsEnabled="{Binding IsUserEditing, Converter={StaticResource NegateBoolConverter}}">
+                            <StackPanel Name="AddUsersStackPanel">
+                            </StackPanel>
+                        </TabItem>
+                        <TabItem Header="{x:Static resx:AdminOptionsResources.EditUserMenuOption}" Visibility="{Binding IsUserEditing, Converter={StaticResource BoolToVis}}"  Selector.IsSelected="{Binding IsUserEditing, Mode=OneWay}">
+                            <StackPanel Name="EditUsersStackPanel">
                             </StackPanel>
                         </TabItem>
                     </TabControl>
                     
                 </TabItem.Content>
-            </TabItem>
+            </TabItem>            
         </TabControl>
     </Grid>
 </Window>

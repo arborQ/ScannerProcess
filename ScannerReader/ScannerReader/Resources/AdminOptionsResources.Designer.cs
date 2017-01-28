@@ -80,6 +80,15 @@ namespace ScannerReader.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edytuj użytkownika.
+        /// </summary>
+        public static string EditUserMenuOption {
+            get {
+                return ResourceManager.GetString("EditUserMenuOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap Logo {

@@ -114,7 +114,9 @@
     <Compile Include="Controls\UserListControl.xaml.cs">
       <DependentUpon>UserListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\NegateBoolConverter.cs" />
     <Compile Include="Interfaces\IControlFactory.cs" />
+    <Compile Include="Models\AdminOptionsViewModel.cs" />
     <Compile Include="Models\BaseObservableModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\UserListViewModel.cs" />

@@ -1,28 +1,40 @@
-﻿using ScannerReader.Controls;
+﻿using System.Windows;
 using ScannerReader.Interfaces;
-using System.Windows;
-using System.Windows.Controls;
+using ScannerReader.Models;
 
 namespace ScannerReader.Windows
 {
     /// <summary>
-    /// Interaction logic for AdminOptionsWindow.xaml
+    ///     Interaction logic for AdminOptionsWindow.xaml
     /// </summary>
     public partial class AdminOptionsWindow : Window
     {
-        private IControlFactory _controlFactory;
+        private readonly IControlFactory _controlFactory;
+
+        public AdminOptionsViewModel Model;
+
         public AdminOptionsWindow(IControlFactory controlFactory)
         {
             _controlFactory = controlFactory;
+            DataContext = Model = new AdminOptionsViewModel();
             InitializeComponent();
         }
-        
+
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            var userList = _controlFactory.CreateUserListControl();
+            userList.OnUserEdit = u =>
+            {
+                Model.EditedUser = u;
+
+                EditUsersStackPanel.Children.Clear();
+                EditUsersStackPanel.Children.Add(_controlFactory.CreateEditUserControl(u.Id));
+            };
+
             machineStackPanel.Children.Add(_controlFactory.CreateUserListControl());
-            usersStackPanel.Children.Add(_controlFactory.CreateUserListControl());
-            addUsersStackPanel.Children.Add(_controlFactory.CreateEditUserControl(null));
+            UsersStackPanel.Children.Add(userList);
+            AddUsersStackPanel.Children.Add(_controlFactory.CreateEditUserControl(null));
         }
     }
 }

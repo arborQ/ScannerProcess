@@ -353,4 +353,7 @@
   <data name="AddUserMenuOption" xml:space="preserve">
     <value>Dodaj użytkownika</value>
   </data>
+  <data name="EditUserMenuOption" xml:space="preserve">
+    <value>Edytuj użytkownika</value>
+  </data>
 </root>

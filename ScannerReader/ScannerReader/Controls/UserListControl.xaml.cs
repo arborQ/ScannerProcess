@@ -24,6 +24,8 @@ namespace ScannerReader.Controls
     /// </summary>
     public partial class UserListControl : UserControl, INotifyPropertyChanged
     {
+        public Action<UserModel> OnUserEdit { get; set; }
+                
         public UserListViewModel UserListViewModel { get; set; }
 
         private ApplicationService _applicationService;
@@ -40,15 +42,19 @@ namespace ScannerReader.Controls
 
         private void OpenUserEdit(object sender, MouseButtonEventArgs e)
         {
+            if(OnUserEdit == null)
+            {
+                return;
+            }
+
             var selectedUser = ((ListViewItem)sender).Content as UserModel;
+
             if (selectedUser == null)
             {
                 throw new Exception("this should not happened");
             }
-            userd
-            //var newUserWindow = new UserDetailsWindow(selectedUser.Id);
-            //newUserWindow.ShowDialog();
-            //WindowLoaded(sender, e);
+
+            OnUserEdit(selectedUser);
         }
 
         private void RemoveUser(object sender)
