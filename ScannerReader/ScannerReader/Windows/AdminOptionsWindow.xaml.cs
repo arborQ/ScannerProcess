@@ -28,8 +28,14 @@ namespace ScannerReader.Windows
             {
                 Model.EditedUser = u;
 
+                var editComponent = _controlFactory.CreateEditUserControl(u.Id);
+                editComponent.OnSaved = () =>
+                {
+                    Model.EditedUser = null;
+                };
+
                 EditUsersStackPanel.Children.Clear();
-                EditUsersStackPanel.Children.Add(_controlFactory.CreateEditUserControl(u.Id));
+                EditUsersStackPanel.Children.Add(editComponent);
             };
 
             machineStackPanel.Children.Add(_controlFactory.CreateUserListControl());

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using RepositoryServices;
@@ -13,6 +14,8 @@ namespace ScannerReader.Controls
     public partial class EditUserControl : UserControl
     {
         private readonly ApplicationService _applicationService;
+
+        public Action OnSaved { get; set; }
 
         public EditUserControl(ApplicationService applicationService, int? userId = null)
         {
@@ -44,6 +47,17 @@ namespace ScannerReader.Controls
                 User.FirstName = string.Empty;
                 User.LastName = string.Empty;
             }
+            else
+            {
+                _applicationService.UserRepository.EditRecord(a => a.Id == User.Id.Value, user =>
+                {
+                    user.FirstName = User.FirstName;
+                    user.LastName = User.LastName;
+                    user.Login = User.Login;
+                });
+            }
+
+            OnSaved?.Invoke();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
