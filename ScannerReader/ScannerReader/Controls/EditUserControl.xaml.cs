@@ -20,7 +20,7 @@ namespace ScannerReader.Controls
         public EditUserControl(ApplicationService applicationService, int? userId = null)
         {
             _applicationService = applicationService;
-            User = new UserModel {Id = userId};
+            User = new UserModel { Id = userId };
 
             DataContext = User;
             InitializeComponent();
@@ -34,30 +34,36 @@ namespace ScannerReader.Controls
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (!User.Id.HasValue)
+            try
             {
-                _applicationService.UserRepository.AddRecord(new User
+                if (!User.Id.HasValue)
                 {
-                    FirstName = User.FirstName,
-                    LastName = User.LastName,
-                    LastLoginDate = User.LastLoginDate,
-                    Login = User.Login
-                });
+                    _applicationService.UserRepository.AddRecord(new User
+                    {
+                        FirstName = User.FirstName,
+                        LastName = User.LastName,
+                        LastLoginDate = User.LastLoginDate,
+                        Login = User.Login
+                    });
 
-                User.FirstName = string.Empty;
-                User.LastName = string.Empty;
+                    User.FirstName = string.Empty;
+                    User.LastName = string.Empty;
+                }
+                else
+                {
+                    _applicationService.UserRepository.EditRecord(a => a.Id == User.Id.Value, user =>
+                    {
+                        user.FirstName = User.FirstName;
+                        user.LastName = User.LastName;
+                        user.Login = User.Login;
+                    });
+                }
+                OnSaved?.Invoke();
             }
-            else
+            catch (Exception exception)
             {
-                _applicationService.UserRepository.EditRecord(a => a.Id == User.Id.Value, user =>
-                {
-                    user.FirstName = User.FirstName;
-                    user.LastName = User.LastName;
-                    user.Login = User.Login;
-                });
+                MessageBox.Show(exception.Message, "Error");
             }
-
-            OnSaved?.Invoke();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

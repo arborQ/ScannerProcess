@@ -111,14 +111,23 @@
     <Compile Include="Controls\EditUserControl.xaml.cs">
       <DependentUpon>EditUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MachineImportControl.xaml.cs">
+      <DependentUpon>MachineImportControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MachineListControl.xaml.cs">
+      <DependentUpon>MachineListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UserListControl.xaml.cs">
       <DependentUpon>UserListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\MessageToColorConverter.cs" />
     <Compile Include="Converters\NegateBoolConverter.cs" />
     <Compile Include="Interfaces\IControlFactory.cs" />
     <Compile Include="Models\AdminOptionsViewModel.cs" />
     <Compile Include="Models\BaseObservableModel.cs" />
+    <Compile Include="Models\ImportViewModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\MachineListViewModel.cs" />
     <Compile Include="Models\UserListViewModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\WorkflowOutput.cs" />
@@ -131,6 +140,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AdminOptionsResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\MachineImportResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MachineImportResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\UserDetailsResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -145,19 +159,18 @@
     <Compile Include="Windows\AdminOptionsWindow.xaml.cs">
       <DependentUpon>AdminOptionsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\MachineListWindow.xaml.cs">
-      <DependentUpon>MachineListWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\UserDetailsWindow.xaml.cs">
-      <DependentUpon>UserDetailsWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\UserList.xaml.cs">
-      <DependentUpon>UserList.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\WorkflowWindow.xaml.cs">
       <DependentUpon>WorkflowWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\EditUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MachineImportControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MachineListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -181,18 +194,6 @@
       <DependentUpon>LoginWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Windows\MachineListWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\UserDetailsWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\UserList.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Windows\WorkflowWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -212,6 +213,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Resources\MachineImportResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MachineImportResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\UserDetailsResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UserDetailsResources.Designer.cs</LastGenOutput>
@@ -237,6 +243,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <Resource Include="Images\a.jpg" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

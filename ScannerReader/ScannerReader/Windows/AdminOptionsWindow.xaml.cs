@@ -38,9 +38,15 @@ namespace ScannerReader.Windows
                 EditUsersStackPanel.Children.Add(editComponent);
             };
 
-            machineStackPanel.Children.Add(_controlFactory.CreateUserListControl());
+            MachineStackPanel.Children.Add(_controlFactory.CreateMachineListControl());
             UsersStackPanel.Children.Add(userList);
             AddUsersStackPanel.Children.Add(_controlFactory.CreateEditUserControl(null));
+            var import = _controlFactory.CreateMachineImportControl();
+            import.IsBlocked = isblocked =>
+            {
+                Model.IsMachineImport = isblocked;
+            };
+            MachineImportStackPanel.Children.Add(import);
         }
     }
 }

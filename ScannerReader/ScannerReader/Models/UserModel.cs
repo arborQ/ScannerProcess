@@ -1,16 +1,18 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace ScannerReader.Models
 {
     public class UserModel : BaseObservableModel
     {
-        public int? Id { get; set; }
-
         private string _firstName;
 
+        private DateTime? _lastLoginDate;
+
         private string _lastName;
+        public int? Id { get; set; }
+
+        public bool IsModelValid
+            => !string.IsNullOrEmpty(FirstName) && !string.IsNullOrEmpty(LastName) && !string.IsNullOrEmpty(Login);
 
         public string Login
             =>
@@ -26,6 +28,7 @@ namespace ScannerReader.Models
                 _firstName = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(Login));
+                OnPropertyChanged(nameof(IsModelValid));
             }
         }
 
@@ -37,20 +40,23 @@ namespace ScannerReader.Models
                 _lastName = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(Login));
+                OnPropertyChanged(nameof(IsModelValid));
+            }
+        }
+
+        public DateTime? LastLoginDate
+        {
+            get { return _lastLoginDate; }
+            set
+            {
+                _lastLoginDate = value;
+                OnPropertyChanged();
             }
         }
 
         public bool IsValid()
         {
             return !string.IsNullOrEmpty(FirstName) && !string.IsNullOrEmpty(LastName) && !string.IsNullOrEmpty(Login);
-        }
-
-        private DateTime? _lastLoginDate;
-
-        public DateTime? LastLoginDate
-        {
-            get { return _lastLoginDate; }
-            set { _lastLoginDate = value; OnPropertyChanged(); }
         }
     }
 }

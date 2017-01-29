@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="ScannerReader.Controls.MachineImportControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ScannerReader.Controls"
+             xmlns:models="clr-namespace:ScannerReader.Models"
+             xmlns:converters="clr-namespace:ScannerReader.Converters"
+             xmlns:resx="clr-namespace:ScannerReader.Resources"
+             d:DataContext="{d:DesignInstance models:ImportViewModel}"
+             mc:Ignorable="d"  Loaded="MachineImportControl_OnLoaded"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <converters:MessageToColorConverter x:Key="ColorConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" Visibility="{Binding IsDataLoaded, Converter={StaticResource BoolToVis}}">
+                <Label FontWeight="Bold" 
+                    Foreground="{Binding ValidateCodeIsUniq, Converter={StaticResource ColorConverter}}"
+                    Content="{x:Static resx:MachineImportResources.ValidateCodeIsUniqLabel}"></Label>
+                <Label Content="{Binding ValidateCodeIsUniq}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Visibility="{Binding IsDataLoaded, Converter={StaticResource BoolToVis}}">
+                <Label FontWeight="Bold" 
+                    Foreground="{Binding ValidateEngineCodes, Converter={StaticResource ColorConverter}}"
+                    Content="{x:Static resx:MachineImportResources.ValidateEngineCodesLabel}"></Label>
+                <Label Content="{Binding ValidateEngineCodes}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Visibility="{Binding IsDataLoaded, Converter={StaticResource BoolToVis}}">
+                <Label FontWeight="Bold" 
+                    Foreground="{Binding ValidateImagesExists, Converter={StaticResource ColorConverter}}"
+                    Content="{x:Static resx:MachineImportResources.ValidateImagesExistsLabel}"></Label>
+                <Label Content="{Binding ValidateImagesExists}"></Label>
+            </StackPanel>
+            <ProgressBar Name="ProgressBarImport" Value="0" Maximum="{Binding MachineCount}" Minimum="0" Height="40px"></ProgressBar>
+            <Button IsEnabled="{Binding IsModelValid}" Content="{x:Static resx:MachineImportResources.SaveButtonText}" Click="ButtonBase_OnClick" Visibility="{Binding IsDataLoaded, Converter={StaticResource BoolToVis}}"></Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

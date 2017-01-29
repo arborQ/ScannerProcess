@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="ScannerReader.Controls.MachineListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ScannerReader.Controls"
+             xmlns:models="clr-namespace:ScannerReader.Models"
+             mc:Ignorable="d" Loaded="MachineListControl_OnLoaded"
+             d:DataContext="{d:DesignInstance models:MachineListViewModel}"
+             >
+    <Grid>
+        <ListView ItemsSource="{Binding Machines, Mode=OneWay}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Code" Width="100" DisplayMemberBinding="{Binding Code}" />
+                    <GridViewColumn Header="EngineCodeA" Width="100" DisplayMemberBinding="{Binding EngineCodeA }" />
+                    <GridViewColumn Header="EngineCodeB" Width="100" DisplayMemberBinding="{Binding EngineCodeB }" />
+                    <GridViewColumn Header="EnginePositionA" Width="100" DisplayMemberBinding="{Binding EnginePositionA }" />
+                    <GridViewColumn Header="EnginePositionB" Width="100" DisplayMemberBinding="{Binding EnginePositionB }" />
+                    <GridViewColumn Header="ProgramType" Width="100" DisplayMemberBinding="{Binding ProgramType }" />
+                    <GridViewColumn Header="ImageA" Width="100" DisplayMemberBinding="{Binding ImageA }" />
+                    <GridViewColumn Header="ImageB" Width="100" DisplayMemberBinding="{Binding ImageB }" />
+                    <GridViewColumn Header="ImageC" Width="100" DisplayMemberBinding="{Binding ImageC }" />
+                    <GridViewColumn Header="Comment" Width="100" DisplayMemberBinding="{Binding Comment }" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

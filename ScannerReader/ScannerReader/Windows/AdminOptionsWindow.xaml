@@ -14,23 +14,10 @@
     </Window.Resources>
     <Grid>
         <TabControl TabStripPlacement="Left" Name="userTabs">
-            <TabItem IsEnabled="{Binding IsUserEditing, Converter={StaticResource NegateBoolConverter}}">
-                <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <Label VerticalAlignment="Center" FontSize="8px" Content="{x:Static resx:AdminOptionsResources.MachinesMenuOption}" />
-                        <Label FontWeight="Bold" FontSize="8px" VerticalAlignment="Center">(100)</Label>
-                    </StackPanel>
-                </TabItem.Header>
-                <TabItem.Content>
-                    <StackPanel Name="machineStackPanel">
-                    </StackPanel>
-                </TabItem.Content>
-            </TabItem>
             <TabItem Selector.IsSelected="True">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <Label VerticalAlignment="Center" FontSize="8px" Content="{x:Static resx:AdminOptionsResources.UsersMenuOption}" />
-                        <Label FontWeight="Bold" FontSize="8px" VerticalAlignment="Center">(1030)</Label>
                     </StackPanel>
                 </TabItem.Header>
                 <TabItem.Content>
@@ -50,7 +37,29 @@
                     </TabControl>
                     
                 </TabItem.Content>
-            </TabItem>            
+            </TabItem>
+            <TabItem IsEnabled="{Binding IsUserEditing, Converter={StaticResource NegateBoolConverter}}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Label VerticalAlignment="Center" FontSize="8px" Content="{x:Static resx:AdminOptionsResources.MachinesMenuOption}" />
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <StackPanel Name="MachineStackPanel">
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Label VerticalAlignment="Center" FontSize="8px" Content="{x:Static resx:AdminOptionsResources.ImportMenuOption}" />
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <StackPanel Name="MachineImportStackPanel">
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>

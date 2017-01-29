@@ -89,6 +89,15 @@ namespace ScannerReader.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Importuj *.xls.
+        /// </summary>
+        public static string ImportMenuOption {
+            get {
+                return ResourceManager.GetString("ImportMenuOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap Logo {

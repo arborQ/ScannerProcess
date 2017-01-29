@@ -12,5 +12,9 @@ namespace ScannerReader.Interfaces
         UserListControl CreateUserListControl();
 
         EditUserControl CreateEditUserControl(int? userId);
+
+        MachineListControl CreateMachineListControl();
+
+        MachineImportControl CreateMachineImportControl();
     }
 }
