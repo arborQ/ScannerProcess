@@ -23,26 +23,27 @@ namespace ScannerReader
             Container.Register(Classes.FromThisAssembly().BasedOn<System.Windows.Window>().LifestyleTransient());
             Container.Register(Classes.FromThisAssembly().BasedOn<System.Windows.Controls.UserControl>().LifestyleTransient());
             Container.Register(Component.For<IControlFactory>().AsFactory());
+            Container.Register(Component.For<IWindowFactory>().AsFactory());
             //Container.Register(Classes.FromAssembly(Assembly.Load(nameof(AdminPanel))).BasedOn<System.Windows.Window>());
-            Container.Register(Component.For<Workflow>());
-            Container.Register(Component.For<ApplicationService>());
+            Container.Register(Component.For<Workflow>().LifestyleTransient());
+            Container.Register(Component.For<ApplicationService>().LifestyleSingleton());
 
             
             Container.Register(Component.For<IWorkflowStateFactory>().AsFactory());
 
-            Container.Register(Component.For<IWorkflowState>()
+            Container.Register(Component.For<IWorkflowState>().LifestyleTransient()
                 .ImplementedBy<PendingWorklowState>()
                 .Named("PendingState"));
 
-            Container.Register(Component.For<IWorkflowState>()
+            Container.Register(Component.For<IWorkflowState>().LifestyleTransient()
                 .ImplementedBy<SingleEnginePompState>()
                 .Named("SingleEngineState"));
 
-            Container.Register(Component.For<IWorkflowState>()
+            Container.Register(Component.For<IWorkflowState>().LifestyleTransient()
                 .ImplementedBy<MultipleEnginePompState>()
                 .Named("MultipleEngineState"));
 
-            Container.Register(Component.For<IWorkflowState>()
+            Container.Register(Component.For<IWorkflowState>().LifestyleTransient()
                 .ImplementedBy<DisplayMachineDataState>()
                 .Named("DisplayMachineDataState"));
 

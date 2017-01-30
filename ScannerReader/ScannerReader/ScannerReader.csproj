@@ -123,6 +123,7 @@
     <Compile Include="Converters\MessageToColorConverter.cs" />
     <Compile Include="Converters\NegateBoolConverter.cs" />
     <Compile Include="Interfaces\IControlFactory.cs" />
+    <Compile Include="Interfaces\IWindowFactory.cs" />
     <Compile Include="Models\AdminOptionsViewModel.cs" />
     <Compile Include="Models\BaseObservableModel.cs" />
     <Compile Include="Models\ImportViewModel.cs" />
@@ -226,7 +227,9 @@
     <Resource Include="Resources\Settings.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <None Include="Resources\Key.ico" />
+    <Resource Include="Resources\Key.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <EmbeddedResource Include="Resources\MachineImportResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MachineImportResources.Designer.cs</LastGenOutput>

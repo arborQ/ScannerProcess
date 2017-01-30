@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Input;
 using Common.Interfaces;
 using RepositoryServices;
+using ScannerReader.Interfaces;
 
 namespace ScannerReader.Windows
 {
@@ -14,13 +15,15 @@ namespace ScannerReader.Windows
     /// </summary>
     public partial class LoginWindow
     {
-        public LoginWindow()
+        private readonly IWindowFactory _windowFactory;
+        private readonly ApplicationService _applicationService;
+
+        public LoginWindow(IWindowFactory windowFactory, ApplicationService applicationService)
         {
-            Service = new ApplicationService();
+            _windowFactory = windowFactory;
+            _applicationService = applicationService;
             InitializeComponent();
         }
-
-        private ApplicationService Service { get; }
 
         private void UIElement_OnKeyDown(object sender, KeyEventArgs e)
         {
@@ -38,6 +41,9 @@ namespace ScannerReader.Windows
         {
             if (LoginBox.Text == "admin" && PasswordBox.Password == "admin")
             {
+                LoginBox.Clear();
+                PasswordBox.Clear();
+
                 Visibility = Visibility.Hidden;
                 var adminLogin = Bootstrapper.Resolve<AdminOptionsWindow>();
                 adminLogin.Owner = this;
@@ -60,7 +66,7 @@ namespace ScannerReader.Windows
                 return;
             }
 
-            var user = Service.UserRepository.GetRecords(u => u.Login == LoginBox.Text).SingleOrDefault();
+            var user = _applicationService.UserRepository.GetRecords(u => u.Login == LoginBox.Text).SingleOrDefault();
 
             if (user == null)
             {
@@ -73,7 +79,7 @@ namespace ScannerReader.Windows
             var passwordHash = HashPassword(PasswordBox.Password);
             if (string.IsNullOrEmpty(user.PasswordHash))
             {
-                Service.UserRepository.EditRecord(u => u.Id == user.Id, u =>
+                _applicationService.UserRepository.EditRecord(u => u.Id == user.Id, u =>
                 {
                     u.PasswordHash = passwordHash;
                     u.LastLoginDate = DateTime.Now;
@@ -84,7 +90,7 @@ namespace ScannerReader.Windows
             {
                 if (user.PasswordHash == passwordHash)
                 {
-                    Service.UserRepository.EditRecord(u => u.Id == user.Id, u => { u.LastLoginDate = DateTime.Now; });
+                    _applicationService.UserRepository.EditRecord(u => u.Id == user.Id, u => { u.LastLoginDate = DateTime.Now; });
                     SuccessfullLogin(LoginBox.Text);
                 }
                 else
@@ -102,8 +108,7 @@ namespace ScannerReader.Windows
             Hide();
             var userSecurity = Bootstrapper.Resolve<IUserSecurity>();
             userSecurity.SetCurrentUser(userLogin);
-            var userListWindow = Bootstrapper.Resolve<WorkflowWindow>();
-            userListWindow.Owner = this;
+            var userListWindow = _windowFactory.CreateWorkflowWindow();
             userListWindow.ShowDialog();
             Show();
             userSecurity.SetCurrentUser(null);

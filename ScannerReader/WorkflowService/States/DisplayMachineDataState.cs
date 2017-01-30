@@ -16,5 +16,7 @@ namespace WorkflowService.States
         }
 
         public override string Code => "DISPLAY_DATA";
+
+        public override bool CanBreak => false;
     }
 }

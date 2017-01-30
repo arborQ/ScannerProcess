@@ -11,7 +11,7 @@ namespace ScannerReader.Windows
     /// <summary>
     /// Interaction logic for WorkflowWindow.xaml
     /// </summary>
-    public sealed partial class WorkflowWindow : INotifyPropertyChanged
+    public sealed partial class WorkflowWindow
     {
         private readonly Workflow _workflow;
         private readonly IUserSecurity _userSecurity;
@@ -21,12 +21,9 @@ namespace ScannerReader.Windows
 
         public WorkflowWindow(IUserSecurity userSecurity, IKeyboardReader keyboardReader, Workflow workflow)
         {
-            WorkflowOutput = new WorkflowOutput();
             _userSecurity = userSecurity;
             _keyboardReader = keyboardReader;
             _workflow = workflow;
-
-            DataContext = WorkflowOutput;
 
             InitializeComponent();
         }
@@ -47,6 +44,9 @@ namespace ScannerReader.Windows
                     readerResonse = "20160905-00165#53A08VN0D";
                     break;
 #endif
+                case Key.Escape:
+                    Close();
+                    return;
                 default:
                     readerResonse = _keyboardReader.NotifyChar(e.Key);
                     break;
@@ -58,15 +58,10 @@ namespace ScannerReader.Windows
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         private void WorkflowWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
+            WorkflowOutput = new WorkflowOutput();
+            DataContext = WorkflowOutput;
             _workflow.Start(WorkflowOutput);
         }
     }

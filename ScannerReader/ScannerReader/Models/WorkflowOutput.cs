@@ -1,16 +1,12 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using WorkflowService;
+﻿using WorkflowService;
 
 namespace ScannerReader.Models
 {
-    public class WorkflowOutput : IWorkflowOutput, INotifyPropertyChanged
+    public class WorkflowOutput : BaseObservableModel, IWorkflowOutput
     {
         private string _description;
         private string _imagePath;
         private string _message;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public string Message
         {
@@ -40,11 +36,6 @@ namespace ScannerReader.Models
                 _description = value;
                 OnPropertyChanged();
             }
-        }
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -28,5 +28,7 @@ namespace WorkflowService
 
             CurrentState = CurrentState.Trigger(input);
         }
+
+        public bool CanBreak => CurrentState.CanBreak;
     }
 }

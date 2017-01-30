@@ -9,6 +9,9 @@ namespace WorkflowService.States
     public interface IWorkflowState
     {
         IWorkflowState Trigger(string input);
+
+        bool CanBreak { get; }
+
         string Code { get; }
     }
 
@@ -47,5 +50,7 @@ namespace WorkflowService.States
         {
             return this;
         }
+
+        public virtual bool CanBreak => true;
     }
 }
