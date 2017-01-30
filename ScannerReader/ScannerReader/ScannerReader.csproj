@@ -162,6 +162,9 @@
     <Compile Include="Windows\WorkflowWindow.xaml.cs">
       <DependentUpon>WorkflowWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\WorkInProgress.xaml.cs">
+      <DependentUpon>WorkInProgress.xaml</DependentUpon>
+    </Compile>
     <Page Include="Controls\EditUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -198,6 +201,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\WorkInProgress.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -213,6 +220,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\Loading.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Settings.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Include="Resources\Key.ico" />
     <EmbeddedResource Include="Resources\MachineImportResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MachineImportResources.Designer.cs</LastGenOutput>

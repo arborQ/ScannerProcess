@@ -34,7 +34,6 @@
                     Content="{x:Static resx:MachineImportResources.ValidateImagesExistsLabel}"></Label>
                 <Label Content="{Binding ValidateImagesExists}"></Label>
             </StackPanel>
-            <ProgressBar Name="ProgressBarImport" Value="0" Maximum="{Binding MachineCount}" Minimum="0" Height="40px"></ProgressBar>
             <Button IsEnabled="{Binding IsModelValid}" Content="{x:Static resx:MachineImportResources.SaveButtonText}" Click="ButtonBase_OnClick" Visibility="{Binding IsDataLoaded, Converter={StaticResource BoolToVis}}"></Button>
         </StackPanel>
     </Grid>

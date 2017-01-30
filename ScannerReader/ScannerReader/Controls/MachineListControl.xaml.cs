@@ -26,7 +26,7 @@ namespace ScannerReader.Controls
 
         private void MachineListControl_OnLoaded(object sender, RoutedEventArgs e)
         {
-            _machieListViewModel.Machines = new ObservableCollection<Machine>(_applicationService.MachineRepository.GetRecords().ToList());
+            _machieListViewModel.Machines = _applicationService.MachineRepository.GetRecords().Take(200).ToList();
         }
     }
 }

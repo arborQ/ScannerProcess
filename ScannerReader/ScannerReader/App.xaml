@@ -4,6 +4,9 @@
              Startup="Application_Startup">
     <Application.Resources>
         <BitmapImage x:Key="Logo" UriSource="/Resources/Logo.png" />
+        <BitmapImage x:Key="SettingsIcon" UriSource="/Resources/Settings.ico" />
+        <BitmapImage x:Key="LoginIcon" UriSource="/Resources/Key.ico" />
+        <BitmapImage x:Key="WaitIcon" UriSource="/Resources/Loading.ico" />
         <Style TargetType="TextBlock">
             <Setter Property="FontWeight" Value="Bold"></Setter>
             <Setter Property="FontSize" Value="16px"></Setter>

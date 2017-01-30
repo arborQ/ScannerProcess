@@ -7,7 +7,8 @@
         xmlns:resx="clr-namespace:ScannerReader.Resources"
         xmlns:converters="clr-namespace:ScannerReader.Converters"
         mc:Ignorable="d" Loaded="Window_Loaded"
-        Title="{x:Static resx:AdminOptionsResources.OptionsTitle}" Height="397.996" Width="637.869">
+        Title="{x:Static resx:AdminOptionsResources.OptionsTitle}" Height="397.996" Width="637.869" 
+        Icon="{StaticResource SettingsIcon}">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
         <converters:NegateBoolConverter x:Key="NegateBoolConverter" />
@@ -23,7 +24,7 @@
                 <TabItem.Content>
                     <TabControl>
                         <TabItem Header="{x:Static resx:AdminOptionsResources.UsersMenuOption}" Selector.IsSelected="{Binding IsUserEditing, Mode=OneWay, Converter={StaticResource NegateBoolConverter}}" IsEnabled="{Binding IsUserEditing, Converter={StaticResource NegateBoolConverter}}">
-                            <StackPanel Name="UsersStackPanel">
+                            <StackPanel Name="UsersStackPanel" CanVerticallyScroll="True">
                             </StackPanel>
                         </TabItem>
                         <TabItem Header="{x:Static resx:AdminOptionsResources.AddUserMenuOption}" IsEnabled="{Binding IsUserEditing, Converter={StaticResource NegateBoolConverter}}">
@@ -35,17 +36,16 @@
                             </StackPanel>
                         </TabItem>
                     </TabControl>
-                    
                 </TabItem.Content>
             </TabItem>
-            <TabItem IsEnabled="{Binding IsUserEditing, Converter={StaticResource NegateBoolConverter}}">
+            <TabItem IsEnabled="False">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <Label VerticalAlignment="Center" FontSize="8px" Content="{x:Static resx:AdminOptionsResources.MachinesMenuOption}" />
                     </StackPanel>
                 </TabItem.Header>
                 <TabItem.Content>
-                    <StackPanel Name="MachineStackPanel">
+                    <StackPanel Name="MachineStackPanel" CanVerticallyScroll="True">
                     </StackPanel>
                 </TabItem.Content>
             </TabItem>

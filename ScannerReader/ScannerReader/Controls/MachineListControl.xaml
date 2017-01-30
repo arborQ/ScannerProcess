@@ -9,7 +9,7 @@
              d:DataContext="{d:DesignInstance models:MachineListViewModel}"
              >
     <Grid>
-        <ListView ItemsSource="{Binding Machines, Mode=OneWay}">
+        <ListView ItemsSource="{Binding Machines, Mode=OneWay}" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Code" Width="100" DisplayMemberBinding="{Binding Code}" />

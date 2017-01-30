@@ -6,9 +6,9 @@ namespace ScannerReader.Models
 {
     public class MachineListViewModel : BaseObservableModel
     {
-        private ObservableCollection<Machine> _machines;
+        private List<Machine> _machines;
 
-        public ObservableCollection<Machine> Machines
+        public List<Machine> Machines
         {
             get { return _machines; }
             set

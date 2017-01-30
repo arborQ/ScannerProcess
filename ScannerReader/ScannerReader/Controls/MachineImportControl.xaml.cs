@@ -9,6 +9,7 @@ using Microsoft.Win32;
 using RepositoryServices;
 using RepositoryServices.Models;
 using ScannerReader.Models;
+using ScannerReader.Windows;
 
 namespace ScannerReader.Controls
 {
@@ -104,17 +105,24 @@ namespace ScannerReader.Controls
                 IsBlocked(true);
             }
 
-            _applicationService.MachineRepository.RemoveRecord(a => a.Id > 0);
-
-            foreach (var machine in _importViewModel.Machines)
+            var actions = new List<Func<string>>
             {
-                await Task.Factory.StartNew(() =>
+                () =>
                 {
-                    _applicationService.MachineRepository.AddRecord(machine);
-                });
-                ProgressBarImport.Value += 1;
-                _importViewModel.ProcessedMachines += 1;
-            }
+                    _applicationService.MachineRepository.RemoveRecord(a => a.Id > 0);
+                    return "remove";
+                }
+            };
+
+            actions.AddRange(_importViewModel.Machines.Select(m => new Func<string>(() =>
+            {
+                _applicationService.MachineRepository.AddRecord(m);
+                return m.Code;
+            })).ToList());
+
+            var loadingWindow = new WorkInProgress(actions);
+
+            loadingWindow.ShowDialog();
 
             _importViewModel.Machines = null;
 
