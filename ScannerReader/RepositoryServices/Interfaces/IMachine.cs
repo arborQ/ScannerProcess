@@ -8,9 +8,9 @@
 
         string EngineCodeB { get; }
 
-        int EnginePositionA { get; }
+        int? EnginePositionA { get; }
 
-        int EnginePositionB { get; }
+        int? EnginePositionB { get; }
 
         string ProgramType { get; }
 

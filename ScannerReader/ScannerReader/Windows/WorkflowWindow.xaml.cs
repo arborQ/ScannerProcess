@@ -45,7 +45,10 @@ namespace ScannerReader.Windows
                     break;
 #endif
                 case Key.Escape:
-                    Close();
+                    if (_workflow.CanBreak)
+                    {
+                        Close();
+                    }
                     return;
                 default:
                     readerResonse = _keyboardReader.NotifyChar(e.Key);

@@ -61,6 +61,24 @@ namespace WorkflowService.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Podaj pierwszą pozycję silnika.
+        /// </summary>
+        internal static string DisplayOneMessage {
+            get {
+                return ResourceManager.GetString("DisplayOneMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Podaj drugą pozycję silnika.
+        /// </summary>
+        internal static string DisplaySecondMessage {
+            get {
+                return ResourceManager.GetString("DisplaySecondMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &apos;{0}&apos;: Nie pasuje do numeru zamówienia: &apos;{1}&apos;.
         /// </summary>
         internal static string EngineCodeDoesntMachOrderCodeMessageFormat {

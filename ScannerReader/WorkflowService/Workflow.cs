@@ -16,7 +16,7 @@ namespace WorkflowService
 
         public void Start(IWorkflowOutput workflowOutput)
         {
-            CurrentState = _workflowStateFactory.GetPendingState(workflowOutput);
+            CurrentState = _workflowStateFactory.GetPendingState(workflowOutput).Initialize();
         }
 
         public void Trigger(string input)
@@ -26,7 +26,23 @@ namespace WorkflowService
                 throw new Exception("Workflow was not started");
             }
 
-            CurrentState = CurrentState.Trigger(input);
+            var nextState = CurrentState.Trigger(input);
+
+            AssignNextState(nextState);
+        }
+
+        private void AssignNextState(IWorkflowState nextState)
+        {
+            while (true)
+            {
+                if (!ReferenceEquals(nextState, CurrentState))
+                {
+                    CurrentState = nextState;
+                    nextState = CurrentState.Initialize();
+                    continue;
+                }
+                break;
+            }
         }
 
         public bool CanBreak => CurrentState.CanBreak;

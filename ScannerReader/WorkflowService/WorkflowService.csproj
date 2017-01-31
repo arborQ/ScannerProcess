@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IReadValueService.cs" />
     <Compile Include="IWorkflowOutput.cs" />
     <Compile Include="IWorkflowStateFactory.cs" />
     <Compile Include="Models\BarCodeModel.cs" />

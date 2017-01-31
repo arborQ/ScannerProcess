@@ -61,6 +61,16 @@ namespace ScannerReader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon Ask {
+            get {
+                object obj = ResourceManager.GetObject("Ask", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login i hasło są wymagane.
         /// </summary>
         public static string InvalidModelLoginMessage {

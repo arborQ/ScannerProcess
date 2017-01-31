@@ -39,15 +39,19 @@ namespace ScannerReader.Windows
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+#if DEBUG
             if (LoginBox.Text == "admin" && PasswordBox.Password == "admin")
+#endif
+
+#if !DEBUG
+                if (LoginBox.Text == "arbor" && PasswordBox.Password == "software")
+#endif
             {
                 LoginBox.Clear();
                 PasswordBox.Clear();
 
                 Visibility = Visibility.Hidden;
-                var adminLogin = Bootstrapper.Resolve<AdminOptionsWindow>();
-                adminLogin.Owner = this;
-                adminLogin.ShowDialog();
+                _windowFactory.CreateAdminOptionsWindow().ShowDialog();
                 Visibility = Visibility.Visible;
                 return;
             }

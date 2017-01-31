@@ -1,13 +1,16 @@
-﻿using System.Reflection;
+﻿using System.Windows;
+using System.Windows.Controls;
 using Castle.Facilities.TypedFactory;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Common;
 using Common.Interfaces;
 using RepositoryServices;
-using WorkflowService;
-using WorkflowService.States;
 using ScannerReader.Interfaces;
+using ScannerReader.Services;
+using WorkflowService;
+using WorkflowService.Interfaces;
+using WorkflowService.States;
 
 namespace ScannerReader
 {
@@ -20,15 +23,16 @@ namespace ScannerReader
             Container = new WindsorContainer();
             Container.AddFacility<TypedFactoryFacility>();
 
-            Container.Register(Classes.FromThisAssembly().BasedOn<System.Windows.Window>().LifestyleTransient());
-            Container.Register(Classes.FromThisAssembly().BasedOn<System.Windows.Controls.UserControl>().LifestyleTransient());
+            Container.Register(Classes.FromThisAssembly().BasedOn<Window>().LifestyleTransient());
+            Container.Register(Classes.FromThisAssembly().BasedOn<UserControl>().LifestyleTransient());
             Container.Register(Component.For<IControlFactory>().AsFactory());
             Container.Register(Component.For<IWindowFactory>().AsFactory());
             //Container.Register(Classes.FromAssembly(Assembly.Load(nameof(AdminPanel))).BasedOn<System.Windows.Window>());
             Container.Register(Component.For<Workflow>().LifestyleTransient());
             Container.Register(Component.For<ApplicationService>().LifestyleSingleton());
 
-            
+            Container.Register(Component.For<IReadValueService>().ImplementedBy<ReadValueService>());
+
             Container.Register(Component.For<IWorkflowStateFactory>().AsFactory());
 
             Container.Register(Component.For<IWorkflowState>().LifestyleTransient()

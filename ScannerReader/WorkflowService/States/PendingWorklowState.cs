@@ -8,10 +8,15 @@ namespace WorkflowService.States
     {
         public PendingWorklowState(IWorkflowOutput workflowOutput, IWorkflowStateFactory workflowStateFactory) : base(workflowOutput, workflowStateFactory)
         {
-            WorkflowOutput.Message = StateResources.PendingInitMessage;
         }
 
         public override string Code => "PENDING";
+
+        public override IWorkflowState Initialize()
+        {
+            WorkflowOutput.Message = StateResources.PendingInitMessage;
+            return base.Initialize();
+        }
 
         protected override IWorkflowState Trigger(BarCodeModel inputCode)
         {

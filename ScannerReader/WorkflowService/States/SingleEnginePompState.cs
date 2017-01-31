@@ -10,11 +10,16 @@ namespace WorkflowService.States
 
         public SingleEnginePompState(IWorkflowOutput workflowOutput, IWorkflowStateFactory workflowStateFactory, Machine machine) : base(workflowOutput, workflowStateFactory)
         {
-            workflowOutput.Message = StateResources.SingleEngineInitMessage;
             _machine = machine;
         }
 
         public override string Code => "SINGLE_POMP";
+
+        public override IWorkflowState Initialize()
+        {
+            WorkflowOutput.Message = StateResources.SingleEngineInitMessage;
+            return base.Initialize();
+        }
 
         protected override IWorkflowState Trigger(BarCodeModel inputCode)
         {
@@ -22,11 +27,9 @@ namespace WorkflowService.States
             {
                 return WorkflowStateFactory.GetDisplayMachineDataState(WorkflowOutput, _machine);
             }
-            else
-            {
-                WorkflowOutput.Message = string.Format(StateResources.EngineCodeDoesntMachOrderCodeMessageFormat,
-                    inputCode.SecondPart, _machine.Code);
-            }
+
+            WorkflowOutput.Message = string.Format(StateResources.EngineCodeDoesntMachOrderCodeMessageFormat,
+                inputCode.SecondPart, _machine.Code);
 
             return this;
         }

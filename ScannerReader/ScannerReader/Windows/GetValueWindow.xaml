@@ -1,0 +1,29 @@
+﻿<Window x:Class="ScannerReader.Windows.GetValueWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:resx="clr-namespace:ScannerReader.Resources"
+        xmlns:models="clr-namespace:ScannerReader.Models"
+        d:DataContext="{d:DesignInstance models:GetValueViewModel}"
+        Icon="{StaticResource AskIcon}"
+        xmlns:local="clr-namespace:ScannerReader.Windows"
+        mc:Ignorable="d" Loaded="GetValueWindow_OnLoaded"
+        Title="{x:Static resx:GetValueResources.Title}" Height="130.752" Width="300">
+    <Grid FocusManager.FocusedElement="{Binding ElementName=ValueBox}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40px"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBox 
+            Grid.Row="0" 
+            Name="ValueBox" 
+            Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+            PreviewTextInput="ValueBox_OnPreviewTextInput" 
+            KeyUp="ValueBox_OnKeyUp"
+            TextAlignment="Center">
+            
+        </TextBox>
+        <Button Grid.Row="1" Content="{x:Static resx:GetValueResources.GaveUpButtonText}" Click="ButtonBase_OnClick"></Button>
+    </Grid>
+</Window>

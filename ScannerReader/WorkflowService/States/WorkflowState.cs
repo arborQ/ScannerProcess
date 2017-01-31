@@ -1,6 +1,5 @@
 ﻿using System;
 using Common;
-using NLog;
 using RepositoryServices;
 using WorkflowService.Models;
 
@@ -9,6 +8,8 @@ namespace WorkflowService.States
     public interface IWorkflowState
     {
         IWorkflowState Trigger(string input);
+
+        IWorkflowState Initialize();
 
         bool CanBreak { get; }
 
@@ -47,6 +48,11 @@ namespace WorkflowService.States
         }
 
         protected virtual IWorkflowState Trigger(BarCodeModel inputCode)
+        {
+            return this;
+        }
+
+        public virtual IWorkflowState Initialize()
         {
             return this;
         }

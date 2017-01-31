@@ -117,31 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DisplayOneMessage" xml:space="preserve">
-    <value>Podaj pierwszą pozycję silnika</value>
+  <data name="GaveUpButtonText" xml:space="preserve">
+    <value>Nie wiem. Anuluj.</value>
   </data>
-  <data name="DisplaySecondMessage" xml:space="preserve">
-    <value>Podaj drugą pozycję silnika</value>
-  </data>
-  <data name="EngineCodeDoesntMachOrderCodeMessageFormat" xml:space="preserve">
-    <value>'{0}': Nie pasuje do numeru zamówienia: '{1}'</value>
-  </data>
-  <data name="InitializedInitMessage" xml:space="preserve">
-    <value>Zeskanuj tabliczkę znamionową pompy</value>
-  </data>
-  <data name="MultipleEngineInitFormatMessage" xml:space="preserve">
-    <value>Zeskanuj {0} kody silnika</value>
-  </data>
-  <data name="PendingInitMessage" xml:space="preserve">
-    <value>Zeskanuj numer zlecenia</value>
-  </data>
-  <data name="ScanMoreEngineCodesMessageFormat" xml:space="preserve">
-    <value>Zeskanuj kolejny kod: {0}...</value>
-  </data>
-  <data name="SingleEngineInitMessage" xml:space="preserve">
-    <value>Zeskanuj kod silnika</value>
-  </data>
-  <data name="UnknownOrderNumberMessageFormat" xml:space="preserve">
-    <value>'{0}': Nieznany numer zamówienia. Zeskanuj ponownie</value>
+  <data name="Title" xml:space="preserve">
+    <value>Podaj wartość</value>
   </data>
 </root>

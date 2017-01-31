@@ -126,6 +126,7 @@
     <Compile Include="Interfaces\IWindowFactory.cs" />
     <Compile Include="Models\AdminOptionsViewModel.cs" />
     <Compile Include="Models\BaseObservableModel.cs" />
+    <Compile Include="Models\GetValueViewModel.cs" />
     <Compile Include="Models\ImportViewModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\MachineListViewModel.cs" />
@@ -142,6 +143,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AdminOptionsResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\GetValueResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetValueResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\MachineImportResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -157,8 +163,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UserListResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\ReadValueService.cs" />
     <Compile Include="Windows\AdminOptionsWindow.xaml.cs">
       <DependentUpon>AdminOptionsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\GetValueWindow.xaml.cs">
+      <DependentUpon>GetValueWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\WorkflowWindow.xaml.cs">
       <DependentUpon>WorkflowWindow.xaml</DependentUpon>
@@ -183,6 +193,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\AdminOptionsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\GetValueWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -221,6 +235,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\Ask.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Loading.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -230,6 +247,10 @@
     <Resource Include="Resources\Key.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <EmbeddedResource Include="Resources\GetValueResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GetValueResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\MachineImportResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MachineImportResources.Designer.cs</LastGenOutput>

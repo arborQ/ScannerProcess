@@ -15,10 +15,15 @@ namespace WorkflowService.States
         public MultipleEnginePompState(IWorkflowOutput workflowOutput, IWorkflowStateFactory workflowStateFactory, Machine machine) : base(workflowOutput, workflowStateFactory)
         {
             _machine = machine;
-            workflowOutput.Message = string.Format(StateResources.MultipleEngineInitFormatMessage, EngineCount);
         }
 
         public override string Code => "MULTIPLE_POMP";
+
+        public override IWorkflowState Initialize()
+        {
+            WorkflowOutput.Message = string.Format(StateResources.MultipleEngineInitFormatMessage, EngineCount);
+            return base.Initialize();
+        }
 
         protected override IWorkflowState Trigger(BarCodeModel inputCode)
         {
