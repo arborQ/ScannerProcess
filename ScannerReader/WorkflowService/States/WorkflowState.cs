@@ -1,6 +1,4 @@
-﻿using System;
-using Common;
-using RepositoryServices;
+﻿using RepositoryServices;
 using WorkflowService.Models;
 
 namespace WorkflowService.States
@@ -33,7 +31,6 @@ namespace WorkflowService.States
 
         public virtual IWorkflowState Trigger(string input)
         {
-            LogHelper.Log.Info(new { time = DateTime.Now, level = 3 });
             WorkflowOutput.Message = string.Empty;
 
             var parts = input.Split('#');

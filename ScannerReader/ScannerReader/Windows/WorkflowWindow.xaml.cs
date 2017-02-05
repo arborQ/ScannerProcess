@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 using Common.Interfaces;
 using ScannerReader.Models;
 using WorkflowService;
@@ -30,6 +31,8 @@ namespace ScannerReader.Windows
 
         private void WorkflowWindow_OnKeyDown(object sender, KeyEventArgs e)
         {
+            var timeOut = new DispatcherTimer();
+
             var readerResonse = string.Empty;
             switch (e.Key)
             {

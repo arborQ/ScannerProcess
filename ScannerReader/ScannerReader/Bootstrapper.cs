@@ -5,6 +5,7 @@ using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Common;
 using Common.Interfaces;
+using Logger;
 using RepositoryServices;
 using ScannerReader.Interfaces;
 using ScannerReader.Services;
@@ -53,10 +54,12 @@ namespace ScannerReader
 
             Container.Register(Component.For<IKeyboardReader>().ImplementedBy<KeyboardReader>());
 #if DEBUG
-            Container.Register(Component.For<IUserSecurity>().ImplementedBy<DebugUserSecurity>().LifestyleSingleton());
+            Container.Register(Component.For<IUserSecurity>().ImplementedBy<UserSecurity>().LifestyleSingleton());
 #else
             Container.Register(Component.For<IUserSecurity>().ImplementedBy<UserSecurity>().LifestyleSingleton());
 #endif
+
+            InstallServices.Install(Container);
         }
 
         public static T Resolve<T>() where T : class

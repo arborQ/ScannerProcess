@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using Common.Interfaces;
+using Logger.Interfaces;
 using RepositoryServices;
 using ScannerReader.Interfaces;
 
@@ -16,12 +17,16 @@ namespace ScannerReader.Windows
     public partial class LoginWindow
     {
         private readonly IWindowFactory _windowFactory;
+        private readonly ILogService _logger;
         private readonly ApplicationService _applicationService;
+        private readonly IUserSecurity _userSecurity;
 
-        public LoginWindow(IWindowFactory windowFactory, ApplicationService applicationService)
+        public LoginWindow(IWindowFactory windowFactory, ILogService logger, ApplicationService applicationService, IUserSecurity userSecurity)
         {
             _windowFactory = windowFactory;
+            _logger = logger;
             _applicationService = applicationService;
+            _userSecurity = userSecurity;
             InitializeComponent();
         }
 
@@ -44,7 +49,7 @@ namespace ScannerReader.Windows
 #endif
 
 #if !DEBUG
-                if (LoginBox.Text == "arbor" && PasswordBox.Password == "software")
+                if (LoginBox.Text == "admin" && PasswordBox.Password == "admin")
 #endif
             {
                 LoginBox.Clear();
@@ -70,38 +75,17 @@ namespace ScannerReader.Windows
                 return;
             }
 
-            var user = _applicationService.UserRepository.GetRecords(u => u.Login == LoginBox.Text).SingleOrDefault();
+            var isSuccesfullLogin = _userSecurity.ValidateUser(LoginBox.Text, PasswordBox.Password);
 
-            if (user == null)
+            if (!isSuccesfullLogin)
             {
                 MessageBox.Show(string.Format(Properties.Resources.InvalidUserLoginMessageFormat, LoginBox.Text),
                     string.Empty,
                     MessageBoxButton.OK, MessageBoxImage.Stop);
-                return;
-            }
-
-            var passwordHash = HashPassword(PasswordBox.Password);
-            if (string.IsNullOrEmpty(user.PasswordHash))
-            {
-                _applicationService.UserRepository.EditRecord(u => u.Id == user.Id, u =>
-                {
-                    u.PasswordHash = passwordHash;
-                    u.LastLoginDate = DateTime.Now;
-                });
-                SuccessfullLogin(LoginBox.Text);
             }
             else
             {
-                if (user.PasswordHash == passwordHash)
-                {
-                    _applicationService.UserRepository.EditRecord(u => u.Id == user.Id, u => { u.LastLoginDate = DateTime.Now; });
-                    SuccessfullLogin(LoginBox.Text);
-                }
-                else
-                {
-                    MessageBox.Show(string.Format(Properties.Resources.InvalidUserLoginMessageFormat, LoginBox.Text),
-                        string.Empty, MessageBoxButton.OK, MessageBoxImage.Stop);
-                }
+                SuccessfullLogin(LoginBox.Text);
             }
         }
 
@@ -117,14 +101,6 @@ namespace ScannerReader.Windows
             Show();
             userSecurity.SetCurrentUser(null);
             LoginBox.Focus();
-        }
-
-        private string HashPassword(string password)
-        {
-            var data = Encoding.ASCII.GetBytes(password);
-            var md5 = new MD5CryptoServiceProvider();
-            var md5Data = md5.ComputeHash(data);
-            return Encoding.ASCII.GetString(md5Data);
         }
     }
 }

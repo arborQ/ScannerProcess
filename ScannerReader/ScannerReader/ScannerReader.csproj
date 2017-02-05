@@ -25,7 +25,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -51,7 +51,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>31733C06BE1ADCE73EBCD81B7B63ABD0265AF573</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>FADF4DC3497DDCF544F40ABA19B0B2E3E38F84C4</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>ScannerReader_TemporaryKey.pfx</ManifestKeyFile>
@@ -123,6 +123,8 @@
     <Compile Include="Converters\MessageToColorConverter.cs" />
     <Compile Include="Converters\NegateBoolConverter.cs" />
     <Compile Include="Interfaces\IControlFactory.cs" />
+    <Compile Include="Interfaces\IKeyboardReader.cs" />
+    <Compile Include="Interfaces\IUserSecurity.cs" />
     <Compile Include="Interfaces\IWindowFactory.cs" />
     <Compile Include="Models\AdminOptionsViewModel.cs" />
     <Compile Include="Models\BaseObservableModel.cs" />
@@ -163,7 +165,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UserListResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\InputHelper.cs" />
+    <Compile Include="Services\KeyboardReader.cs" />
     <Compile Include="Services\ReadValueService.cs" />
+    <Compile Include="Services\UserSecurity.cs" />
     <Compile Include="Windows\AdminOptionsWindow.xaml.cs">
       <DependentUpon>AdminOptionsWindow.xaml</DependentUpon>
     </Compile>
@@ -284,6 +289,7 @@
     <Resource Include="Images\a.jpg" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
@@ -299,9 +305,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{02EF43DC-8AE1-4D39-BE14-247C60ADD512}</Project>
-      <Name>Common</Name>
+    <ProjectReference Include="..\Logger\Logger.csproj">
+      <Project>{00135411-6904-4a11-98f4-f459848c0f7a}</Project>
+      <Name>Logger</Name>
     </ProjectReference>
     <ProjectReference Include="..\RepositoryServices\RepositoryServices.csproj">
       <Project>{51b3f4bf-fdca-4f5f-a6d5-6124cee785ae}</Project>

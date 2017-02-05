@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using ScannerReader.Services;
 
 namespace ScannerReader.Windows
 {
@@ -51,6 +52,7 @@ namespace ScannerReader.Windows
             });
             Close();
         }
+
 
         protected override void OnClosing(CancelEventArgs e)
         {
