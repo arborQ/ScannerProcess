@@ -5,13 +5,21 @@ namespace RepositoryServices
 {
     public class ApplicationService
     {
-        private UserRepository _userRepository;
-        public IUserRepository UserRepository => _userRepository ?? (_userRepository = new UserRepository());
 
-        private MachineRepository _machineRepository;
+        public ApplicationService(IUserRepository userRepository, IMachineRepository machineRepository, ISettingsRepository settingsRepository)
+        {
+            SettingsRepository = settingsRepository;
+            UserRepository = userRepository;
+            MachineRepository = machineRepository;
+        }
 
-        public IMachineRepository MachineRepository
-            => _machineRepository ?? (_machineRepository = new MachineRepository());
+        public IUserRepository UserRepository { get; set; }
+
+
+        public IMachineRepository MachineRepository { get; set; }
+
+
+        public ISettingsRepository SettingsRepository { get; set; }
 
     }
-}
+} 

@@ -154,6 +154,15 @@ namespace ScannerReader.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ustawienia.
+        /// </summary>
+        public static string SettingsMenuOption {
+            get {
+                return ResourceManager.GetString("SettingsMenuOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Użytkownicy.
         /// </summary>
         public static string UsersMenuOption {

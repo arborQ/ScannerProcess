@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using RepositoryServices;
 using ScannerReader.Interfaces;
 using ScannerReader.Models;
 
@@ -10,12 +11,14 @@ namespace ScannerReader.Windows
     public partial class AdminOptionsWindow : Window
     {
         private readonly IControlFactory _controlFactory;
+        private readonly ApplicationService _applicationService;
 
         public AdminOptionsViewModel Model;
 
-        public AdminOptionsWindow(IControlFactory controlFactory)
+        public AdminOptionsWindow(IControlFactory controlFactory, ApplicationService applicationService)
         {
             _controlFactory = controlFactory;
+            _applicationService = applicationService;
             DataContext = Model = new AdminOptionsViewModel();
             InitializeComponent();
         }
@@ -47,6 +50,11 @@ namespace ScannerReader.Windows
                 Model.IsMachineImport = isblocked;
             };
             MachineImportStackPanel.Children.Add(import);
+        }
+
+        private ApplicationSettingsViewModel LoadSettings()
+        {
+            return _applicationService.SettingsRepository.;
         }
     }
 }

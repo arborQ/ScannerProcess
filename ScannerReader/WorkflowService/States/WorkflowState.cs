@@ -1,5 +1,4 @@
-﻿using RepositoryServices;
-using WorkflowService.Models;
+﻿using WorkflowService.Models;
 
 namespace WorkflowService.States
 {
@@ -18,13 +17,11 @@ namespace WorkflowService.States
     {
         protected readonly IWorkflowOutput WorkflowOutput;
         protected IWorkflowStateFactory WorkflowStateFactory;
-        protected ApplicationService ApplicationService;
 
         protected WorkflowState(IWorkflowOutput workflowOutput, IWorkflowStateFactory workflowStateFactory)
         {
             WorkflowOutput = workflowOutput;
             WorkflowStateFactory = workflowStateFactory;
-            ApplicationService = new ApplicationService();
         }
 
         public abstract string Code { get; }

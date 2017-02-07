@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:ScannerReader.Windows"
         xmlns:resx="clr-namespace:ScannerReader.Resources"
         xmlns:converters="clr-namespace:ScannerReader.Converters"
+        xmlns:controls="clr-namespace:ScannerReader.Controls"
         mc:Ignorable="d" Loaded="Window_Loaded"
         Title="{x:Static resx:AdminOptionsResources.OptionsTitle}" Height="397.996" Width="637.869" 
         Icon="{StaticResource SettingsIcon}">
@@ -58,6 +59,16 @@
                 <TabItem.Content>
                     <StackPanel Name="MachineImportStackPanel">
                     </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Label VerticalAlignment="Center" FontSize="8px" Content="{x:Static resx:AdminOptionsResources.SettingsMenuOption}" />
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <controls:ApplicationSettingsControl LoadApplicationSettings="LoadSettings"></controls:ApplicationSettingsControl>
                 </TabItem.Content>
             </TabItem>
         </TabControl>

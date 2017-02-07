@@ -359,4 +359,7 @@
   <data name="ImportMenuOption" xml:space="preserve">
     <value>Importuj *.xls</value>
   </data>
+  <data name="SettingsMenuOption" xml:space="preserve">
+    <value>Ustawienia</value>
+  </data>
 </root>

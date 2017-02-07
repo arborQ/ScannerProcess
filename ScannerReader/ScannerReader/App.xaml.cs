@@ -23,7 +23,7 @@ namespace ScannerReader
         private void Application_Startup(object sender, StartupEventArgs e)
         {
 #if DEBUG
-            var baseWindow = Bootstrapper.Resolve<LoginWindow>();
+            var baseWindow = Bootstrapper.Resolve<AdminOptionsWindow>();
 #endif
 
 #if !DEBUG

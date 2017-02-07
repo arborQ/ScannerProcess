@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:resx="clr-namespace:ScannerReader.Resources"
              xmlns:models="clr-namespace:ScannerReader.Models"
-             xmlns:local="clr-namespace:ScannerReader.Controls" 
              d:DataContext="{d:DesignInstance models:UserModel}"
+             xmlns:local="clr-namespace:ScannerReader.Controls" 
              Loaded="UserControl_Loaded"
              mc:Ignorable="d" d:DesignWidth="300" Height="325.221">
     <Grid>

@@ -30,7 +30,6 @@ namespace ScannerReader
             Container.Register(Component.For<IWindowFactory>().AsFactory());
             //Container.Register(Classes.FromAssembly(Assembly.Load(nameof(AdminPanel))).BasedOn<System.Windows.Window>());
             Container.Register(Component.For<Workflow>().LifestyleTransient());
-            Container.Register(Component.For<ApplicationService>().LifestyleSingleton());
 
             Container.Register(Component.For<IReadValueService>().ImplementedBy<ReadValueService>());
 
@@ -60,6 +59,7 @@ namespace ScannerReader
 #endif
 
             InstallServices.Install(Container);
+            InstallRepositories.Install(Container);
         }
 
         public static T Resolve<T>() where T : class

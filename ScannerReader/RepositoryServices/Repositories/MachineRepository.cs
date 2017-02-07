@@ -5,7 +5,7 @@ using RepositoryServices.Models;
 
 namespace RepositoryServices.Repositories
 {
-    public class MachineRepository : BaseRepository<Machine>, IMachineRepository
+    internal class MachineRepository : BaseRepository<Machine>, IMachineRepository
     {
         public MachineRepository() : base("Machines")
         {
