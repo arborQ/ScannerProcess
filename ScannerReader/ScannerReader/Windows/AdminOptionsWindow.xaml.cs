@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using RepositoryServices;
+using RepositoryServices.Models;
 using ScannerReader.Interfaces;
 using ScannerReader.Models;
 
@@ -52,9 +53,26 @@ namespace ScannerReader.Windows
             MachineImportStackPanel.Children.Add(import);
         }
 
+        private bool UpdateSettings(ApplicationSettingsViewModel model)
+        {
+            _applicationService.SettingsRepository.Update(new Settings
+            {
+                ImagePath = model.ImagePath,
+                DefaultTimeout = model.ActivityTimeout
+            });
+
+            return true;
+        }
+
         private ApplicationSettingsViewModel LoadSettings()
         {
-            return _applicationService.SettingsRepository.;
+            var settings = _applicationService.SettingsRepository.Get();
+
+            return new ApplicationSettingsViewModel
+            {
+                ImagePath = settings.ImagePath,
+                ActivityTimeout = settings.DefaultTimeout
+            };
         }
     }
 }

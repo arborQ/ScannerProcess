@@ -68,7 +68,7 @@
                     </StackPanel>
                 </TabItem.Header>
                 <TabItem.Content>
-                    <controls:ApplicationSettingsControl LoadApplicationSettings="LoadSettings"></controls:ApplicationSettingsControl>
+                    <controls:ApplicationSettingsControl LoadApplicationSettings="LoadSettings" SaveData="UpdateSettings"></controls:ApplicationSettingsControl>
                 </TabItem.Content>
             </TabItem>
         </TabControl>

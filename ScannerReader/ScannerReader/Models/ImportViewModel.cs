@@ -10,6 +10,7 @@ namespace ScannerReader.Models
     {
         private IList<Machine> _machines;
         private long _processedMachines;
+        private string _imageBasePath;
 
         public IList<Machine> Machines
         {
@@ -39,8 +40,20 @@ namespace ScannerReader.Models
             }
         }
 
+        public string ImageBasePath
+        {
+            get { return _imageBasePath; }
+            set
+            {
+                _imageBasePath = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ValidateImagesExists));
+                OnPropertyChanged(nameof(IsDataLoaded));
+            }
+        }
+
         public bool IsDataNotLoaded => Machines == null;
-        public bool IsDataLoaded => Machines != null;
+        public bool IsDataLoaded => Machines != null && !string.IsNullOrEmpty(ImageBasePath);
 
         public bool IsModelValid => IsDataLoaded && !ImportErrors.Any();
 
@@ -93,13 +106,14 @@ namespace ScannerReader.Models
 
                 if (IsDataLoaded)
                 {
-                    var directory = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) ?? string.Empty;
-
-                    var notExistingImages = Machines
+                    var filePaths = Machines
                         .SelectMany(m => new[] {m.ImageA, m.ImageB, m.ImageC})
                         .Where(i => !string.IsNullOrEmpty(i))
                         .Distinct()
-                        .Where(i => !File.Exists(Path.Combine(directory, i)))
+                        .Select(i => Path.Combine(ImageBasePath, i))
+                        .ToList();
+
+                       var notExistingImages = filePaths.Where(i => !File.Exists(i))
                         .ToList();
 
                     if (notExistingImages.Any())

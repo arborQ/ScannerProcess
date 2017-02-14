@@ -33,6 +33,9 @@ namespace ScannerReader.Controls
 
         private void MachineImportControl_OnLoaded(object sender, RoutedEventArgs e)
         {
+            var settings = _applicationService.SettingsRepository.Get();
+            _importViewModel.ImageBasePath = settings.ImagePath;
+
             var fileName = AskForExcelFileLocation();
             if (!string.IsNullOrEmpty(fileName))
             {

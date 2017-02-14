@@ -34,12 +34,6 @@ namespace ScannerReader.Controls
                 _model.ImagePath = model.ImagePath;
                 _model.ActivityTimeout = model.ActivityTimeout;
             }
-            else
-
-            {
-                _model.ImagePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) ?? string.Empty;
-                _model.ActivityTimeout = 10;
-            }
         }
 
         private void Control_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -50,6 +44,8 @@ namespace ScannerReader.Controls
 
             vm.IsDirectoryChooser = true;
             vm.Show();
+
+            _model.ImagePath = vm.SelectedFolder?.Path;
         }
 
         private void UIElement_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -65,11 +61,10 @@ namespace ScannerReader.Controls
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            SaveData?.Invoke(new ApplicationSettingsViewModel
-            {
-                ImagePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) ?? string.Empty,
-                ActivityTimeout = 10
-            });
+            _model.ImagePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) ?? string.Empty;
+            _model.ActivityTimeout = 10;
+
+            SaveData?.Invoke(_model);
         }
     }
 }
