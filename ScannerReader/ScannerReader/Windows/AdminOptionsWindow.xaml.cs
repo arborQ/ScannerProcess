@@ -9,7 +9,7 @@ namespace ScannerReader.Windows
     /// <summary>
     ///     Interaction logic for AdminOptionsWindow.xaml
     /// </summary>
-    public partial class AdminOptionsWindow : Window
+    public partial class AdminOptionsWindow
     {
         private readonly IControlFactory _controlFactory;
         private readonly ApplicationService _applicationService;

@@ -1,5 +1,5 @@
 using System.IO;
-using System.Reflection;
+using RepositoryServices;
 using RepositoryServices.Models;
 using WorkflowService.Interfaces;
 using WorkflowService.Resources;
@@ -9,15 +9,19 @@ namespace WorkflowService.States
     public class DisplayMachineDataState : WorkflowState
     {
         private readonly IReadValueService _readValueService;
+        private readonly ApplicationService _applicationService;
         private readonly Machine _machine;
-        private string BaseDirectory => Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) ?? string.Empty;
+        private string _baseDirectory;
+        private string BaseDirectory => _baseDirectory ?? (_baseDirectory = _applicationService.SettingsRepository.Get().ImagePath);
         public DisplayMachineDataState(
             IReadValueService readValueService,
             IWorkflowOutput workflowOutput, 
             IWorkflowStateFactory workflowStateFactory, 
+            ApplicationService applicationService,
             Machine machine) : base(workflowOutput, workflowStateFactory)
         {
             _readValueService = readValueService;
+            _applicationService = applicationService;
             _machine = machine;
         }
 

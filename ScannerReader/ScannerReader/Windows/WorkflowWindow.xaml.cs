@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 using Common.Interfaces;
@@ -10,15 +8,13 @@ using WorkflowService;
 namespace ScannerReader.Windows
 {
     /// <summary>
-    /// Interaction logic for WorkflowWindow.xaml
+    ///     Interaction logic for WorkflowWindow.xaml
     /// </summary>
     public sealed partial class WorkflowWindow
     {
-        private readonly Workflow _workflow;
-        private readonly IUserSecurity _userSecurity;
         private readonly IKeyboardReader _keyboardReader;
-
-        public WorkflowOutput WorkflowOutput { get; set; }
+        private readonly IUserSecurity _userSecurity;
+        private readonly Workflow _workflow;
 
         public WorkflowWindow(IUserSecurity userSecurity, IKeyboardReader keyboardReader, Workflow workflow)
         {
@@ -28,6 +24,8 @@ namespace ScannerReader.Windows
 
             InitializeComponent();
         }
+
+        public WorkflowOutput WorkflowOutput { get; set; }
 
         private void WorkflowWindow_OnKeyDown(object sender, KeyEventArgs e)
         {
@@ -49,9 +47,7 @@ namespace ScannerReader.Windows
 #endif
                 case Key.Escape:
                     if (_workflow.CanBreak)
-                    {
                         Close();
-                    }
                     return;
                 default:
                     readerResonse = _keyboardReader.NotifyChar(e.Key);
@@ -59,14 +55,13 @@ namespace ScannerReader.Windows
             }
 
             if (!string.IsNullOrEmpty(readerResonse))
-            {
                 _workflow.Trigger(readerResonse);
-            }
         }
 
         private void WorkflowWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
             WorkflowOutput = new WorkflowOutput();
+
             DataContext = WorkflowOutput;
             _workflow.Start(WorkflowOutput);
         }

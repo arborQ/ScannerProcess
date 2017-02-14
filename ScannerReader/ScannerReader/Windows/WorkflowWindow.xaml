@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ScannerReader.Windows"
+        xmlns:models="clr-namespace:ScannerReader.Models"
+        d:DataContext="{d:DesignInstance models:WorkflowOutput}"
         mc:Ignorable="d"
         Loaded="WorkflowWindow_OnLoaded"
         KeyDown="WorkflowWindow_OnKeyDown"
@@ -12,13 +14,10 @@
         <DockPanel LastChildFill="true" Margin="0,0,0,0">
             <StackPanel DockPanel.Dock="Top">
                 <TextBlock Text="{Binding Message, Mode=OneWay}"  Height="35" Margin="0,0" FontSize="25" Padding="10px, 0" Background="Yellow" Foreground="#FFFF1818"></TextBlock>
-                <StackPanel Orientation="Horizontal" Height="35">
-                    
-                </StackPanel>
             </StackPanel>
             <DockPanel LastChildFill="true">
                 <TextBlock Text="{Binding Description, Mode=OneWay}" DockPanel.Dock="Left" Width="300px" Padding="10px" Background="LightGray"></TextBlock>
-                <Image DockPanel.Dock="Right"></Image>
+                <Image DockPanel.Dock="Right" Source="{Binding ImagePath, Mode=OneWay, TargetNullValue={StaticResource Search}}"></Image>
             </DockPanel>
         </DockPanel>
     </Grid>

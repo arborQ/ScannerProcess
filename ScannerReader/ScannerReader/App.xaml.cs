@@ -6,24 +6,17 @@ namespace ScannerReader
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App
     {
         public App()
         {
             Bootstrapper.Initialize();
         }
 
-        protected override void OnStartup(StartupEventArgs e)
-        {
-
-
-            base.OnStartup(e);
-        }
-
         private void Application_Startup(object sender, StartupEventArgs e)
         {
 #if DEBUG
-            var baseWindow = Bootstrapper.Resolve<LoginWindow>();
+            var baseWindow = Bootstrapper.Resolve<WorkflowWindow>();
 #endif
 
 #if !DEBUG
