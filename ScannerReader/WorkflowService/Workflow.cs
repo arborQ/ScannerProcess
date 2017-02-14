@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using WorkflowService.States;
 
 namespace WorkflowService
@@ -19,7 +20,7 @@ namespace WorkflowService
             CurrentState = _workflowStateFactory.GetPendingState(workflowOutput).Initialize();
         }
 
-        public void Trigger(string input)
+        public async void Trigger(string input)
         {
             if (input == null)
             {
@@ -28,17 +29,17 @@ namespace WorkflowService
 
             var nextState = CurrentState.Trigger(input);
 
-            AssignNextState(nextState);
+           await AssignNextState(nextState);
         }
 
-        private void AssignNextState(IWorkflowState nextState)
+        private async Task AssignNextState(IWorkflowState nextState)
         {
             while (true)
             {
                 if (!ReferenceEquals(nextState, CurrentState))
                 {
                     CurrentState = nextState;
-                    nextState = CurrentState.Initialize();
+                    nextState = CurrentState.Initialize() ?? await CurrentState.AsyncInitialize();
                     continue;
                 }
                 break;

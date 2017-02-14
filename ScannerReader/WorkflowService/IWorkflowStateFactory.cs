@@ -9,5 +9,6 @@ namespace WorkflowService
         IWorkflowState GetSingleEngineState(IWorkflowOutput workflowOutput, Machine machine);
         IWorkflowState GetMultipleEngineState(IWorkflowOutput workflowOutput, Machine machine);
         IWorkflowState GetDisplayMachineDataState(IWorkflowOutput workflowOutput, Machine machine);
+        IWorkflowState GetTriggerWorkerState(IWorkflowOutput workflowOutput, Machine machine);
     }
 }

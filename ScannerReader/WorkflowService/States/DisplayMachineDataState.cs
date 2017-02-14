@@ -48,7 +48,7 @@ namespace WorkflowService.States
                 }
             }
 
-            return base.Initialize();
+            return WorkflowStateFactory.GetTriggerWorkerState(WorkflowOutput, _machine);
         }
 
         public override string Code => "DISPLAY_DATA";

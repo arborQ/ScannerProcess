@@ -51,6 +51,11 @@ namespace ScannerReader
                 .ImplementedBy<DisplayMachineDataState>()
                 .Named("DisplayMachineDataState"));
 
+            Container.Register(Component.For<IWorkflowState>().LifestyleTransient()
+                .ImplementedBy<TriggerWorkerState>()
+                .Named("TriggerWorkerState"));
+            
+
             Container.Register(Component.For<IKeyboardReader>().ImplementedBy<KeyboardReader>());
 #if DEBUG
             Container.Register(Component.For<IUserSecurity>().ImplementedBy<UserSecurity>().LifestyleSingleton());

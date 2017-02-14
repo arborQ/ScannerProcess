@@ -1,4 +1,6 @@
-﻿using WorkflowService.Models;
+﻿using System;
+using System.Threading.Tasks;
+using WorkflowService.Models;
 
 namespace WorkflowService.States
 {
@@ -7,6 +9,8 @@ namespace WorkflowService.States
         IWorkflowState Trigger(string input);
 
         IWorkflowState Initialize();
+
+        Task<IWorkflowState> AsyncInitialize();
 
         bool CanBreak { get; }
 
@@ -49,6 +53,11 @@ namespace WorkflowService.States
         public virtual IWorkflowState Initialize()
         {
             return this;
+        }
+
+        public virtual async Task<IWorkflowState> AsyncInitialize()
+        {
+            throw new NotImplementedException();
         }
 
         public virtual bool CanBreak => true;

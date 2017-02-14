@@ -1,4 +1,6 @@
-﻿using ScannerReader.Windows;
+﻿using System;
+using System.Collections.Generic;
+using ScannerReader.Windows;
 
 namespace ScannerReader.Interfaces
 {
@@ -9,5 +11,7 @@ namespace ScannerReader.Interfaces
         AdminOptionsWindow CreateAdminOptionsWindow();
 
         GetValueWindow CreateGetValueWindow(string expectedValue);
+
+        WorkInProgress WorkInProgress(IEnumerable<Func<string>> listOfActions);
     }
 }

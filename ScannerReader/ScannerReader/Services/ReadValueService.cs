@@ -1,4 +1,8 @@
-﻿using ScannerReader.Interfaces;
+﻿using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using ScannerReader.Interfaces;
 using WorkflowService.Interfaces;
 
 namespace ScannerReader.Services
@@ -17,6 +21,23 @@ namespace ScannerReader.Services
             window.ShowDialog();
 
             return window.Model.Value == expected.ToString();
+        }
+
+        public void Wait(TimeSpan time)
+        {
+            var seconds = (int)time.TotalSeconds;
+
+            var actions = Enumerable.Range(0, seconds)
+                .OrderByDescending(s => s)
+                .Select(a => new Func<string>(() =>
+                {
+                    Thread.Sleep(TimeSpan.FromSeconds(1));
+                    return $"Pracuje: {a}s";
+                }))
+                .ToList();
+
+            var waitWindow = _windowFactory.WorkInProgress(actions);
+            waitWindow.ShowDialog();
         }
     }
 }
