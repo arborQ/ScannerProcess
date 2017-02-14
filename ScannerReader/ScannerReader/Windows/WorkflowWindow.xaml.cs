@@ -1,7 +1,10 @@
-﻿using System.Windows;
+﻿using System;
+using System.ComponentModel;
+using System.Timers;
+using System.Windows;
 using System.Windows.Input;
-using System.Windows.Threading;
 using Common.Interfaces;
+using RepositoryServices;
 using ScannerReader.Models;
 using WorkflowService;
 
@@ -12,24 +15,32 @@ namespace ScannerReader.Windows
     /// </summary>
     public sealed partial class WorkflowWindow
     {
+        private readonly ApplicationService _applicationService;
         private readonly IKeyboardReader _keyboardReader;
         private readonly IUserSecurity _userSecurity;
         private readonly Workflow _workflow;
 
-        public WorkflowWindow(IUserSecurity userSecurity, IKeyboardReader keyboardReader, Workflow workflow)
+        private Timer _timer;
+
+        public WorkflowWindow(IUserSecurity userSecurity, IKeyboardReader keyboardReader, Workflow workflow,
+            ApplicationService applicationService)
         {
             _userSecurity = userSecurity;
             _keyboardReader = keyboardReader;
             _workflow = workflow;
+            _applicationService = applicationService;
 
             InitializeComponent();
         }
+
+        public string CloseReason { get; private set; }
 
         public WorkflowOutput WorkflowOutput { get; set; }
 
         private void WorkflowWindow_OnKeyDown(object sender, KeyEventArgs e)
         {
-            var timeOut = new DispatcherTimer();
+            _timer.Stop();
+            _timer.Start();
 
             var readerResonse = string.Empty;
             switch (e.Key)
@@ -58,12 +69,34 @@ namespace ScannerReader.Windows
                 _workflow.Trigger(readerResonse);
         }
 
-        private void WorkflowWindow_OnLoaded(object sender, RoutedEventArgs e)
+        private async void WorkflowWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
             WorkflowOutput = new WorkflowOutput();
+            var timeOut = _applicationService.SettingsRepository.Get().DefaultTimeout;
 
             DataContext = WorkflowOutput;
             _workflow.Start(WorkflowOutput);
+
+            _timer = new Timer(TimeSpan.FromMinutes(timeOut).TotalMilliseconds);
+
+            _timer.Elapsed += async (o, args) =>
+            {
+                await Dispatcher.InvokeAsync(() =>
+                {
+                    if (_workflow.CanBreak)
+                    {
+                        CloseReason = "Timeout";
+                        Close();
+                    }
+                });
+            };
+            _timer.Start();
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            _timer.Dispose();
+            base.OnClosing(e);
         }
     }
 }
