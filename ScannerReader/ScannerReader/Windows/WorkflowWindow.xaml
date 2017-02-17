@@ -16,7 +16,14 @@
                 <TextBlock Text="{Binding Message, Mode=OneWay}"  Height="35" Margin="0,0" FontSize="25" Padding="10px, 0" Background="Yellow" Foreground="#FFFF1818"></TextBlock>
             </StackPanel>
             <DockPanel LastChildFill="true">
-                <TextBlock Text="{Binding Description, Mode=OneWay}" DockPanel.Dock="Left" Width="300px" Padding="10px" Background="LightGray"></TextBlock>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150px"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="{Binding Description, Mode=OneWay}" DockPanel.Dock="Left" Width="300px" Padding="10px" Background="LightGray"></TextBlock>
+                    <ListView Grid.Row="1" ItemsSource="{Binding Actions, Mode=OneWay}" />
+                </Grid>
                 <Image DockPanel.Dock="Right" Source="{Binding ImagePath, Mode=OneWay, TargetNullValue={StaticResource Search}}"></Image>
             </DockPanel>
         </DockPanel>

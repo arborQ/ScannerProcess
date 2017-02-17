@@ -1,4 +1,5 @@
-﻿using WorkflowService;
+﻿using System.Collections.ObjectModel;
+using WorkflowService;
 
 namespace ScannerReader.Models
 {
@@ -37,5 +38,7 @@ namespace ScannerReader.Models
                 OnPropertyChanged();
             }
         }
+
+        public ObservableCollection<string> Actions { get; set; } = new ObservableCollection<string>();
     }
 }

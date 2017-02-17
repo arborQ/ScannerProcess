@@ -65,8 +65,11 @@ namespace ScannerReader.Windows
                     break;
             }
 
-            if (!string.IsNullOrEmpty(readerResonse))
+            if (!string.IsNullOrEmpty(readerResonse) && !_workflow.IsLocked)
+            {
+                WorkflowOutput.Actions.Insert(0, readerResonse);
                 _workflow.Trigger(readerResonse);
+            }
         }
 
         private async void WorkflowWindow_OnLoaded(object sender, RoutedEventArgs e)

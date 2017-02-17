@@ -14,6 +14,8 @@ namespace WorkflowService.States
 
         bool CanBreak { get; }
 
+        bool IsLocked { get; }
+
         string Code { get; }
     }
 
@@ -61,5 +63,6 @@ namespace WorkflowService.States
         }
 
         public virtual bool CanBreak => true;
+        public virtual bool IsLocked => false;
     }
 }

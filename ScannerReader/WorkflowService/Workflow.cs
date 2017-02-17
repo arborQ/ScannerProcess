@@ -46,6 +46,8 @@ namespace WorkflowService
             }
         }
 
-        public bool CanBreak => CurrentState.CanBreak;
+        public bool CanBreak => CurrentState.CanBreak && !IsLocked;
+
+        public bool IsLocked => CurrentState.IsLocked;
     }
 }

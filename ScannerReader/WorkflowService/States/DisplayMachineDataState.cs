@@ -15,8 +15,8 @@ namespace WorkflowService.States
         private string BaseDirectory => _baseDirectory ?? (_baseDirectory = _applicationService.SettingsRepository.Get().ImagePath);
         public DisplayMachineDataState(
             IReadValueService readValueService,
-            IWorkflowOutput workflowOutput, 
-            IWorkflowStateFactory workflowStateFactory, 
+            IWorkflowOutput workflowOutput,
+            IWorkflowStateFactory workflowStateFactory,
             ApplicationService applicationService,
             Machine machine) : base(workflowOutput, workflowStateFactory)
         {
@@ -27,11 +27,11 @@ namespace WorkflowService.States
 
         public override IWorkflowState Initialize()
         {
-            WorkflowOutput.ImagePath = Path.Combine(BaseDirectory, _machine.ImageA);
             WorkflowOutput.Description = _machine.Comment;
 
             if (_machine.EnginePositionA.HasValue)
             {
+                WorkflowOutput.ImagePath = GetImagePath(_machine.ImageA);
                 WorkflowOutput.Message = StateResources.DisplayOneMessage;
                 if (!_readValueService.ReadValue(_machine.EnginePositionA.Value))
                 {
@@ -41,6 +41,7 @@ namespace WorkflowService.States
 
             if (_machine.EnginePositionB.HasValue)
             {
+                WorkflowOutput.ImagePath = GetImagePath(_machine.ImageB);
                 WorkflowOutput.Message = StateResources.DisplaySecondMessage;
                 if (!_readValueService.ReadValue(_machine.EnginePositionB.Value))
                 {
@@ -48,11 +49,20 @@ namespace WorkflowService.States
                 }
             }
 
+            WorkflowOutput.ImagePath = GetImagePath(_machine.ImageC);
+
             return WorkflowStateFactory.GetTriggerWorkerState(WorkflowOutput, _machine);
+        }
+
+        private string GetImagePath(string path)
+        {
+            return string.IsNullOrEmpty(path) ? null : Path.Combine(BaseDirectory, path);
         }
 
         public override string Code => "DISPLAY_DATA";
 
         public override bool CanBreak => false;
+
+        public override bool IsLocked => true;
     }
 }
