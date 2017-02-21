@@ -9,8 +9,10 @@
         Title="{x:Static resx:Resources.LoginScreenTitle}" 
         Icon="{StaticResource LoginIcon}"
         Height="350" 
-        Width="525">
-    <Grid>
+        Width="525" 
+        WindowState="Maximized" 
+        WindowStyle="None">
+    <Grid Margin="100,0" MaxWidth="500px" VerticalAlignment="Center">
         <StackPanel Margin="20,10,20,0" Height="279" VerticalAlignment="Top" FocusManager.FocusedElement="{Binding ElementName=LoginBox}">
             <Image Height="96" Source="{StaticResource Logo}"  Margin="70,0,70,0"/>
             <TextBlock Text="{x:Static resx:Resources.LoginLabel}"></TextBlock>
