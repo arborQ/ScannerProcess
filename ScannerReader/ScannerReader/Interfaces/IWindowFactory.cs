@@ -13,5 +13,7 @@ namespace ScannerReader.Interfaces
         GetValueWindow CreateGetValueWindow(string expectedValue);
 
         WorkInProgress WorkInProgress(IEnumerable<Func<string>> listOfActions);
+
+        AdminPasswordWindow AdminPasswordWindow();
     }
 }

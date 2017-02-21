@@ -185,6 +185,9 @@
     <Compile Include="Windows\AdminOptionsWindow.xaml.cs">
       <DependentUpon>AdminOptionsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\AdminPasswordWindow.xaml.cs">
+      <DependentUpon>AdminPasswordWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\GetValueWindow.xaml.cs">
       <DependentUpon>GetValueWindow.xaml</DependentUpon>
     </Compile>
@@ -215,6 +218,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\AdminOptionsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AdminPasswordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

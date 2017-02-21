@@ -7,7 +7,8 @@
         xmlns:local="clr-namespace:ScannerReader.Windows"
         mc:Ignorable="d"
         Title="{x:Static resx:Resources.LoginScreenTitle}" 
-        Icon="{StaticResource LoginIcon}"
+        Icon="{StaticResource LoginIcon}" 
+        Closing="LoginWindow_OnClosing"
         Height="350" 
         Width="525">
     <Grid>
