@@ -61,12 +61,30 @@ namespace ScannerReader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hasło administratora.
+        /// </summary>
+        public static string AdminPasswordText {
+            get {
+                return ResourceManager.GetString("AdminPasswordText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         public static System.Drawing.Icon Ask {
             get {
                 object obj = ResourceManager.GetObject("Ask", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Potwierdź.
+        /// </summary>
+        public static string ConfirmText {
+            get {
+                return ResourceManager.GetString("ConfirmText", resourceCulture);
             }
         }
         
