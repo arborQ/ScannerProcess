@@ -59,6 +59,7 @@
     <Compile Include="InstallServices.cs" />
     <Compile Include="Interfaces\ILogService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderers\LoginRenderer.cs" />
     <Compile Include="Service\nLogService.cs" />
   </ItemGroup>
   <ItemGroup>

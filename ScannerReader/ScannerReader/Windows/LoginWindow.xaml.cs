@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 using Common.Interfaces;
@@ -97,6 +98,7 @@ namespace ScannerReader.Windows
 
         private void LoginWindow_OnClosing(object sender, CancelEventArgs e)
         {
+#if !DEBUG
             var adminPassword = _windowFactory.AdminPasswordWindow();
             var result = adminPassword.ShowDialog();
 
@@ -104,6 +106,9 @@ namespace ScannerReader.Windows
             {
                 e.Cancel = true;
             }
+
+            _logger.AdminFail();
+#endif
         }
     }
 }
