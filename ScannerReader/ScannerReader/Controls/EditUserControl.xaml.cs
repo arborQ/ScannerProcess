@@ -2,6 +2,8 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using CodeGenerator;
+using Microsoft.Win32;
 using RepositoryServices;
 using RepositoryServices.Models;
 using ScannerReader.Models;
@@ -14,12 +16,14 @@ namespace ScannerReader.Controls
     public partial class EditUserControl : UserControl
     {
         private readonly ApplicationService _applicationService;
+        private readonly ICodeGenerator _codeGenerator;
 
         public Action OnSaved { get; set; }
 
-        public EditUserControl(ApplicationService applicationService, int? userId = null)
+        public EditUserControl(ApplicationService applicationService, ICodeGenerator codeGenerator, int? userId = null)
         {
             _applicationService = applicationService;
+            _codeGenerator = codeGenerator;
             User = new UserModel { Id = userId };
 
             DataContext = User;
@@ -80,6 +84,19 @@ namespace ScannerReader.Controls
                 User.FirstName = string.Empty;
                 User.LastName = string.Empty;
                 User.LastLoginDate = null;
+            }
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            var saveFileDialog = new SaveFileDialog
+            {
+                FileName = User.Login + ".png"
+            };
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                _codeGenerator.GenerateToFile(User.Login, saveFileDialog.FileName);
             }
         }
     }

@@ -82,8 +82,15 @@ namespace ScannerReader.Models
             get
             {
                 if (IsDataLoaded)
-                    if (Machines.Any(m => string.IsNullOrEmpty(m.EngineCodeA) && string.IsNullOrEmpty(m.EngineCodeB)))
-                        return string.Format(MachineImportResources.NoEngineCodeProvided, nameof(Machine.EngineCodeA), nameof(Machine.EngineCodeB));
+                {
+                    var withoutCode =
+                        Machines.Where(m => string.IsNullOrEmpty(m.EngineCodeA) && string.IsNullOrEmpty(m.EngineCodeB))
+                            .ToList();
+
+                    if (withoutCode.Any())
+                        return string.Format(MachineImportResources.NoEngineCodeProvided, nameof(Machine.EngineCodeA),
+                            nameof(Machine.EngineCodeB));
+                }
                 return string.Empty;
             }
         }

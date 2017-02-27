@@ -61,6 +61,15 @@ namespace ScannerReader.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wygeneruj kod logowania.
+        /// </summary>
+        public static string GenerateCodeText {
+            get {
+                return ResourceManager.GetString("GenerateCodeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Imię.
         /// </summary>
         public static string LabelFirstName {

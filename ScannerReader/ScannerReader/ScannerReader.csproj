@@ -337,6 +337,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CodeGenerator\CodeGenerator.csproj">
+      <Project>{66db2a3c-4af9-4e45-a0e4-4a9af656b86e}</Project>
+      <Name>CodeGenerator</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Logger\Logger.csproj">
       <Project>{00135411-6904-4a11-98f4-f459848c0f7a}</Project>
       <Name>Logger</Name>

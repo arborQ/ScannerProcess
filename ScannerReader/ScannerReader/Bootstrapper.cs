@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using Castle.Facilities.TypedFactory;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
+using CodeGenerator;
 using Common;
 using Common.Interfaces;
 using Logger;
@@ -65,6 +66,7 @@ namespace ScannerReader
 
             InstallServices.Install(Container);
             InstallRepositories.Install(Container);
+            InstallCodeGenerator.Install(Container);
         }
 
         public static T Resolve<T>() where T : class
