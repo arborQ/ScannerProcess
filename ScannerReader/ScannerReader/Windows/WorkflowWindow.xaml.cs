@@ -3,7 +3,9 @@ using System.ComponentModel;
 using System.Timers;
 using System.Windows;
 using System.Windows.Input;
+using Castle.Core.Logging;
 using Common.Interfaces;
+using Logger.Interfaces;
 using RepositoryServices;
 using ScannerReader.Models;
 using WorkflowService;
@@ -16,6 +18,7 @@ namespace ScannerReader.Windows
     public sealed partial class WorkflowWindow
     {
         private readonly ApplicationService _applicationService;
+        private readonly ILogService _logger;
         private readonly IKeyboardReader _keyboardReader;
         private readonly IUserSecurity _userSecurity;
         private readonly Workflow _workflow;
@@ -23,12 +26,13 @@ namespace ScannerReader.Windows
         private Timer _timer;
 
         public WorkflowWindow(IUserSecurity userSecurity, IKeyboardReader keyboardReader, Workflow workflow,
-            ApplicationService applicationService)
+            ApplicationService applicationService, ILogService logger)
         {
             _userSecurity = userSecurity;
             _keyboardReader = keyboardReader;
             _workflow = workflow;
             _applicationService = applicationService;
+            _logger = logger;
 
             InitializeComponent();
         }
@@ -67,6 +71,7 @@ namespace ScannerReader.Windows
 
             if (!string.IsNullOrEmpty(readerResonse) && !_workflow.IsLocked)
             {
+                _logger.ScanCode(readerResonse);
                 WorkflowOutput.Actions.Insert(0, readerResonse);
                 _workflow.Trigger(readerResonse);
             }
@@ -74,6 +79,8 @@ namespace ScannerReader.Windows
 
         private async void WorkflowWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
+            CloseReason = string.Empty;
+
             WorkflowOutput = new WorkflowOutput();
             var timeOut = _applicationService.SettingsRepository.Get().DefaultTimeout;
 

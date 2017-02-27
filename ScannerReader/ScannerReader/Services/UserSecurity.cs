@@ -12,7 +12,7 @@ namespace ScannerReader.Services
     {
         private readonly ApplicationService _applicationService;
         private readonly ILogService _logger;
-
+        private string _currentLogin;
         public UserSecurity(ApplicationService applicationService, ILogService logger)
         {
             _applicationService = applicationService;
@@ -33,7 +33,7 @@ namespace ScannerReader.Services
 
             if (string.IsNullOrEmpty(user.PasswordHash))
             {
-                _logger.SuccesfulLogin($"First login: {login}");
+                _logger.FirstSuccesfulLogin(login);
                 _applicationService.UserRepository.EditRecord(u => u.Login == login, u =>
                 {
                     u.PasswordHash = passwordHash;
@@ -56,11 +56,12 @@ namespace ScannerReader.Services
 
         public void SetCurrentUser(string login)
         {
+            _currentLogin = login;
         }
 
         public string CurrentUserLogin()
         {
-            return "tbd";
+            return _currentLogin;
         }
 
         private string HashPassword(string password)

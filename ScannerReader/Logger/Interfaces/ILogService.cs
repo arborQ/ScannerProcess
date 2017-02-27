@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 
 namespace Logger.Interfaces
 {
@@ -9,6 +8,10 @@ namespace Logger.Interfaces
 
         void SuccesfulLogin(string validLogin);
 
+        void FirstSuccesfulLogin(string validLogin);
+
+        void LogOut(string login, bool timeOut);
+
         void AdminFail();
 
         void ApplicationStart();
@@ -16,5 +19,8 @@ namespace Logger.Interfaces
         void ApplicationEnd();
 
         void Exception(Exception e);
+
+        void ScanCode(string code);
+
     }
 }

@@ -8,6 +8,7 @@ using Microsoft.Win32;
 using RepositoryServices;
 using RepositoryServices.Models;
 using ScannerReader.Models;
+using ScannerReader.Resources;
 using ScannerReader.Windows;
 
 namespace ScannerReader.Controls
@@ -42,6 +43,7 @@ namespace ScannerReader.Controls
             }
             else
             {
+                MessageBox.Show(MachineImportResources.NoFileLoadedMessage);
                 _importViewModel.Machines = null;
             }
         }

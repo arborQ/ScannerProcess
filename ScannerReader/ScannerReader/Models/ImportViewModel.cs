@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using RepositoryServices.Models;
+using ScannerReader.Resources;
 
 namespace ScannerReader.Models
 {
@@ -82,7 +83,7 @@ namespace ScannerReader.Models
             {
                 if (IsDataLoaded)
                     if (Machines.Any(m => string.IsNullOrEmpty(m.EngineCodeA) && string.IsNullOrEmpty(m.EngineCodeB)))
-                        return " Empty a i b";
+                        return string.Format(MachineImportResources.NoEngineCodeProvided, nameof(Machine.EngineCodeA), nameof(Machine.EngineCodeB));
                 return string.Empty;
             }
         }

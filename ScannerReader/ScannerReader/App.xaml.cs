@@ -42,6 +42,7 @@ namespace ScannerReader
 
         private void App_OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
+            MessageBox.Show(e.Exception.Message);
             _loggerService.Exception(e.Exception);
             e.Handled = true;
         }

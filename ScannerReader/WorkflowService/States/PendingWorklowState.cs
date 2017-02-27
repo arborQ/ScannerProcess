@@ -1,4 +1,5 @@
 using System.Linq;
+using Logger.Interfaces;
 using RepositoryServices;
 using WorkflowService.Models;
 using WorkflowService.Resources;
@@ -8,10 +9,15 @@ namespace WorkflowService.States
     public class PendingWorklowState : WorkflowState
     {
         private readonly ApplicationService _applicationService;
+        private readonly ILogService _logService;
 
-        public PendingWorklowState(IWorkflowOutput workflowOutput, IWorkflowStateFactory workflowStateFactory, ApplicationService applicationService) : base(workflowOutput, workflowStateFactory)
+        public PendingWorklowState(IWorkflowOutput workflowOutput, 
+            IWorkflowStateFactory workflowStateFactory, 
+            ApplicationService applicationService,
+            ILogService logService) : base(workflowOutput, workflowStateFactory)
         {
             _applicationService = applicationService;
+            _logService = logService;
         }
 
         public override string Code => "PENDING";

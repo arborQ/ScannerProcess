@@ -57,5 +57,25 @@ namespace Logger.Service
         {
             _loggerException.Error(e);
         }
+
+        public void FirstSuccesfulLogin(string validLogin)
+        {
+            _logger.Info()
+               .Message(validLogin)
+               .Property("type", "FIRST")
+               .Write();
+        }
+
+        public void LogOut(string login, bool timeOut)
+        {
+            _logger.Info()
+               .Message(login)
+               .Property("type", timeOut ? "TIMEOUT": "LOGOUT")
+               .Write();
+        }
+
+        public void ScanCode(string code)
+        {
+        }
     }
 }

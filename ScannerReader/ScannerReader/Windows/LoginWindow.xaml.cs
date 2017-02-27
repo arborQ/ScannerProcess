@@ -87,12 +87,13 @@ namespace ScannerReader.Windows
             LoginBox.Clear();
             PasswordBox.Clear();
             Hide();
-            var userSecurity = Bootstrapper.Resolve<IUserSecurity>();
-            userSecurity.SetCurrentUser(userLogin);
+
+            _userSecurity.SetCurrentUser(userLogin);
             var userListWindow = _windowFactory.CreateWorkflowWindow();
             userListWindow.ShowDialog();
             Show();
-            userSecurity.SetCurrentUser(null);
+            _logger.LogOut(_userSecurity.CurrentUserLogin(), !string.IsNullOrEmpty(userListWindow.CloseReason));
+            _userSecurity.SetCurrentUser(null);
             LoginBox.Focus();
         }
 
