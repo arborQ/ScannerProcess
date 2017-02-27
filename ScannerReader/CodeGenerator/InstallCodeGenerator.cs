@@ -8,6 +8,7 @@ namespace CodeGenerator
         public static void Install(IWindsorContainer container)
         {
             container.Register(Component.For<ICodeGenerator>().ImplementedBy<QrCodeGenerator>().LifestyleTransient());
+            container.Register(Component.For<ICodeSerializer>().ImplementedBy<CodeSerializer>().LifestyleTransient());
         }
     }
 }
