@@ -71,5 +71,10 @@ namespace ScannerReader.Services
             var md5Data = md5.ComputeHash(data);
             return Encoding.ASCII.GetString(md5Data);
         }
+
+        public bool ValidateBarCodeUser(string login)
+        {
+            return _applicationService.UserRepository.GetRecords(u => u.Login == login).SingleOrDefault() != null;
+        }
     }
 }

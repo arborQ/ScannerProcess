@@ -6,6 +6,8 @@
 
         bool ValidateUser(string login, string password);
 
+        bool ValidateBarCodeUser(string login);
+
         string CurrentUserLogin();
     }
 }

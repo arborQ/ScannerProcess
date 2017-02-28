@@ -87,9 +87,13 @@ namespace ScannerReader.Models
                         Machines.Where(m => string.IsNullOrEmpty(m.EngineCodeA) && string.IsNullOrEmpty(m.EngineCodeB))
                             .ToList();
 
+
                     if (withoutCode.Any())
+                    {
+                        var indexes = withoutCode.Select(wc => Machines.IndexOf(wc) + 2);
                         return string.Format(MachineImportResources.NoEngineCodeProvided, nameof(Machine.EngineCodeA),
-                            nameof(Machine.EngineCodeB));
+                            nameof(Machine.EngineCodeB), string.Join(", ", indexes));
+                    }
                 }
                 return string.Empty;
             }

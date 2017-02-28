@@ -36,6 +36,8 @@ namespace WorkflowService.States
         {
             WorkflowOutput.Message = string.Empty;
 
+            input = input.TrimEnd();
+
             var parts = input.Split('#');
             if (parts.Length == 2)
             {

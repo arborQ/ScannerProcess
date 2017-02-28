@@ -61,7 +61,7 @@ namespace ScannerReader.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wiersz nie ma zdefiniowanego ani jednego kodu silnika ({0}, {1}).
+        ///   Looks up a localized string similar to Wiersz nie ma zdefiniowanego ani jednego kodu silnika ({0}, {1}), {2}.
         /// </summary>
         public static string NoEngineCodeProvided {
             get {

@@ -33,10 +33,11 @@ namespace WorkflowService.States
 
         protected override IWorkflowState Trigger(BarCodeModel inputCode)
         {
-            var record = _applicationService.MachineRepository.GetRecords(r => r.Code == inputCode.FirstPart).SingleOrDefault();
+            var record = _applicationService.MachineRepository.GetRecords(r => r.Code == inputCode.InputValue).SingleOrDefault();
+
             if (record == null)
             {
-                WorkflowOutput.Message = string.Format(StateResources.UnknownOrderNumberMessageFormat, inputCode.FirstPart);
+                WorkflowOutput.Message = string.Format(StateResources.UnknownOrderNumberMessageFormat, inputCode.InputValue);
             }
             else
             {

@@ -23,13 +23,19 @@ namespace WorkflowService.States
 
         protected override IWorkflowState Trigger(BarCodeModel inputCode)
         {
-            if (_machine.EngineCodeA == inputCode.SecondPart)
+            if (_machine.EngineCodeA == inputCode.FirstPart)
             {
+                if(_machine.Code != inputCode.SecondPart)
+                {
+                    WorkflowOutput.Message = $"Kod zamówienia ({_machine.Code}) nie pasuje do kodu z silnika ({ inputCode.SecondPart})";
+                    return this;
+                }
+
                 return WorkflowStateFactory.GetDisplayMachineDataState(WorkflowOutput, _machine);
             }
 
             WorkflowOutput.Message = string.Format(StateResources.EngineCodeDoesntMachOrderCodeMessageFormat,
-                inputCode.SecondPart, _machine.Code);
+                inputCode.FirstPart, _machine.Code);
 
             return this;
         }

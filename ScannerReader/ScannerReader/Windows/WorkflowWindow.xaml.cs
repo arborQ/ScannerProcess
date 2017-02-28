@@ -51,13 +51,13 @@ namespace ScannerReader.Windows
             {
 #if DEBUG
                 case Key.F1:
-                    readerResonse = "20160905-00165#53A08VN0H";
+                    readerResonse = "G01880360      ";
                     break;
                 case Key.F2:
-                    readerResonse = "20160905-00165#53A08VN0C";
+                    readerResonse = "13304R04F#G01880360";
                     break;
                 case Key.F3:
-                    readerResonse = "20160905-00165#53A08VN0D";
+                    readerResonse = "13304R04F#G01880361";
                     break;
 #endif
                 case Key.Escape:
@@ -106,6 +106,8 @@ namespace ScannerReader.Windows
         protected override void OnClosing(CancelEventArgs e)
         {
             _timer.Dispose();
+            _keyboardReader.Dispose();
+
             base.OnClosing(e);
         }
     }

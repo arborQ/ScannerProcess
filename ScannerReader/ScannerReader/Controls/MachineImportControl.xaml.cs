@@ -69,25 +69,28 @@ namespace ScannerReader.Controls
             {
                 using (var excelReader = ExcelReaderFactory.CreateBinaryReader(stream))
                 {
-                    var records = new List<Machine>();
                     excelReader.Read(); // skip header
                     while (excelReader.Read())
                     {
-                        records.Add(new Machine
+                        if (string.IsNullOrEmpty(excelReader.GetString(0)))
+                        {
+                            continue;
+                        }
+
+                        yield return new Machine
                         {
                             Code = excelReader.GetString(0),
                             EngineCodeA = excelReader.GetString(1),
                             EngineCodeB = excelReader.GetString(2),
-                            EnginePositionA = excelReader.GetInt32(3),
-                            EnginePositionB = excelReader.GetInt32(4),
+                            EnginePositionA = excelReader.GetString(3) == null ? (int?)null : excelReader.GetInt32(3),
+                            EnginePositionB = excelReader.GetString(4) == null ? (int?)null : excelReader.GetInt32(4),
                             ProgramType = excelReader.GetString(5),
                             ImageA = ParseImagePath(excelReader.GetString(6)),
                             ImageB = ParseImagePath(excelReader.GetString(7)),
                             ImageC = ParseImagePath(excelReader.GetString(8)),
                             Comment = excelReader.GetString(9)
-                        });
+                        };
                     }
-                    return records;
                 }
             }
         }
