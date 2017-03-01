@@ -10,6 +10,7 @@ namespace Common
     {
         private readonly StringBuilder _scannerValue = new StringBuilder();
         private readonly Timer _timer;
+        private bool IsDisposed = false;
 
         public KeyboardReader()
         {
@@ -25,6 +26,12 @@ namespace Common
             
         public string NotifyChar(Key source)
         {
+            if (!IsDisposed)
+            {
+                _timer.Stop();
+                _timer.Start();
+            }
+
             if (source == Key.Return)
             {
                 var outputString = _scannerValue.ToString().Trim();
@@ -46,6 +53,7 @@ namespace Common
         {
             _timer.Stop();
             _timer.Dispose();
+            IsDisposed = true;
         }
     }
 }

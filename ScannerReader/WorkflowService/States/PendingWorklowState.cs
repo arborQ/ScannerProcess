@@ -11,8 +11,8 @@ namespace WorkflowService.States
         private readonly ApplicationService _applicationService;
         private readonly ILogService _logService;
 
-        public PendingWorklowState(IWorkflowOutput workflowOutput, 
-            IWorkflowStateFactory workflowStateFactory, 
+        public PendingWorklowState(IWorkflowOutput workflowOutput,
+            IWorkflowStateFactory workflowStateFactory,
             ApplicationService applicationService,
             ILogService logService) : base(workflowOutput, workflowStateFactory)
         {
@@ -41,13 +41,13 @@ namespace WorkflowService.States
             }
             else
             {
-                if (!string.IsNullOrEmpty(record.EngineCodeA) || !string.IsNullOrEmpty(record.EngineCodeB))
-                {
-                    return WorkflowStateFactory.GetSingleEngineState(WorkflowOutput, record);
-                }
-                else
+                if (!string.IsNullOrEmpty(record.EngineCodeA) && !string.IsNullOrEmpty(record.EngineCodeB))
                 {
                     return WorkflowStateFactory.GetMultipleEngineState(WorkflowOutput, record);
+                }
+                else if (!string.IsNullOrEmpty(record.EngineCodeA) && string.IsNullOrEmpty(record.EngineCodeB))
+                {
+                    return WorkflowStateFactory.GetSingleEngineState(WorkflowOutput, record);
                 }
             }
 

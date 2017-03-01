@@ -57,7 +57,7 @@ namespace ScannerReader
                 .Named("TriggerWorkerState"));
             
 
-            Container.Register(Component.For<IKeyboardReader>().ImplementedBy<KeyboardReader>());
+            Container.Register(Component.For<IKeyboardReader>().ImplementedBy<KeyboardReader>().LifestyleTransient());
 #if DEBUG
             Container.Register(Component.For<IUserSecurity>().ImplementedBy<UserSecurity>().LifestyleSingleton());
 #else

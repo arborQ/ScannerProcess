@@ -10,6 +10,7 @@ namespace WorkflowService.States
     {
         private readonly Machine _machine;
         private readonly List<string> _scennedCodes = new List<string>();
+        private readonly List<string> _scennedSerialNumbers = new List<string>();
         private const int EngineCount = 2;
 
         public MultipleEnginePompState(IWorkflowOutput workflowOutput, IWorkflowStateFactory workflowStateFactory, Machine machine) : base(workflowOutput, workflowStateFactory)
@@ -27,20 +28,25 @@ namespace WorkflowService.States
 
         protected override IWorkflowState Trigger(BarCodeModel inputCode)
         {
-            if (inputCode.FirstPart == _machine.EngineCodeA || inputCode.FirstPart == _machine.EngineCodeB)
+            if (inputCode.SecondPart == _machine.EngineCodeA || inputCode.SecondPart == _machine.EngineCodeB)
             {
-                if (_machine.Code != inputCode.SecondPart)
+                if (_scennedSerialNumbers.Contains(inputCode.FirstPart))
                 {
-                    WorkflowOutput.Message = $"Kod zamówienia ({_machine.Code}) nie pasuje do kodu z silnika ({ inputCode.SecondPart})";
-                    return this;
-                }
+                    WorkflowOutput.Message =
+                        $"Nie mo¿na zeskanowaæ drugiego silnika z takim samym numerem seryjnym {inputCode.FirstPart}";
 
-                _scennedCodes.Add(inputCode.FirstPart);
+                    return base.Trigger(inputCode);
+                }
+                else
+                {
+                    _scennedCodes.Add(inputCode.SecondPart);
+                    _scennedSerialNumbers.Add(inputCode.FirstPart);
+                }
             }
 
-            WorkflowOutput.Message = string.Format(StateResources.ScanMoreEngineCodesMessageFormat, string.Join(", ", _scennedCodes.Distinct()));
+            WorkflowOutput.Message = string.Format(StateResources.ScanMoreEngineCodesMessageFormat, string.Join(", ", _scennedSerialNumbers.Distinct()));
 
-            if (_scennedCodes.Distinct().Count() == EngineCount)
+            if (_scennedSerialNumbers.Distinct().Count() == EngineCount)
             {
                 return WorkflowStateFactory.GetDisplayMachineDataState(WorkflowOutput, _machine);
             }
