@@ -5,15 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ScannerReader.Windows"
         xmlns:models="clr-namespace:ScannerReader.Models"
+        xmlns:converters="clr-namespace:ScannerReader.Converters"
         d:DataContext="{d:DesignInstance models:WorkflowOutput}"
         mc:Ignorable="d"
         Loaded="WorkflowWindow_OnLoaded"
         KeyDown="WorkflowWindow_OnKeyDown"
         Title="WorkflowWindow" Height="520.059" Width="1076.544" WindowState="Maximized" WindowStyle="None">
+    <Window.Resources>
+        <converters:MessageTypeToSizeConverter x:Key="MessageTypeToSizeConverter" />
+        <converters:MessageTypeToFontSizeConverter x:Key="MessageTypeToFontSizeConverter" />
+    </Window.Resources>
     <Grid>
         <DockPanel LastChildFill="true" Margin="0,0,0,0">
             <StackPanel DockPanel.Dock="Top">
-                <TextBlock Text="{Binding Message, Mode=OneWay}"  Height="35" Margin="0,0" FontSize="25" Padding="10px, 0" Background="Yellow" Foreground="#FFFF1818"></TextBlock>
+                <TextBlock TextWrapping="Wrap" Text="{Binding Message, Mode=OneWay}" Height="{Binding MessageType, Converter={StaticResource MessageTypeToSizeConverter}}" Margin="0,0" FontSize="{Binding MessageType, Converter={StaticResource MessageTypeToFontSizeConverter}}" Padding="10px, 0" Background="Yellow" Foreground="#FFFF1818"></TextBlock>
             </StackPanel>
             <DockPanel LastChildFill="true">
                 <Grid>

@@ -36,6 +36,7 @@ namespace WorkflowService.States
                 {
                     WorkflowOutput.Message =
                         $"Nie mo¿na zeskanowaæ drugiego silnika z takim samym numerem seryjnym {inputCode.FirstPart}";
+                    WorkflowOutput.MessageType = MessageType.Error;
 
                     return base.Trigger(inputCode);
                 }

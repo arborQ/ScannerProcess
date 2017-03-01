@@ -8,12 +8,28 @@ namespace ScannerReader.Models
         private string _description;
         private string _imagePath;
         private string _message;
+        private MessageType _messageType;
+
+        public MessageType MessageType
+        {
+            get
+            {
+                return _messageType;
+            }
+
+            set
+            {
+                _messageType = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string Message
         {
             get { return _message; }
             set
             {
+                MessageType = MessageType.Message;
                 _message = value;
                 OnPropertyChanged();
             }
