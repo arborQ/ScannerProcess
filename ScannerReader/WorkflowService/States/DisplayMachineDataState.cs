@@ -41,12 +41,13 @@ namespace WorkflowService.States
 
             if (_machine.EnginePositionB.HasValue)
             {
-                WorkflowOutput.ImagePath = GetImagePath(_machine.ImageB);
-                WorkflowOutput.Message = StateResources.DisplaySecondMessage;
                 if (!_readValueService.ReadValue(_machine.EnginePositionB.Value))
                 {
                     return WorkflowStateFactory.GetPendingState(WorkflowOutput);
                 }
+
+                WorkflowOutput.ImagePath = GetImagePath(_machine.ImageB);
+                WorkflowOutput.Message = StateResources.DisplaySecondMessage;
             }
 
             WorkflowOutput.ImagePath = GetImagePath(_machine.ImageC);

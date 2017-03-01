@@ -22,6 +22,8 @@ namespace WorkflowService.States
 
         public override IWorkflowState Initialize()
         {
+            WorkflowOutput.Description = null;
+            WorkflowOutput.ImagePath = null;
             WorkflowOutput.Message = string.Format(StateResources.MultipleEngineInitFormatMessage, EngineCount);
             return base.Initialize();
         }

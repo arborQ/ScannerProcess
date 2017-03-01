@@ -25,9 +25,7 @@ namespace WorkflowService.States
         public override IWorkflowState Initialize()
         {
             WorkflowOutput.Message = StateResources.PendingInitMessage;
-            WorkflowOutput.Description = null;
-            WorkflowOutput.ImagePath = null;
-
+            
             return base.Initialize();
         }
 
