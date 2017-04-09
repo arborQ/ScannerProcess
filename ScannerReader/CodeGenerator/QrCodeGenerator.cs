@@ -13,7 +13,7 @@ namespace CodeGenerator
 
         public void GenerateToFile(string message, string filePath)
         {
-            var serializedCode = _codeSerializer.SerializeCode(message);
+            var serializedCode = _codeSerializer.SerializeCode(message + '\r');
 
             using (var qrGenerator = new QRCodeGenerator())
             {

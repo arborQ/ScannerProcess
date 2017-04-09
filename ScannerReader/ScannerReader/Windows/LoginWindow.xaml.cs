@@ -40,7 +40,15 @@ namespace ScannerReader.Windows
         private void UIElement_OnKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
+            {
+                var login = BarcodeLogin(e.Key);
+                if (!string.IsNullOrEmpty(login))
+                {
+                    SuccessfullLogin(login);
+                    return;
+                }
                 Button_Click(sender, e);
+            }
             else if (e.Key == Key.Escape)
                 Close();
         }
@@ -129,23 +137,11 @@ namespace ScannerReader.Windows
             _keyboardReader.Dispose();
         }
 
-        private void Window_KeyDown(object sender, KeyEventArgs e)
+        private string BarcodeLogin(Key key)
         {
             var readerResonse = string.Empty;
-            switch (e.Key)
-            {
-#if DEBUG
-                case Key.F1:
-                    readerResonse = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsb2dpbiI6ImFkbWluIn0.GMjXyR82NuhA37Vqf5Mu9r9Riq_LtQBcKd-HZAHaEKU";
-                    break;
-                case Key.F2:
-                    readerResonse = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsb2dpbiI6IsWCdWthc3oud8OzamNpayJ9.A7Olmo5D12-lT9YVvmg3zize9HIXSah_adPts4EXlbY";
-                    break;
-#endif
-                default:
-                    readerResonse = _keyboardReader.NotifyChar(e.Key);
-                    break;
-            }
+            readerResonse = _keyboardReader.NotifyChar(key);
+
 
             if (!string.IsNullOrEmpty(readerResonse))
             {
@@ -154,23 +150,30 @@ namespace ScannerReader.Windows
                 if (string.IsNullOrEmpty(login))
                 {
                     _logger.InvalidLogin("BarCodeLoginFail");
-                    return;
-                }
-
-                if (login == "admin")
-                {
-                    SuccessfullAdminLogin();
-                    return;
+                    return string.Empty;
                 }
 
                 if (!_userSecurity.ValidateBarCodeUser(login))
                 {
                     _logger.InvalidLogin("BarCodeLoginFail: " + login);
-                    return;
+                    return string.Empty;
                 }
 
                 _logger.SuccesfulLogin("BarCodeLoginSuccess: " + login);
-                SuccessfullLogin(login);
+                // SuccessfullLogin(login);
+                return login;
+            }
+
+            return string.Empty;
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            var result = BarcodeLogin(e.Key);
+
+            if (!string.IsNullOrEmpty(result))
+            {
+                SuccessfullLogin(result);
             }
         }
     }
