@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGenerator", "CodeGenera
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{F44D7A19-6CAD-4F50-A8F3-FA783D9EB166}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControllerService", "ControllerService\ControllerService.csproj", "{A13ECD55-052C-4C9F-A033-19BEAAA99164}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{F44D7A19-6CAD-4F50-A8F3-FA783D9EB166}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F44D7A19-6CAD-4F50-A8F3-FA783D9EB166}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F44D7A19-6CAD-4F50-A8F3-FA783D9EB166}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A13ECD55-052C-4C9F-A033-19BEAAA99164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A13ECD55-052C-4C9F-A033-19BEAAA99164}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A13ECD55-052C-4C9F-A033-19BEAAA99164}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A13ECD55-052C-4C9F-A033-19BEAAA99164}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,5 +63,6 @@ Global
 		{00135411-6904-4A11-98F4-F459848C0F7A} = {50FCED8E-BCEB-4684-AE20-0147CAF332CB}
 		{66DB2A3C-4AF9-4E45-A0E4-4A9AF656B86E} = {50FCED8E-BCEB-4684-AE20-0147CAF332CB}
 		{F44D7A19-6CAD-4F50-A8F3-FA783D9EB166} = {50FCED8E-BCEB-4684-AE20-0147CAF332CB}
+		{A13ECD55-052C-4C9F-A033-19BEAAA99164} = {50FCED8E-BCEB-4684-AE20-0147CAF332CB}
 	EndGlobalSection
 EndGlobal

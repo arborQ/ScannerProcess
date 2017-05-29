@@ -20,14 +20,15 @@ namespace ScannerReader.Models
     public enum OptionEnabled
     {
         [Description("Tak")]
-        Yes = 0,
+        Yes = 1,
         [Description("Nie")]
-        No = 1,
+        No = 0,
     }
 
     public class ApplicationSettingsViewModel : BaseObservableModel
     {
         private string _imagePath;
+        private string _ipAddress;
         private int _activityTimeout;
         private ModeOptions _selectedScanMode;
         private OptionEnabled _drilEnabled;
@@ -66,6 +67,15 @@ namespace ScannerReader.Models
             set
             {
                 _activityTimeout = value;
+                OnPropertyChanged();
+            }
+        }
+        public string IpAddress
+        {
+            get { return _ipAddress; }
+            set
+            {
+                _ipAddress = value;
                 OnPropertyChanged();
             }
         }

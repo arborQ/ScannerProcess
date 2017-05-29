@@ -13,5 +13,7 @@ namespace RepositoryServices.Models
         public int DrilEnabled { get; set; }
 
         public int SelectedMode { get; set; }
+
+        public string IpAddress { get; set; }
     }
 }

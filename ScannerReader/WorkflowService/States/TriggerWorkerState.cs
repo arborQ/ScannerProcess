@@ -6,6 +6,7 @@ using RepositoryServices.Models;
 using WorkflowService.Interfaces;
 using RepositoryServices;
 using System.IO;
+using ControllerService;
 
 namespace WorkflowService.States
 {
@@ -14,17 +15,20 @@ namespace WorkflowService.States
         private readonly Machine _machine;
         private readonly ApplicationService _applicationService;
         private readonly IReadValueService _readValueService;
+        private readonly IControllerServiceFactory _controllerServiceFactory;
 
-        public TriggerWorkerState(IWorkflowOutput workflowOutput, 
-            Machine machine, 
-            IWorkflowStateFactory workflowStateFactory, 
+        public TriggerWorkerState(IWorkflowOutput workflowOutput,
+            Machine machine,
+            IWorkflowStateFactory workflowStateFactory,
             ApplicationService applicationService,
+            IControllerServiceFactory controllerServiceFactory,
             IReadValueService readValueService)
             : base(workflowOutput, workflowStateFactory)
         {
             _machine = machine;
             _applicationService = applicationService;
             _readValueService = readValueService;
+            _controllerServiceFactory = controllerServiceFactory;
         }
 
         private string _baseDirectory;
@@ -34,29 +38,47 @@ namespace WorkflowService.States
 
         public override IWorkflowState Initialize()
         {
-            WorkflowOutput.Message = "Pracuję...";
+            WorkflowOutput.Message = "Łączenie ze sterownikiem...";
 
             return null;
         }
 
         public override async Task<IWorkflowState> AsyncInitialize()
         {
-            var actions = Enumerable.Range(0, TimeSpan.FromSeconds(10).Seconds)
-                .OrderByDescending(s => s)
-                .Select(a => new Func<string>(() =>
-                {
-                    Thread.Sleep(TimeSpan.FromSeconds(1));
-                    return $"Pracuje: {a}s";
-                }))
-                .ToList();
+            var settings = _applicationService.SettingsRepository.Get();
 
-            foreach (var action in actions)
+            if (settings.DrilEnabled == 1)
             {
-                var message = await Task.Factory.StartNew(action);
-                WorkflowOutput.Message = message;
-            }
+                var service = _controllerServiceFactory.Create(new ControllerEvents
+                {
+                    ChangeState = message => WorkflowOutput.Message = message,
+                    Error = message => WorkflowOutput.Message = message,
+                }, settings.IpAddress);
 
-            WorkflowOutput.ImagePath = GetImagePath(_machine.ImageC);
+                int jobId = 0;
+                if (!int.TryParse(_machine.ProgramType, out jobId))
+                {
+                    WorkflowOutput.Message = $"'{_machine.ProgramType}' nie jest poprawnym numerem zadania";
+                    return this;
+                }
+
+                if (!await service.SelectJobAsync(jobId))
+                {
+                    WorkflowOutput.Message = "Nie udało się uruchomić zadania";
+                    await Task.Factory.StartNew(() =>
+                    {
+                        Thread.Sleep(5000);
+                    });
+                }
+                else
+                {
+                    WorkflowOutput.ImagePath = GetImagePath(_machine.ImageC);
+                }
+            }
+            else
+            {
+                WorkflowOutput.ImagePath = GetImagePath(_machine.ImageC);
+            }
 
             return WorkflowStateFactory.GetPendingState(WorkflowOutput);
         }

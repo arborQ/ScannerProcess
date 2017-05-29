@@ -35,6 +35,7 @@ namespace ScannerReader.Controls
                 _model.ActivityTimeout = model.ActivityTimeout;
                 _model.DrilEnabled = model.DrilEnabled;
                 _model.SelectedMode = model.SelectedMode;
+                _model.IpAddress = model.IpAddress ?? "192.168.1.103";
             }
         }
 
@@ -65,6 +66,9 @@ namespace ScannerReader.Controls
         {
             _model.ImagePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) ?? string.Empty;
             _model.ActivityTimeout = 10;
+            _model.DrilEnabled = OptionEnabled.Yes;
+            _model.SelectedMode = ModeOptions.OrderNumber;
+            _model.IpAddress = "192.168.1.103";
 
             SaveData?.Invoke(_model);
         }

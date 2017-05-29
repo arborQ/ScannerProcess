@@ -64,7 +64,8 @@ namespace ScannerReader
             Container.Register(Component.For<IUserSecurity>().ImplementedBy<UserSecurity>().LifestyleSingleton());
 #endif
 
-            InstallServices.Install(Container);
+            Logger.InstallServices.Install(Container);
+            WorkflowService.InstallServices.Install(Container);
             InstallRepositories.Install(Container);
             InstallCodeGenerator.Install(Container);
         }

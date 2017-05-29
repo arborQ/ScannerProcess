@@ -60,7 +60,8 @@ namespace ScannerReader.Windows
                 ImagePath = model.ImagePath,
                 DefaultTimeout = model.ActivityTimeout,
                 DrilEnabled = (int)model.DrilEnabled,
-                SelectedMode = (int)model.SelectedMode
+                SelectedMode = (int)model.SelectedMode,
+                IpAddress = model.IpAddress,
             });
 
             return true;
@@ -75,7 +76,8 @@ namespace ScannerReader.Windows
                 ImagePath = settings.ImagePath,
                 ActivityTimeout = settings.DefaultTimeout,
                 DrilEnabled = (OptionEnabled)settings.DrilEnabled,
-                SelectedMode = (ModeOptions)settings.SelectedMode
+                SelectedMode = (ModeOptions)settings.SelectedMode,
+                IpAddress = settings.IpAddress,
             };
         }
     }
