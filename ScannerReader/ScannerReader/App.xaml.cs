@@ -25,7 +25,7 @@ namespace ScannerReader
             _loggerService.ApplicationStart();
 
 #if DEBUG
-            var baseWindow = Bootstrapper.Resolve<LoginWindow>();
+            var baseWindow = Bootstrapper.Resolve<AdminOptionsWindow>();
 #endif
 
 #if !DEBUG

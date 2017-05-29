@@ -8,7 +8,7 @@
         xmlns:converters="clr-namespace:ScannerReader.Converters"
         xmlns:controls="clr-namespace:ScannerReader.Controls"
         mc:Ignorable="d" Loaded="Window_Loaded"
-        Title="{x:Static resx:AdminOptionsResources.OptionsTitle}" Height="397.996" Width="637.869" 
+        Title="{x:Static resx:AdminOptionsResources.OptionsTitle}" Height="482.526" Width="637.869" 
         Icon="{StaticResource SettingsIcon}">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />

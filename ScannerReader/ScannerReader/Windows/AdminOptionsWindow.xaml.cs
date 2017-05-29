@@ -58,7 +58,9 @@ namespace ScannerReader.Windows
             _applicationService.SettingsRepository.Update(new Settings
             {
                 ImagePath = model.ImagePath,
-                DefaultTimeout = model.ActivityTimeout
+                DefaultTimeout = model.ActivityTimeout,
+                DrilEnabled = (int)model.DrilEnabled,
+                SelectedMode = (int)model.SelectedMode
             });
 
             return true;
@@ -71,7 +73,9 @@ namespace ScannerReader.Windows
             return new ApplicationSettingsViewModel
             {
                 ImagePath = settings.ImagePath,
-                ActivityTimeout = settings.DefaultTimeout
+                ActivityTimeout = settings.DefaultTimeout,
+                DrilEnabled = (OptionEnabled)settings.DrilEnabled,
+                SelectedMode = (ModeOptions)settings.SelectedMode
             };
         }
     }

@@ -127,6 +127,7 @@
     <Compile Include="Controls\UserListControl.xaml.cs">
       <DependentUpon>UserListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\EnumDescriptionTypeConverter.cs" />
     <Compile Include="Converters\MessageToColorConverter.cs" />
     <Compile Include="Converters\MessageTypeToSizeConverter.cs" />
     <Compile Include="Converters\NegateBoolConverter.cs" />

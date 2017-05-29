@@ -19,6 +19,10 @@
             <TextBox MouseDoubleClick="Control_OnMouseDoubleClick" FontSize="14px" Padding="10px" Text="{Binding ImagePath, Mode=OneWay}" IsReadOnly="True"></TextBox>
             <Label Content="{x:Static resx:ApplicationSettingsResources.InactivityTimeoutLabel}"></Label>
             <TextBox FontSize="14px" Padding="10px" Text="{Binding ActivityTimeout, Mode=TwoWay}" PreviewTextInput="UIElement_OnPreviewTextInput"></TextBox>
+            <Label Content="{x:Static resx:ApplicationSettingsResources.ScanModeText}"></Label>
+            <ComboBox SelectedItem="{Binding SelectedMode, Mode=TwoWay}" ItemsSource="{Binding Options, Mode=OneWay}" />
+            <Label Content="{x:Static resx:ApplicationSettingsResources.UseControllerText}"></Label>
+            <ComboBox SelectedItem="{Binding DrilEnabled, Mode=TwoWay}" ItemsSource="{Binding DrilOptions, Mode=OneWay}" />
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>

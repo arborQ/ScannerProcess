@@ -51,10 +51,10 @@ namespace ScannerReader.Windows
             {
 #if DEBUG
                 case Key.F1:
-                    readerResonse = "1A189535W      ";
+                    readerResonse = "G01880390";
                     break;
                 case Key.F2:
-                    readerResonse = "13304R04F#53A13VE00";
+                    readerResonse = "13304R04F#X3A02RH00";
                     break;
                 case Key.F3:
                     readerResonse = "13304R04F#53A13VE00";

@@ -9,5 +9,9 @@ namespace RepositoryServices.Models
         public string ImagePath { get; set; }
 
         public int DefaultTimeout { get; set; }
+
+        public int DrilEnabled { get; set; }
+
+        public int SelectedMode { get; set; }
     }
 }

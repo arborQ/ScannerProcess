@@ -33,6 +33,8 @@ namespace ScannerReader.Controls
             {
                 _model.ImagePath = model.ImagePath;
                 _model.ActivityTimeout = model.ActivityTimeout;
+                _model.DrilEnabled = model.DrilEnabled;
+                _model.SelectedMode = model.SelectedMode;
             }
         }
 
@@ -65,6 +67,11 @@ namespace ScannerReader.Controls
             _model.ActivityTimeout = 10;
 
             SaveData?.Invoke(_model);
+        }
+
+        private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

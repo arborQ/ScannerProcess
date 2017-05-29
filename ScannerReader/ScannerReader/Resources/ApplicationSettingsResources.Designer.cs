@@ -95,5 +95,23 @@ namespace ScannerReader.Resources {
                 return ResourceManager.GetString("SaveButtonText", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tryb skanowania.
+        /// </summary>
+        public static string ScanModeText {
+            get {
+                return ResourceManager.GetString("ScanModeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Użyj Alpha Controller.
+        /// </summary>
+        public static string UseControllerText {
+            get {
+                return ResourceManager.GetString("UseControllerText", resourceCulture);
+            }
+        }
     }
 }

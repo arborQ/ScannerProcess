@@ -129,4 +129,10 @@
   <data name="SaveButtonText" xml:space="preserve">
     <value>Zapisz</value>
   </data>
+  <data name="ScanModeText" xml:space="preserve">
+    <value>Tryb skanowania</value>
+  </data>
+  <data name="UseControllerText" xml:space="preserve">
+    <value>Użyj Alpha Controller</value>
+  </data>
 </root>
