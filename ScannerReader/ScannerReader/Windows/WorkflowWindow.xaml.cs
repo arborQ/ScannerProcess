@@ -57,7 +57,7 @@ namespace ScannerReader.Windows
                     readerResonse = "13304R04F#X3A02RH00";
                     break;
                 case Key.F3:
-                    readerResonse = "13304R04F#53A13VE00";
+                    readerResonse = "13304R04F#G01880390";
                     break;
                 case Key.F4:
                     readerResonse = "13304R04G#53A13VE00";

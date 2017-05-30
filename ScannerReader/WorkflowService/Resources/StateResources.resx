@@ -135,6 +135,9 @@
   <data name="PendingInitMessage" xml:space="preserve">
     <value>Zeskanuj numer zlecenia</value>
   </data>
+  <data name="PendingInitMessageTable" xml:space="preserve">
+    <value>Zeskanuj numer tabliczki silnika</value>
+  </data>
   <data name="ScanMoreEngineCodesMessageFormat" xml:space="preserve">
     <value>Zeskanuj kolejny kod: {0}...</value>
   </data>

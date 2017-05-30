@@ -115,6 +115,15 @@ namespace WorkflowService.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Zeskanuj numer tabliczki silnika.
+        /// </summary>
+        internal static string PendingInitMessageTable {
+            get {
+                return ResourceManager.GetString("PendingInitMessageTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Zeskanuj kolejny kod: {0}....
         /// </summary>
         internal static string ScanMoreEngineCodesMessageFormat {

@@ -53,10 +53,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InstallServices.cs" />
+    <Compile Include="Interfaces\IOrderCodeProvider.cs" />
     <Compile Include="Interfaces\IReadValueService.cs" />
     <Compile Include="IWorkflowOutput.cs" />
     <Compile Include="IWorkflowStateFactory.cs" />
     <Compile Include="Models\BarCodeModel.cs" />
+    <Compile Include="Providers\BaseCodeProvider.cs" />
+    <Compile Include="Providers\OrderCodeProvider.cs" />
+    <Compile Include="Providers\TableCodeProvider.cs" />
     <Compile Include="Resources\StateResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -94,6 +98,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
