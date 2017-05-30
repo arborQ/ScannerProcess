@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ScannerReader.Windows;
+using WorkflowService.Interfaces;
 
 namespace ScannerReader.Interfaces
 {
@@ -10,7 +11,7 @@ namespace ScannerReader.Interfaces
 
         AdminOptionsWindow CreateAdminOptionsWindow();
 
-        GetValueWindow CreateGetValueWindow(string expectedValue);
+        GetValueWindow CreateGetValueWindow(string expectedValue, DialogPosition position = DialogPosition.Center);
 
         WorkInProgress WorkInProgress(IEnumerable<Func<string>> listOfActions);
 

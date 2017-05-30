@@ -15,9 +15,9 @@ namespace ScannerReader.Services
             _windowFactory = windowFactory;
         }
 
-        public bool ReadValue(int expected)
+        public bool ReadValue(int expected, DialogPosition position = DialogPosition.Center)
         {
-            var window = _windowFactory.CreateGetValueWindow(expected.ToString());
+            var window = _windowFactory.CreateGetValueWindow(expected.ToString(), position);
             window.ShowDialog();
 
             return window.Model.Value == expected.ToString();

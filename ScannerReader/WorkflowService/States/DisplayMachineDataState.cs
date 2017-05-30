@@ -31,9 +31,10 @@ namespace WorkflowService.States
 
             if (_machine.EnginePositionA.HasValue)
             {
+                var position = _machine.EnginePositionA.HasValue && _machine.EnginePositionB.HasValue ? DialogPosition.Right : DialogPosition.Center;
                 WorkflowOutput.ImagePath = GetImagePath(_machine.ImageA);
                 WorkflowOutput.Message = StateResources.DisplayOneMessage;
-                if (!_readValueService.ReadValue(_machine.EnginePositionA.Value))
+                if (!_readValueService.ReadValue(_machine.EnginePositionA.Value, position))
                 {
                     return WorkflowStateFactory.GetPendingState(WorkflowOutput);
                 }
@@ -41,7 +42,8 @@ namespace WorkflowService.States
 
             if (_machine.EnginePositionB.HasValue)
             {
-                if (!_readValueService.ReadValue(_machine.EnginePositionB.Value))
+                var position = _machine.EnginePositionA.HasValue && _machine.EnginePositionB.HasValue ? DialogPosition.Left : DialogPosition.Center;
+                if (!_readValueService.ReadValue(_machine.EnginePositionB.Value, position))
                 {
                     return WorkflowStateFactory.GetPendingState(WorkflowOutput);
                 }
