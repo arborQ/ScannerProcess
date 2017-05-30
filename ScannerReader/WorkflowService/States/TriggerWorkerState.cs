@@ -52,7 +52,7 @@ namespace WorkflowService.States
                 var service = _controllerServiceFactory.Create(new ControllerEvents
                 {
                     ChangeState = message => WorkflowOutput.Message = message,
-                    Error = message => WorkflowOutput.Message = message,
+                    Error = exception => WorkflowOutput.Message = exception.Message,
                 }, settings.IpAddress);
 
                 int jobId = 0;

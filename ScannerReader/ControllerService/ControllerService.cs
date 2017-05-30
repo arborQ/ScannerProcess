@@ -1,8 +1,6 @@
 ﻿using EasyModbus;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -33,8 +31,12 @@ namespace ControllerService
                     return true;
                 }
             }
-            catch
+            catch(Exception e)
             {
+                if(_events.Error != null)
+                {
+                    _events.Error(e);
+                }
             }
             return false;
         }
@@ -43,28 +45,16 @@ namespace ControllerService
         {
             return await Task.Factory.StartNew(() =>
              {
-                 try
-                 {
 
-                     var port = 502;
-                     var client = new ModbusClient(defaultId, port);
-                     client.Connect();
-                     if (!client.Available(100))
-                     {
-                         _events.Error($"Nie mogę połączyć: {defaultId}:{port}");
-                         return null;
-                     }
-                     return client;
-                 }
-                 catch (Exception ex)
+                 var port = 502;
+                 var client = new ModbusClient(defaultId, port);
+                 client.Connect();
+                 if (!client.Available(100))
                  {
-                     if (_events.Error != null)
-                     {
-                         _events.Error(ex.Message);
-                     }
+                     _events.Error(new Exception($"Nie mogę połączyć: {defaultId}:{port}"));
+                     return null;
                  }
-
-                 return null;
+                 return client;
              });
 
         }
@@ -124,7 +114,6 @@ namespace ControllerService
                 while (state == JobType.InProgress)
                 {
                     state = (JobType)server.ReadInputRegisters(number, 1).First();
-                    Console.Clear();
                     _events.ChangeState("Praca rozpoczęta...");
                     Thread.Sleep(300);
                 }

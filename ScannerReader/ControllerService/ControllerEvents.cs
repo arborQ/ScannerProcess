@@ -8,6 +8,6 @@ namespace ControllerService
 
         public Action WorkDone { get; set; }
 
-        public Action<string> Error { get; set; }
+        public Action<Exception> Error { get; set; }
     }
 }
