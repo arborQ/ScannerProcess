@@ -8,11 +8,13 @@ namespace Logger.Service
     internal class nLogService : ILogService
     {
         private readonly NLog.Logger _logger;
+        private readonly NLog.Logger _scanRegistry;
         private readonly NLog.Logger _loggerException;
 
         public nLogService()
         {
             _logger = LogManager.GetLogger("LogActivity");
+            _scanRegistry = LogManager.GetLogger("ScanRegistry");
             _loggerException = LogManager.GetLogger("Exceptions");
         }
 
@@ -76,6 +78,19 @@ namespace Logger.Service
 
         public void ScanCode(string code)
         {
+        }
+
+        public void LogScaningDone(string login, string code, string engineCodeA, string engineCodeB, int? enginePositionA, int? enginePositionB, string programType)
+        {
+            _scanRegistry.Info()
+               .Message(login)
+               .Property("code", code)
+               .Property("engineCodeA", engineCodeA)
+               .Property("engineCodeB", engineCodeB)
+               .Property("enginePositionA", enginePositionA.HasValue ? enginePositionA.Value.ToString(): string.Empty)
+               .Property("enginePositionB", enginePositionB.HasValue ? enginePositionB.Value.ToString() : string.Empty)
+               .Property("programType", programType)
+               .Write();
         }
     }
 }

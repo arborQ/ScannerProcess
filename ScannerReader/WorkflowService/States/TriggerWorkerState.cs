@@ -7,6 +7,8 @@ using WorkflowService.Interfaces;
 using RepositoryServices;
 using System.IO;
 using ControllerService;
+using Logger.Interfaces;
+using CrossCutting;
 
 namespace WorkflowService.States
 {
@@ -16,19 +18,25 @@ namespace WorkflowService.States
         private readonly ApplicationService _applicationService;
         private readonly IReadValueService _readValueService;
         private readonly IControllerServiceFactory _controllerServiceFactory;
+        private readonly ILogService _logService;
+        private readonly IUserSecurity _userSecurity;
 
         public TriggerWorkerState(IWorkflowOutput workflowOutput,
             Machine machine,
+            ILogService logService,
+            IUserSecurity userSecurity,
             IWorkflowStateFactory workflowStateFactory,
             ApplicationService applicationService,
             IControllerServiceFactory controllerServiceFactory,
             IReadValueService readValueService)
             : base(workflowOutput, workflowStateFactory)
         {
+            _logService = logService;
             _machine = machine;
             _applicationService = applicationService;
             _readValueService = readValueService;
             _controllerServiceFactory = controllerServiceFactory;
+            _userSecurity = userSecurity;
         }
 
         private string _baseDirectory;
@@ -79,6 +87,8 @@ namespace WorkflowService.States
             {
                 WorkflowOutput.ImagePath = GetImagePath(_machine.ImageC);
             }
+
+            _logService.LogScaningDone(_userSecurity.CurrentUserLogin(), _machine.Code, _machine.EngineCodeA, _machine.EngineCodeB, _machine.EnginePositionA, _machine.EnginePositionB, _machine.ProgramType);
 
             return WorkflowStateFactory.GetPendingState(WorkflowOutput);
         }

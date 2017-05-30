@@ -80,6 +80,10 @@
       <Project>{a13ecd55-052c-4c9f-a033-19beaaa99164}</Project>
       <Name>ControllerService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CrossCutting\CrossCutting.csproj">
+      <Project>{645fe170-a6f1-4412-a016-f49a2972c86a}</Project>
+      <Name>CrossCutting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Logger\Logger.csproj">
       <Project>{00135411-6904-4a11-98f4-f459848c0f7a}</Project>
       <Name>Logger</Name>

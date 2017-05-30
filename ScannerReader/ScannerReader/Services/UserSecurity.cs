@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using Common.Interfaces;
 using Logger.Interfaces;
 using RepositoryServices;
+using CrossCutting;
 
 namespace ScannerReader.Services
 {

@@ -7,6 +7,7 @@ using Logger.Interfaces;
 using RepositoryServices;
 using ScannerReader.Interfaces;
 using CodeGenerator;
+using CrossCutting;
 
 namespace ScannerReader.Windows
 {
@@ -21,7 +22,7 @@ namespace ScannerReader.Windows
         private readonly IWindowFactory _windowFactory;
         private readonly IKeyboardReader _keyboardReader;
         private readonly ICodeSerializer _codeSerializer;
-        private const string AdminPassword = "admin";
+        private const string AdminPassword = "Haslo123!";
 
         public LoginWindow(IWindowFactory windowFactory, ILogService logger, ApplicationService applicationService,
             IUserSecurity userSecurity, IKeyboardReader keyboardReader, ICodeSerializer codeSerializer)

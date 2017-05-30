@@ -13,6 +13,7 @@ using ScannerReader.Services;
 using WorkflowService;
 using WorkflowService.Interfaces;
 using WorkflowService.States;
+using CrossCutting;
 
 namespace ScannerReader
 {

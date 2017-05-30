@@ -133,7 +133,6 @@
     <Compile Include="Converters\NegateBoolConverter.cs" />
     <Compile Include="Interfaces\IControlFactory.cs" />
     <Compile Include="Interfaces\IKeyboardReader.cs" />
-    <Compile Include="Interfaces\IUserSecurity.cs" />
     <Compile Include="Interfaces\IWindowFactory.cs" />
     <Compile Include="Models\AdminOptionsViewModel.cs" />
     <Compile Include="Models\ApplicationSettingsViewModel.cs" />
@@ -342,6 +341,10 @@
     <ProjectReference Include="..\CodeGenerator\CodeGenerator.csproj">
       <Project>{66db2a3c-4af9-4e45-a0e4-4a9af656b86e}</Project>
       <Name>CodeGenerator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CrossCutting\CrossCutting.csproj">
+      <Project>{645fe170-a6f1-4412-a016-f49a2972c86a}</Project>
+      <Name>CrossCutting</Name>
     </ProjectReference>
     <ProjectReference Include="..\Logger\Logger.csproj">
       <Project>{00135411-6904-4a11-98f4-f459848c0f7a}</Project>

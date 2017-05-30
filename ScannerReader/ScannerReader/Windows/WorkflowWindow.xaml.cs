@@ -3,12 +3,12 @@ using System.ComponentModel;
 using System.Timers;
 using System.Windows;
 using System.Windows.Input;
-using Castle.Core.Logging;
 using Common.Interfaces;
 using Logger.Interfaces;
 using RepositoryServices;
 using ScannerReader.Models;
 using WorkflowService;
+using CrossCutting;
 
 namespace ScannerReader.Windows
 {

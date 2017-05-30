@@ -1,4 +1,4 @@
-﻿namespace Common.Interfaces
+﻿namespace CrossCutting
 {
     public interface IUserSecurity
     {
