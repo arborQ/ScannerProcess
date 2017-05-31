@@ -10,12 +10,14 @@ namespace Logger.Service
         private readonly NLog.Logger _logger;
         private readonly NLog.Logger _scanRegistry;
         private readonly NLog.Logger _loggerException;
+        private readonly NLog.Logger _controllerActions;
 
         public nLogService()
         {
             _logger = LogManager.GetLogger("LogActivity");
             _scanRegistry = LogManager.GetLogger("ScanRegistry");
             _loggerException = LogManager.GetLogger("Exceptions");
+            _controllerActions = LogManager.GetLogger("ControllerActions");
         }
 
         public void InvalidLogin(string invalidLogin)
@@ -91,6 +93,11 @@ namespace Logger.Service
                .Property("enginePositionB", enginePositionB.HasValue ? enginePositionB.Value.ToString() : string.Empty)
                .Property("programType", programType)
                .Write();
+        }
+
+        public void ControllerAction(string message)
+        {
+            _scanRegistry.Info(message);
         }
     }
 }

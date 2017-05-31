@@ -24,5 +24,7 @@ namespace Logger.Interfaces
 
         void LogScaningDone(string login, string code, string engineCodeA, string engineCodeB, int? enginePositionA, int? enginePositionB, string programType);
 
+        void ControllerAction(string message);
+
     }
 }

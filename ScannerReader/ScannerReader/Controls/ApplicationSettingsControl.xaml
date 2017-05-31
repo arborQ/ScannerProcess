@@ -23,7 +23,7 @@
             <Label Content="{x:Static resx:ApplicationSettingsResources.UseControllerText}"></Label>
             <ComboBox SelectedItem="{Binding DrilEnabled, Mode=TwoWay}" ItemsSource="{Binding DrilOptions, Mode=OneWay}" />
             <Label>Adres kontrolera</Label>
-            <TextBox FontSize="14px" Padding="10px" Text="{Binding IpAddress, Mode=TwoWay}" PreviewTextInput="UIElement_OnPreviewTextInput"></TextBox>
+            <TextBox FontSize="14px" Padding="10px" Text="{Binding IpAddress, Mode=TwoWay}"></TextBox>
             <Button Content="{x:Static resx:ApplicationSettingsResources.SaveButtonText}" Click="Button_Click"></Button>
         </StackPanel>
     </Grid>

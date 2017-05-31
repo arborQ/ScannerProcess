@@ -1,4 +1,5 @@
 ﻿using EasyModbus;
+using Logger.Interfaces;
 using System;
 using System.Linq;
 using System.Threading;
@@ -10,22 +11,25 @@ namespace ControllerService
     {
         private ControllerEvents _events;
         private string _address;
-        public ControllerService(ControllerEvents events, string addressIp)
+        private ILogService _logger;
+
+        public ControllerService(ControllerEvents events, ILogService logger, string addressIp)
         {
             _events = events;
             _address = addressIp;
+            _logger = logger;
         }
 
         public async Task<bool> SelectJobAsync(int jobNumber)
         {
             try
             {
-                var server = await ConnectModbus(_address);
+                var server = ConnectModbus(_address);
                 if (server != null)
                 {
-                    await Stop(server);
-                    await RunJob(server, SelectedJob(jobNumber - 1));
-                    await Start(server);
+                    Stop(server);
+                    RunJob(server, SelectedJob(jobNumber - 1));
+                    Start(server);
                     await Listen(server, 0);
 
                     return true;
@@ -33,7 +37,10 @@ namespace ControllerService
             }
             catch(Exception e)
             {
-                if(_events.Error != null)
+                _logger.ControllerAction($"BŁĄD: {e.Message}");
+                _logger.Exception(e);
+
+                if (_events.Error != null)
                 {
                     _events.Error(e);
                 }
@@ -41,48 +48,34 @@ namespace ControllerService
             return false;
         }
 
-        private async Task<ModbusClient> ConnectModbus(string defaultId)
+        private ModbusClient ConnectModbus(string defaultId)
         {
-            return await Task.Factory.StartNew(() =>
-             {
+            var port = 502;
 
-                 var port = 502;
-                 var client = new ModbusClient(defaultId, port);
-                 client.Connect();
-                 if (!client.Available(100))
-                 {
-                     _events.Error(new Exception($"Nie mogę połączyć: {defaultId}:{port}"));
-                     return null;
-                 }
-                 return client;
-             });
-
+            _logger.ControllerAction($"Połącz: {defaultId}:{port}");
+            var client = new ModbusClient(defaultId, port);
+            client.Connect();
+            return client;
         }
 
-        private async Task RunJob(ModbusClient server, int number)
+        private void RunJob(ModbusClient server, int number)
         {
-            await Task.Factory.StartNew(() =>
-            {
-                server.WriteSingleRegister(0, number);
-            });
+            _logger.ControllerAction($"Rejestr: 0, Wartość: {number}");
+            server.WriteSingleRegister(0, number);
         }
 
-        private async Task Stop(ModbusClient server)
+        private void Stop(ModbusClient server)
         {
-            await Task.Factory.StartNew(() =>
-            {
-                server.WriteSingleRegister(2, 1);
-                server.WriteSingleRegister(0, 0);
-                server.WriteSingleRegister(1, 0);
-            });
+            _logger.ControllerAction("Rejestr: 0, Wartość: 0");
+            server.WriteSingleRegister(0, 0);
+            _logger.ControllerAction("Rejestr: 1, Wartość: 0");
+            server.WriteSingleRegister(1, 0);
         }
 
-        private async Task Start(ModbusClient server)
+        private void Start(ModbusClient server)
         {
-            await Task.Factory.StartNew(() =>
-            {
-                server.WriteSingleRegister(1, 1);
-            });
+            _logger.ControllerAction("Rejestr: 1, Wartość: 1");
+            server.WriteSingleRegister(1, 1);
         }
 
         private int SelectedJob(int number)
@@ -102,24 +95,35 @@ namespace ControllerService
         {
             await Task.Factory.StartNew(() =>
             {
+                _logger.ControllerAction($"Czekaj na odpowiedź: {number}:{1}");
+
                 var state = JobType.Done;
 
                 while (state == JobType.Done)
                 {
-                    state = (JobType)server.ReadInputRegisters(number, 1).First();
+                    var value = server.ReadInputRegisters(number, 1).First();
+                    _logger.ControllerAction($"Czekam na {(int)JobType.InProgress} jest {value}");
+                    state = (JobType)value;
                     _events.ChangeState("Rozpocznij proszę pracę.");
                     Thread.Sleep(300);
                 }
 
                 while (state == JobType.InProgress)
                 {
-                    state = (JobType)server.ReadInputRegisters(number, 1).First();
+                    var value = server.ReadInputRegisters(number, 1).First();
+                    _logger.ControllerAction($"Czekam na {(int)JobType.Done} jest {value}");
+                    state = (JobType)value;
                     _events.ChangeState("Praca rozpoczęta...");
                     Thread.Sleep(300);
                 }
 
-                _events.WorkDone();
+                _logger.ControllerAction($"KONIEC!");
+                if(_events != null && _events.WorkDone != null)
+                {
+                    _events.WorkDone();
+                }
             });
         }
     }
 }
+
